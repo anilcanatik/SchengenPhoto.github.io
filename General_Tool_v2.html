@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="BLS Spain Visa Appointment Photo creator - BLS Ispanya Randevu Fotografi yaratma - Resize and adjust the photo in accordance with BSL Spanish schengen visa.">
+    <meta name="keywords" content="BLS visa photo, Schengen visa, Spanish visa, visa appointment profile photo, photo cropper">
+    <title>Visa Photo Adjuster</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
+    <style>
+        :root {
+            --primary-color: #1abc9c;
+            --secondary-color: #16a085;
+            --background-color: #2c3e50;
+            --text-color: #ecf0f1;
+            --light-text-color: #ffffff;
+            --success-color: #27ae60;
+            --error-color: #e74c3c;
+        }        
+        
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 0;
+            background-color: var(--background-color);
+            color: var(--text-color);
+        }         
+        header {
+            background-color: var(--primary-color);
+            padding: 15px 0;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .header-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 20px;
+            height: 60px;
+        } .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+            font-size: 20px;
+            font-weight: bold;
+            color: var(--light-text-color);
+        }
+        .nav-links {
+            list-style-type: none;
+            display: flex;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links li {
+            margin-left: 15px;
+            display: flex;
+            align-items: center; /* This centers children vertically */
+            height: 80px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: white;
+        }
+
+        .nav-links a:hover,
+        .nav-links a:active,
+        .nav-links a:focus {
+            color: white; /* Keeps links white on interaction */
+            text-decoration: underline; /* Optional: adds underline on hover for better UX */
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--light-text-color);
+        }
+        #languageSelector {
+            margin-left: 20px;
+        }
+        #languageSelector select {
+            padding: 5px;
+            border-radius: 5px;
+            border: none;
+            background-color: var(--light-text-color);
+            color: var(--primary-color);
+        }
+        .status-message {
+            margin-top: 20px;
+            padding: 10px;
+            border-radius: 5px;
+            text-align: center;
+        }
+        .success {
+            background-color: var(--success-color);
+            color: var(--light-text-color);
+        }
+        .error {
+            background-color: var(--error-color);
+            color: var(--light-text-color);
+        }
+        
+        main {
+            padding: 40px 20px;
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: #1f3b50;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            overflow: hidden;
+        }
+        main h2 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #40aabf;
+        }
+        main p {
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        label {
+            flex: 1;
+            text-align: left;
+            font-size: 16px;
+        }
+        select, input[type="number"], #upload {
+            flex: 1;
+            padding: 8px;
+            background-color: #254e68;
+            border: 1px solid #3c6e91;
+            color: #ffffff;
+            border-radius: 5px;
+            margin-right: 10px;
+        }
+        #width,
+        #height {
+            max-width: 80px; /* Adjust the width of the input fields */
+        }
+
+        #unit {
+            max-width: 120px; /* Adjust the width of the unit dropdown */
+            margin-left: 15px;
+        }
+        #upload {
+            width: calc(100% - 10px);
+            margin-top: 15px;
+        }
+        #preview {
+            width: calc(100% - 40px); /* Reduced the width a bit to avoid overflow */
+            height: auto;
+            margin: 20px auto; /* Center the image preview */
+            border-radius: 10px;
+            padding: 10px;
+            box-sizing: border-box;
+            max-height: 500px;
+            object-fit: contain;
+        }
+        #convertDownload {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 30px;
+            background-color: #40aabf;
+            color: #ffffff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+        }
+        #convertDownload:hover {
+            background-color: #2b94a0;
+        }
+        .footer {
+        background-color: #f8f8f8;
+        color: #333;
+        padding: 20px 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+        }
+        .footer {
+        background-color: #2c3e50; /* Dark blue background color */
+        color: #ffffff;
+        padding: 20px 0;
+        font-family: Arial, sans-serif;
+        font-size: 14px;
+    }
+
+        .footer-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .footer-links {
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .footer-links a {
+            color: #4ecdc4; /* Mint green color for links */
+            text-decoration: none;
+            margin: 0 15px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: #ffffff;
+        }
+
+        .footer-disclaimer {
+            font-size: 12px;
+            color: #bdc3c7; /* Light gray color */
+            margin-bottom: 15px;
+            line-height: 1.5;
+            text-align: center;
+        }
+
+        .footer-disclaimer a {
+            color: #4ecdc4; /* Mint green color for links */
+            text-decoration: none;
+        }
+
+        .footer-disclaimer a:hover {
+            text-decoration: underline;
+        }
+
+        .footer-copyright {
+            font-size: 12px;
+            color: #bdc3c7; /* Light gray color */
+            margin: 0;
+            text-align: center;
+        }
+        
+
+    </style>
+</head>
+<body>
+  <header>
+        <div class="header-content">
+            <div class="logo">ShengenPhoto.com</div>
+
+                <div class="nav-container">
+                    <ul class="nav-links">
+                        <li><a href="index.html" data-lang= "nav_home" >Home</a></li>
+                        <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen" >Visa Photo Edittor</a></li>
+                        <li><a href="BSL_Spain.html" data-lang= "nav_DetailedImage" >BSL Visa Booking Photo Converter</a></li>
+                        <li><a href="about.html" data-lang= "nav_About" >About</a></li>
+                      </ul>
+                </div>
+
+                <div id="languageSelector">
+                    <select id="language" onchange="changeLanguage(this.value)">
+                        <option value="en">English</option>
+                        <option value="tr">Türkçe</option>
+                        <option value="zh">中文</option>
+                        <option value="ar">العربية</option>
+                        <option value="hi">हिन्दी</option>
+                    </select>
+            </div>
+        </div>
+    </header>
+    <div class="container">
+        <main class="main-content">
+            <h1 data-lang="title">Image Crop and Convert</h1>
+
+            <div class="text_box">
+                <p data-lang="text_box">Are you preparing to book a visa application? Our free online tool is designed to help you adjust your visa photos for visa applications. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process. Simply upload an image, adjust it as needed, and download the result. This tool processes all images locally on your device - we don't store or transmit any of your data. Your privacy is ensured as all operations are performed entirely within your browser.</p>
+            </div>  
+
+        
+            <div class="input-group">
+                <label for="photoType">Select photo type:</label>
+                <select id="photoType">
+                    <option value="schengen">Schengen Visa Application</option>
+                    <option value="us">US Visa Application</option>
+                    <option value="custom">Custom Selection</option>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label for="width">Width:</label>
+                <input type="number" id="width" min="1" step="1">
+                <label for="height" style="margin-left: 15px;">Height:</label>
+                <input type="number" id="height" min="1" step="1">
+                <select id="unit" style="margin-left: 15px;">
+                    <option value="px">pixels</option>
+                    <option value="in">inches</option>
+                    <option value="cm">centimeters</option>
+                    <option value="mm">millimeters</option>
+                </select>
+            </div>
+
+            <div id="statusMessage" class="status-message" style="display: none;"></div>
+
+            <input type="file" id="upload" accept="image/*">
+
+            <img id="preview" src="/api/placeholder/400/320" alt="Preview", style="display: none;">
+
+            <button id="convertDownload">Convert & Download</button>
+        </main>
+    </div>
+    
+    <footer class="footer">
+        <div class="footer-content">
+            <div class="footer-links">
+                <a href="General_Tool_v2.html">Home</a>
+                <a href="about.html">About</a>
+                <a href="#">FAQ</a>
+            </div>
+        <div class="footer-content">
+            <p>Disclaimer: This tool assists in preparing photos for visa applications. It does not guarantee photo acceptance or visa success. Always verify current requirements on the official websites.</p>
+            <p class="footer-copyright">&copy; 2024 ShengenPhoto.com. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        let cropper;
+        const translations = {
+            en: {
+                title: "Image Crop and Convert",
+                nav_home: "Home",
+                nav_schengen: "Schengen Appointment",
+                nav_detailed: "Detailed Sizer",
+                nav_about: "About",
+                drop_image: "Drop your image here or click to upload",
+                convert: "Convert",
+                download: "Download",
+                upload_success: "Image uploaded successfully. You can now crop and convert it.",
+                convert_success: "Image converted successfully. You can now download it.",
+                error_message: "An error occurred. Please try again.",
+                text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process."
+            },
+            tr: {
+                title: "Resim Kırpma ve Dönüştürme",
+                drop_image: "Resminizi buraya bırakın veya yüklemek için tıklayın",
+                convert: "Dönüştür",
+                download: "İndir",
+                upload_success: "Resim başarıyla yüklendi. Şimdi kırpabilir ve dönüştürebilirsiniz.",
+                convert_success: "Resim başarıyla dönüştürüldü. Şimdi indirebilirsiniz.",
+                error_message: "Bir hata oluştu. Lütfen tekrar deneyin.",
+                text_box: "ShengenPhoto.com, doğrudan web tarayıcınızda görüntüleri kırpmanıza ve dönüştürmenize olanak tanıyan çevrimiçi bir araçtır. Bir görüntü yükleyin, gerektiği gibi ayarlayın ve sonucu indirin. Bu araç tüm görüntüleri cihazınızda yerel olarak işler - verilerinizi saklamaz veya iletmeyiz. Tüm işlemler tamamen tarayıcınızda gerçekleştirildiğinden gizliliğiniz sağlanır."
+            },
+            zh: {
+                title: "图像裁剪和转换",
+                drop_image: "将图像拖放到此处或点击上传",
+                convert: "转换",
+                download: "下载",
+                upload_success: "图像上传成功。现在您可以裁剪和转换它。",
+                convert_success: "图像转换成功。现在您可以下载它。",
+                error_message: "发生错误。请重试。",
+                text_box: "ShengenPhoto.com是一个直接在您的网络浏览器中裁剪和转换图像的在线工具。只需上传图像，根据需要调整，然后下载结果。该工具在您的设备上本地处理所有图像 - 我们不存储或传输您的任何数据。由于所有操作都完全在您的浏览器中执行，因此确保了您的隐私。"
+            },
+            ar: {
+                title: "قص وتحويل الصورة",
+                drop_image: "أسقط الصورة هنا أو انقر للتحميل",
+                convert: "تحويل",
+                download: "تنزيل",
+                upload_success: "تم تحميل الصورة بنجاح. يمكنك الآن قصها وتحويلها.",
+                convert_success: "تم تحويل الصورة بنجاح. يمكنك الآن تنزيلها.",
+                error_message: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+                text_box: "ShengenPhoto.com هي أداة عبر الإنترنت لقص وتحويل الصور مباشرة في متصفح الويب الخاص بك. ما عليك سوى تحميل صورة وتعديلها حسب الحاجة وتنزيل النتيجة. تعالج هذه الأداة جميع الصور محليًا على جهازك - نحن لا نخزن أو ننقل أيًا من بياناتك. يتم ضمان خصوصيتك حيث يتم تنفيذ جميع العمليات بالكامل داخل متصفحك."
+            },
+            hi: {
+                title: "छवि क्रॉप और परिवर्तन",
+                drop_image: "अपनी छवि यहां छोड़ें या अपलोड करने के लिए क्लिक करें",
+                convert: "परिवर्तित करें",
+                download: "डाउनलोड करें",
+                upload_success: "छवि सफलतापूर्वक अपलोड की गई। अब आप इसे क्रॉप और परिवर्तित कर सकते हैं।",
+                convert_success: "छवि सफलतापूर्वक परिवर्तित की गई। अब आप इसे डाउनलोड कर सकते हैं।",
+                error_message: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+                text_box: "ShengenPhoto.com आपके वेब ब्राउज़र में सीधे छवियों को क्रॉप और परिवर्तित करने के लिए एक ऑनलाइन उपकरण है। बस एक छवि अपलोड करें, आवश्यकतानुसार समायोजित करें, और परिणाम डाउनलोड करें। यह उपकरण आपके डिवाइस पर स्थानीय रूप से सभी छवियों को संसाधित करता है - हम आपके किसी भी डेटा को संग्रहीत या प्रेषित नहीं करते हैं। आपकी गोपनीयता सुनिश्चित की जाती है क्योंकि सभी संचालन पूरी तरह से आपके ब्राउज़र के भीतर किए जाते हैं।"
+            }
+        };
+
+        function changeLanguage(lang) {
+            document.querySelectorAll('[data-lang]').forEach(elem => {
+                const key = elem.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+        }
+
+        function showStatus(message, type) {
+            const statusMessage = document.getElementById('statusMessage');
+            statusMessage.textContent = message;
+            statusMessage.className = `status-message ${type}`;
+            statusMessage.style.display = 'block';
+        }
+
+        const photoTypeSelect = document.getElementById('photoType');
+        const widthInput = document.getElementById('width');
+        const heightInput = document.getElementById('height');
+        const unitSelect = document.getElementById('unit');
+        const uploadInput = document.getElementById('upload');
+        const previewImg = document.getElementById('preview');
+        const convertDownloadBtn = document.getElementById('convertDownload');
+
+        photoTypeSelect.addEventListener('change', updateDimensions);
+        unitSelect.addEventListener('change', convertUnits);
+        uploadInput.addEventListener('change', loadImage);
+        widthInput.addEventListener('input', updateAspectRatio);
+        heightInput.addEventListener('input', updateAspectRatio);
+        convertDownloadBtn.addEventListener('click', convertAndDownload);
+
+        function updateDimensions() {
+            const photoType = photoTypeSelect.value;
+            let width, height;
+
+            switch (photoType) {
+                case 'schengen':
+                    width = 35;
+                    height = 45;
+                    break;
+                case 'us':
+                    width = 51;
+                    height = 51;
+                    break;
+                case 'custom':
+                    width = '';
+                    height = '';
+                    break;
+            }
+
+            widthInput.value = width;
+            heightInput.value = height;
+            unitSelect.value = 'mm';
+            convertUnits();
+        }
+
+        function convertUnits() {
+            const unit = unitSelect.value;
+            let width = parseFloat(widthInput.value);
+            let height = parseFloat(heightInput.value);
+
+            if (isNaN(width) || isNaN(height)) return;
+
+            switch (unit) {
+                case 'px':
+                    width = Math.round(width * 3.779527559);
+                    height = Math.round(height * 3.779527559);
+                    break;
+                case 'in':
+                    width = width / 25.4;
+                    height = height / 25.4;
+                    break;
+                case 'cm':
+                    width = width / 10;
+                    height = height / 10;
+                    break;
+            }
+
+            widthInput.value = width;
+            heightInput.value = height;
+
+            if (cropper) {
+                cropper.setAspectRatio(width / height);
+            }
+        }
+
+        function updateAspectRatio() {
+            const width = parseFloat(widthInput.value);
+            const height = parseFloat(heightInput.value);
+            if (!isNaN(width) && !isNaN(height) && cropper) {
+                cropper.setAspectRatio(width / height);
+            }
+        }
+
+        function loadImage(event) {
+            const file = event.target.files[0];
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    previewImg.src = e.target.result;
+                    if (cropper) {
+                        cropper.destroy();
+                    }
+                    cropper = new Cropper(previewImg, {
+                        aspectRatio: parseFloat(widthInput.value) / parseFloat(heightInput.value) || NaN,
+                        viewMode: 1,
+                        dragMode: 'move',
+                        autoCropArea: 1,
+                    });
+                }
+                reader.readAsDataURL(file);
+                showStatus(translations[document.documentElement.lang].upload_success, 'success');
+            }
+        }
+
+        function convertAndDownload() {
+            if (!cropper) {
+                alert('Please upload an image first.');
+                return;
+            }
+
+            const width = parseFloat(widthInput.value);
+            const height = parseFloat(heightInput.value);
+            const unit = unitSelect.value;
+
+            let pixelWidth, pixelHeight;
+            switch (unit) {
+                case 'px':
+                    pixelWidth = Math.round(width);
+                    pixelHeight = Math.round(height);
+                    break;
+                case 'in':
+                    pixelWidth = Math.round(width * 96);
+                    pixelHeight = Math.round(height * 96);
+                    break;
+                case 'cm':
+                    pixelWidth = Math.round(width * 37.795275591);
+                    pixelHeight = Math.round(height * 37.795275591);
+                    break;
+                case 'mm':
+                    pixelWidth = Math.round(width * 3.779527559);
+                    pixelHeight = Math.round(height * 3.779527559);
+                    break;
+            }
+
+            cropper.getCroppedCanvas({
+                width: pixelWidth,
+                height: pixelHeight,
+            }).toBlob((blob) => {
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = url;
+                a.download = 'adjusted_photo.png';
+                document.body.appendChild(a);
+                a.click();
+                window.URL.revokeObjectURL(url);
+                document.body.removeChild(a);
+            }, 'image/png');
+            showStatus(translations[document.documentElement.lang].convert_success, 'success')
+
+        }
+
+        // Initialize with Schengen visa dimensions
+        updateDimensions();
+    </script>
+</body>
+</html>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to ShengenPhoto.com</title>
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Tailwind CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" rel="stylesheet">
+
+    <!-- AOS CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
+
+    <style>
+        :root {
+            --primary-color: #1abc9c;
+            --secondary-color: #16a085;
+            --background-color: #ffffff;
+            --text-color: #343a40;
+            --light-text-color: #ffffff;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: var(--background-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+        }
+
+        .hero-section {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 0 20px;
+        }
+
+        .hero-title {
+            font-size: 3rem;
+            margin-bottom: 20px;
+        }
+
+        .hero-subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 40px;
+        }
+
+        .hero-button {
+            padding: 15px 30px;
+            font-size: 1.25rem;
+            background-color: var(--light-text-color);
+            color: var(--primary-color);
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        .hero-button:hover {
+            background-color: var(--secondary-color);
+            color: var(--light-text-color);
+        }
+
+        .features-section {
+            background-color: #f7f7f7;
+            padding: 60px 20px;
+            text-align: center;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .feature-item {
+            background-color: #ffffff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            color: #7f8c8d;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="hero-section" data-aos="fade-in">
+        <h1 class="hero-title">Welcome to ShengenPhoto.com</h1>
+        <p class="hero-subtitle">Your one-stop solution for preparing Schengen Visa photos with ease.</p>
+        <a href="General_Tool_v2.html" class="hero-button">Visa Photo Edittor</a>
+        <a href="BSL_Spain.html" class="hero-button">BSL Visa Booking Photo Converter</a>
+    </div>
+
+    <div class="features-section">
+        <h2 class="features-title" data-aos="fade-up">Why Choose Us?</h2>
+        <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-item">
+                <h3 class="feature-title">Easy to Use</h3>
+                <p class="feature-description">Our tool is designed with simplicity in mind, making it easy for anyone to prepare their Schengen Visa photos.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Privacy Ensured</h3>
+                <p class="feature-description">All image processing is done locally on your device, ensuring that your data is never stored or transmitted.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Free of Charge</h3>
+                <p class="feature-description">Our service is completely free, with no hidden fees or premium features.</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        // Initialize AOS
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
+    </script>
+</body>
+
+</html>
