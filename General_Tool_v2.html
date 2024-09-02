@@ -18,6 +18,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style>
+
+        #spinningImage {
+                            width: 30px; /* Adjust the size of the image */
+                            height: 30px; /* Adjust the size of the image */
+                            animation: spin 3s linear infinite; /* Infinite spin duration */
+                            margin-left: 10px; /* Space between the text and the image */
+                        }
+
+                        @keyframes spin {
+                            from {
+                                transform: rotate(0deg);
+                            }
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+
+
         :root {
             --primary-color: #1abc9c;
             --secondary-color: #16a085;
@@ -84,10 +103,25 @@
             color: white; /* Keeps links white on interaction */
             text-decoration: underline; /* Optional: adds underline on hover for better UX */
         }
+        .logo-text {
+            font-size: 24px; /* Set the text size to match your original version */
+            font-weight: bold; /* Set the font weight to bold */
+        }
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--light-text-color);
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center; /* Align text and image horizontally */
+            text-decoration: none; /* Remove underline from the link */
+            color: var(--light-text-color); /* Ensure the color of the text */
+        }
+        .logo-link:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+            color: var(--light-text-color); /* Maintain the text color on hover */
         }
         #languageSelector {
             margin-left: 20px;
@@ -294,13 +328,18 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">ShengenPhoto.com</div>
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">Shengen Photo</span>
+                    <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
+                </a>
+            </div>
             <div class="nav-container">
                 <ul class="nav-links">
-                    <li><a href="index.html" data-lang= "nav_home" >Home</a></li>
-                    <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen" >Visa Photo Edittor</a></li>
-                    <li><a href="BSL_Spain.html" data-lang= "nav_DetailedImage" >BSL Visa Booking Photo Converter</a></li>
-                    <li><a href="about.html" data-lang= "nav_About" >About</a></li>
+                    <li><a href="index.html" data-lang= "nav_home." >Home</a></li>
+                    <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen." >Visa Photo Edittor</a></li>
+                    <li><a href="BSL_Spain.html" data-lang= "nav_Detailed." >BSL Visa Booking Photo Converter</a></li>
+                    <li><a href="about.html" data-lang= "nav_About." >About</a></li>
                 </ul>
             </div>
 
@@ -324,18 +363,18 @@
             </div>  
 
             <div class="input-group">
-                <label for="photoType">Select photo type:</label>
+                <label for="photoType" data-lang="inputphototype">Select photo type:</label>
                 <select id="photoType">
-                    <option value="schengen">Schengen Visa Application</option>
-                    <option value="us">US Visa Application</option>
-                    <option value="custom">Custom Selection</option>
+                    <option value="schengen" data-lang="inputSchengen">Schengen Visa Application</option>
+                    <option value="us" data-lang="inputUS">US Visa Application</option>
+                    <option value="custom" data-lang="inputCustom">Custom Selection</option>
                 </select>
             </div>
 
             <div class="input-group">
-                <label for="width">Width:</label>
+                <label for="width" data-lang="inputWidth">Width:</label>
                 <input type="number" id="width" min="1" step="1">
-                <label for="height" style="margin-left: 15px;">Height:</label>
+                <label for="height" style="margin-left: 15px;" data-lang="inputHeight">Height:</label>
                 <input type="number" id="height" min="1" step="1">
                 <select id="unit" style="margin-left: 15px;">
                     <option value="px">pixels</option>
@@ -354,7 +393,7 @@
 
             <img id="preview" src="/api/placeholder/400/320" alt="Preview" style="display: none;">
 
-            <button id="convertDownload">Convert & Download</button>
+            <button id="convertDownload" data-lang="downloadButton">Convert & Download</button>
         </main>
     </div>
     
@@ -363,7 +402,7 @@
             <div class="footer-links">
                 <a href="General_Tool_v2.html">Home</a>
                 <a href="about.html">About</a>
-                <a href="#">FAQ</a>
+                <a href="about.html">FAQ</a>
             </div>
             <div class="footer-content">
                 <p>Disclaimer: This tool assists in preparing photos for visa applications. It does not guarantee photo acceptance or visa success. Always verify current requirements on the official websites.</p>
@@ -387,9 +426,104 @@
                 upload_success: "Image uploaded successfully. You can now crop and convert it.",
                 convert_success: "Image converted successfully. You can now download it.",
                 error_message: "An error occurred. Please try again.",
-                text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process."
+                text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process.",
+                downloadButton: "Convert & Download",
+                inputphototype: "Select photo type:",
+                inputSchengen: "Schengen Visa Application",
+                inputUS: "US Visa Application",
+                inputCustom: "Custom Selection",
+                inputWidth: "Width:",
+                inputHeight: "Height"
+
+
             },
-            // Other translations omitted for brevity
+
+            tr: {
+                title: "Resim Kırpma ve Dönüştürme",
+                nav_home: "Ana Sayfa",
+                nav_schengen: "Schengen Randevusu",
+                nav_detailed: "Detaylı Boyutlandırıcı",
+                nav_about: "Hakkında",
+                drop_image: "Resminizi buraya bırakın veya yüklemek için tıklayın",
+                convert: "Dönüştür",
+                download: "İndir",
+                upload_success: "Resim başarıyla yüklendi. Şimdi kırpabilir ve dönüştürebilirsiniz.",
+                convert_success: "Resim başarıyla dönüştürüldü. Şimdi indirebilirsiniz.",
+                error_message: "Bir hata oluştu. Lütfen tekrar deneyin.",
+                text_box: "BLS International üzerinden Schengen vizesi randevusu almak için mi hazırlanıyorsunuz? Ücretsiz çevrimiçi aracımız, BLS randevu sistemi için profil fotoğrafınızı ayarlamanıza yardımcı olmak için tasarlanmıştır. Fotoğrafınızın genel gereksinimleri karşılamasına yardımcı olmayı amaçlıyoruz, bu da vize randevusu alma sürecinizi kolaylaştırabilir.",
+                downloadButton: "Dönüştür & İndir",
+                inputphototype: "Fotoğraf türünü seçin:",
+                inputSchengen: "Schengen Vize Başvurusu",
+                inputUS: "ABD Vize Başvurusu",
+                inputCustom: "Özel Seçim",
+                inputWidth: "Genişlik:",
+                inputHeight: "Yükseklik:"
+            },
+            zh: {
+                title: "图像裁剪和转换",
+                nav_home: "首页",
+                nav_schengen: "申根预约",
+                nav_detailed: "详细调整器",
+                nav_about: "关于",
+                drop_image: "将图像拖放到此处或点击上传",
+                convert: "转换",
+                download: "下载",
+                upload_success: "图像上传成功。现在您可以裁剪和转换它。",
+                convert_success: "图像转换成功。现在您可以下载它。",
+                error_message: "发生错误。请重试。",
+                text_box: "您准备通过BLS International预约申根签证吗？我们的免费在线工具旨在帮助您调整您的个人照片，以适应BLS预约系统的要求。我们旨在帮助您的照片符合一般要求，这可能有助于简化您的签证预约流程。",
+                downloadButton: "转换并下载",
+                inputphototype: "选择照片类型：",
+                inputSchengen: "申根签证申请",
+                inputUS: "美国签证申请",
+                inputCustom: "自定义选择",
+                inputWidth: "宽度:",
+                inputHeight: "高度:"
+            },
+            ar: {
+                title: "قص وتحويل الصورة",
+                nav_home: "الصفحة الرئيسية",
+                nav_schengen: "موعد شنغن",
+                nav_detailed: "أداة التعديل التفصيلية",
+                nav_about: "حول",
+                drop_image: "أسقط الصورة هنا أو انقر للتحميل",
+                convert: "تحويل",
+                download: "تنزيل",
+                upload_success: "تم تحميل الصورة بنجاح. يمكنك الآن قصها وتحويلها.",
+                convert_success: "تم تحويل الصورة بنجاح. يمكنك الآن تنزيلها.",
+                error_message: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+                text_box: "هل تستعد لحجز موعد تأشيرة شنغن من خلال BLS International؟ تم تصميم أداتنا المجانية عبر الإنترنت لمساعدتك في تعديل صورتك الشخصية لنظام حجز المواعيد لدى BLS. نهدف إلى مساعدة صورتك على تلبية المتطلبات العامة، مما قد يساعد في تبسيط عملية حجز موعد التأشيرة.",
+                downloadButton: "تحويل وتنزيل",
+                inputphototype: "اختر نوع الصورة:",
+                inputSchengen: "طلب تأشيرة شنغن",
+                inputUS: "طلب تأشيرة الولايات المتحدة",
+                inputCustom: "اختيار مخصص",
+                inputWidth: "العرض:",
+                inputHeight: "الارتفاع:"
+            },
+            hi: {
+                title: "छवि क्रॉप और परिवर्तन",
+                nav_home: "होम",
+                nav_schengen: "शेंगन अपॉइंटमेंट",
+                nav_detailed: "विस्तृत आकारकर्ता",
+                nav_about: "के बारे में",
+                drop_image: "अपनी छवि यहां छोड़ें या अपलोड करने के लिए क्लिक करें",
+                convert: "परिवर्तित करें",
+                download: "डाउनलोड करें",
+                upload_success: "छवि सफलतापूर्वक अपलोड की गई। अब आप इसे क्रॉप और परिवर्तित कर सकते हैं।",
+                convert_success: "छवि सफलतापूर्वक परिवर्तित की गई। अब आप इसे डाउनलोड कर सकते हैं।",
+                error_message: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+                text_box: "क्या आप BLS International के माध्यम से शेंगन वीज़ा अपॉइंटमेंट बुक करने की तैयारी कर रहे हैं? हमारा मुफ्त ऑनलाइन टूल BLS अपॉइंटमेंट सिस्टम के लिए आपकी प्रोफ़ाइल फ़ोटो को समायोजित करने में आपकी मदद करने के लिए डिज़ाइन किया गया है। हमारा उद्देश्य आपकी फ़ोटो को सामान्य आवश्यकताओं को पूरा करने में मदद करना है, जिससे आपके वीज़ा अपॉइंटमेंट बुकिंग प्रक्रिया को सुचारू बनाने में मदद मिल सकती है।",
+                downloadButton: "परिवर्तित करें और डाउनलोड करें",
+                inputphototype: "फ़ोटो प्रकार चुनें:",
+                inputSchengen: "शेंगन वीज़ा आवेदन",
+                inputUS: "यूएस वीज़ा आवेदन",
+                inputCustom: "कस्टम चयन",
+                inputWidth: "चौड़ाई:",
+                inputHeight: "ऊँचाई:"
+            }
+
+
         };
 
         function changeLanguage(lang) {

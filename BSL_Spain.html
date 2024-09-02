@@ -18,6 +18,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
     <style>
+        
+        #spinningImage {
+                            width: 30px; /* Adjust the size of the image */
+                            height: 30px; /* Adjust the size of the image */
+                            animation: spin 3s linear infinite; /* Infinite spin duration */
+                            margin-left: 10px; /* Space between the text and the image */
+                        }
+
+                        @keyframes spin {
+                            from {
+                                transform: rotate(0deg);
+                            }
+                            to {
+                                transform: rotate(360deg);
+                            }
+                        }
+
+
+
         :root {
             --primary-color: #1abc9c;
             --secondary-color: #16a085;
@@ -89,10 +108,25 @@
             color: white; /* Keeps links white on interaction */
             text-decoration: underline; /* Optional: adds underline on hover for better UX */
         }
+        .logo-text {
+            font-size: 24px; /* Set the text size to match your original version */
+            font-weight: bold; /* Set the font weight to bold */
+        }
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: var(--light-text-color);
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center; /* Align text and image horizontally */
+            text-decoration: none; /* Remove underline from the link */
+            color: var(--light-text-color); /* Ensure the color of the text */
+        }
+        .logo-link:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+            color: var(--light-text-color); /* Maintain the text color on hover */
         }
         #languageSelector {
             margin-left: 20px;
@@ -259,14 +293,18 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">ShengenPhoto.com</div>
-
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">Shengen Photo</span>
+                    <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
+                </a>
+            </div>
                 <div class="nav-container">
                     <ul class="nav-links">
-                        <li><a href="index.html" data-lang= "nav_home" >Home</a></li>
-                        <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen" >Visa Photo Edittor</a></li>
-                        <li><a href="BSL_Spain.html" data-lang= "nav_DetailedImage" >BSL Visa Booking Photo Converter</a></li>
-                        <li><a href="about.html" data-lang= "nav_About" >About</a></li>
+                        <li><a href="index.html" data-lang= "nav_home." >Home</a></li>
+                        <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen." >Visa Photo Edittor</a></li>
+                        <li><a href="BSL_Spain.html" data-lang= "nav_Detailed." >BSL Visa Booking Photo Converter</a></li>
+                        <li><a href="about.html" data-lang= "nav_About." >About</a></li>
                       </ul>
                 </div>
 
@@ -331,59 +369,91 @@
         let cropper;
         const translations = {
             en: {
-                title: "Image Crop and Convert",
-                nav_home: "Home",
-                nav_schengen: "Schengen Appointment",
-                nav_detailed: "Detailed Sizer",
-                nav_about: "About",
-                drop_image: "Drop your image here or click to upload",
-                convert: "Convert",
-                download: "Download",
-                upload_success: "Image uploaded successfully. You can now crop and convert it.",
-                convert_success: "Image converted successfully. You can now download it.",
-                error_message: "An error occurred. Please try again.",
-                text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process."
+                    title: "BLS Appointment Photo Formatter",
+                    nav_home: "Home",
+                    nav_schengen: "Schengen Appointment",
+                    nav_detailed: "BSL Visa Booking Photo Converter",
+                    nav_About: "About",
+                    first_about: "At ShengenPhoto , our mission is to make the process of preparing Schengen Visa photos as simple and accessible as possible.", 
+                    second_about: "Our platform prioritizes your privacy by ensuring that all image processing is done locally on your device. This means your photos never leave your computer, giving you peace of mind that your personal data remains secure.",
+                    third_about: "We are proud to offer our services completely free of charge, with no hidden fees or premium features, only through google ads service used in the website. ShengenPhoto  is dedicated to helping travelers meet their visa photo requirements without any hassle.",
+                    drop_image: "Drop your image here or click to upload",
+                    convert: "Convert",
+                    download: "Download",
+                    upload_success: "Image uploaded successfully. You can now crop and convert it.",
+                    convert_success: "Image converted successfully. You can now download it.",
+                    error_message: "An error occurred. Please try again.",
+                    text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process."
             },
             tr: {
-                title: "Resim Kırpma ve Dönüştürme",
-                drop_image: "Resminizi buraya bırakın veya yüklemek için tıklayın",
-                convert: "Dönüştür",
-                download: "İndir",
-                upload_success: "Resim başarıyla yüklendi. Şimdi kırpabilir ve dönüştürebilirsiniz.",
-                convert_success: "Resim başarıyla dönüştürüldü. Şimdi indirebilirsiniz.",
-                error_message: "Bir hata oluştu. Lütfen tekrar deneyin.",
-                text_box: "ShengenPhoto.com, doğrudan web tarayıcınızda görüntüleri kırpmanıza ve dönüştürmenize olanak tanıyan çevrimiçi bir araçtır. Bir görüntü yükleyin, gerektiği gibi ayarlayın ve sonucu indirin. Bu araç tüm görüntüleri cihazınızda yerel olarak işler - verilerinizi saklamaz veya iletmeyiz. Tüm işlemler tamamen tarayıcınızda gerçekleştirildiğinden gizliliğiniz sağlanır."
+                    title: "BLS Randevu Fotoğraf Formatlayıcı",
+                    nav_home: "Ana Sayfa",
+                    nav_schengen: "Schengen Randevusu",
+                    nav_detailed: "BSL Vize Rezervasyonu Fotoğraf Dönüştürücü",
+                    nav_about: "Hakkında",
+                    first_about: "ShengenPhoto'da amacımız, Schengen Vizesi fotoğraflarını hazırlama sürecini olabildiğince basit ve erişilebilir hale getirmektir.",
+                    second_about: "Platformumuz, tüm görüntü işleme işlemlerinin cihazınızda yerel olarak yapılmasını sağlayarak gizliliğinizi ön planda tutar. Bu, fotoğraflarınızın bilgisayarınızdan çıkmadığı anlamına gelir ve kişisel verilerinizin güvende kaldığından emin olmanızı sağlar.",
+                    third_about: "Hizmetlerimizi tamamen ücretsiz olarak sunmaktan gurur duyuyoruz, gizli ücretler veya premium özellikler yoktur, yalnızca sitede kullanılan Google reklam hizmeti üzerinden gelir elde edilmektedir. ShengenPhoto, gezginlerin vize fotoğrafı gereksinimlerini zahmetsizce karşılamalarına yardımcı olmaya kendini adamıştır.",
+                    drop_image: "Resminizi buraya bırakın veya yüklemek için tıklayın",
+                    convert: "Dönüştür",
+                    download: "İndir",
+                    upload_success: "Resim başarıyla yüklendi. Şimdi kırpabilir ve dönüştürebilirsiniz.",
+                    convert_success: "Resim başarıyla dönüştürüldü. Şimdi indirebilirsiniz.",
+                    error_message: "Bir hata oluştu. Lütfen tekrar deneyin.",
+                    text_box: "BLS International üzerinden Schengen vizesi randevusu almak için mi hazırlanıyorsunuz? Ücretsiz çevrimiçi aracımız, BLS randevu sistemi için profil fotoğrafınızı ayarlamanıza yardımcı olmak için tasarlanmıştır. Fotoğrafınızın genel gereksinimleri karşılamasına yardımcı olmayı amaçlıyoruz, bu da vize randevusu alma sürecinizi kolaylaştırabilir."
             },
             zh: {
-                title: "图像裁剪和转换",
-                drop_image: "将图像拖放到此处或点击上传",
-                convert: "转换",
-                download: "下载",
-                upload_success: "图像上传成功。现在您可以裁剪和转换它。",
-                convert_success: "图像转换成功。现在您可以下载它。",
-                error_message: "发生错误。请重试。",
-                text_box: "ShengenPhoto.com是一个直接在您的网络浏览器中裁剪和转换图像的在线工具。只需上传图像，根据需要调整，然后下载结果。该工具在您的设备上本地处理所有图像 - 我们不存储或传输您的任何数据。由于所有操作都完全在您的浏览器中执行，因此确保了您的隐私。"
+                    title: "BLS预约照片格式化工具",
+                    nav_home: "首页",
+                    nav_schengen: "申根预约",
+                    nav_detailed: "BSL签证预约照片转换器",
+                    nav_about: "关于",
+                    first_about: "在ShengenPhoto，我们的使命是让准备申根签证照片的过程尽可能简单和方便。",
+                    second_about: "我们的平台优先考虑您的隐私，确保所有图像处理都在您的设备上本地完成。这意味着您的照片永远不会离开您的计算机，让您安心，您的个人数据保持安全。",
+                    third_about: "我们自豪地免费提供我们的服务，没有隐藏费用或高级功能，网站上仅通过谷歌广告服务获取收入。ShengenPhoto致力于帮助旅行者轻松满足签证照片要求。",
+                    drop_image: "将图像拖放到此处或点击上传",
+                    convert: "转换",
+                    download: "下载",
+                    upload_success: "图像上传成功。现在您可以裁剪和转换它。",
+                    convert_success: "图像转换成功。现在您可以下载它。",
+                    error_message: "发生错误。请重试。",
+                    text_box: "您准备通过BLS International预约申根签证吗？我们的免费在线工具旨在帮助您调整您的个人照片，以适应BLS预约系统的要求。我们旨在帮助您的照片符合一般要求，这可能有助于简化您的签证预约流程。"
             },
             ar: {
-                title: "قص وتحويل الصورة",
-                drop_image: "أسقط الصورة هنا أو انقر للتحميل",
-                convert: "تحويل",
-                download: "تنزيل",
-                upload_success: "تم تحميل الصورة بنجاح. يمكنك الآن قصها وتحويلها.",
-                convert_success: "تم تحويل الصورة بنجاح. يمكنك الآن تنزيلها.",
-                error_message: "حدث خطأ. يرجى المحاولة مرة أخرى.",
-                text_box: "ShengenPhoto.com هي أداة عبر الإنترنت لقص وتحويل الصور مباشرة في متصفح الويب الخاص بك. ما عليك سوى تحميل صورة وتعديلها حسب الحاجة وتنزيل النتيجة. تعالج هذه الأداة جميع الصور محليًا على جهازك - نحن لا نخزن أو ننقل أيًا من بياناتك. يتم ضمان خصوصيتك حيث يتم تنفيذ جميع العمليات بالكامل داخل متصفحك."
+                    title: "مُنسق صورة موعد BLS",
+                    nav_home: "الصفحة الرئيسية",
+                    nav_schengen: "موعد شنغن",
+                    nav_detailed: "محول صورة حجز تأشيرة BSL",
+                    nav_about: "حول",
+                    first_about: "في ShengenPhoto، مهمتنا هي جعل عملية تحضير صور تأشيرة شنغن بسيطة وسهلة الوصول قدر الإمكان.",
+                    second_about: "تعمل منصتنا على حماية خصوصيتك من خلال ضمان معالجة جميع الصور محليًا على جهازك. هذا يعني أن صورك لا تغادر جهاز الكمبيوتر الخاص بك، مما يمنحك راحة البال بأن بياناتك الشخصية تظل آمنة.",
+                    third_about: "نحن فخورون بتقديم خدماتنا مجانًا تمامًا، دون أي رسوم خفية أو ميزات مدفوعة، حيث يتم استخدام خدمة إعلانات Google فقط في الموقع. يكرس ShengenPhoto جهوده لمساعدة المسافرين على تلبية متطلبات صور التأشيرة دون أي عناء.",
+                    drop_image: "أسقط الصورة هنا أو انقر للتحميل",
+                    convert: "تحويل",
+                    download: "تنزيل",
+                    upload_success: "تم تحميل الصورة بنجاح. يمكنك الآن قصها وتحويلها.",
+                    convert_success: "تم تحويل الصورة بنجاح. يمكنك الآن تنزيلها.",
+                    error_message: "حدث خطأ. يرجى المحاولة مرة أخرى.",
+                    text_box: "هل تستعد لحجز موعد تأشيرة شنغن من خلال BLS International؟ تم تصميم أداتنا المجانية عبر الإنترنت لمساعدتك في تعديل صورتك الشخصية لنظام حجز المواعيد لدى BLS. نهدف إلى مساعدة صورتك على تلبية المتطلبات العامة، مما قد يساعد في تبسيط عملية حجز موعد التأشيرة."
             },
             hi: {
-                title: "छवि क्रॉप और परिवर्तन",
-                drop_image: "अपनी छवि यहां छोड़ें या अपलोड करने के लिए क्लिक करें",
-                convert: "परिवर्तित करें",
-                download: "डाउनलोड करें",
-                upload_success: "छवि सफलतापूर्वक अपलोड की गई। अब आप इसे क्रॉप और परिवर्तित कर सकते हैं।",
-                convert_success: "छवि सफलतापूर्वक परिवर्तित की गई। अब आप इसे डाउनलोड कर सकते हैं।",
-                error_message: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
-                text_box: "ShengenPhoto.com आपके वेब ब्राउज़र में सीधे छवियों को क्रॉप और परिवर्तित करने के लिए एक ऑनलाइन उपकरण है। बस एक छवि अपलोड करें, आवश्यकतानुसार समायोजित करें, और परिणाम डाउनलोड करें। यह उपकरण आपके डिवाइस पर स्थानीय रूप से सभी छवियों को संसाधित करता है - हम आपके किसी भी डेटा को संग्रहीत या प्रेषित नहीं करते हैं। आपकी गोपनीयता सुनिश्चित की जाती है क्योंकि सभी संचालन पूरी तरह से आपके ब्राउज़र के भीतर किए जाते हैं।"
+                    title: "BLS अपॉइंटमेंट फोटो फॉर्मेटर",
+                    nav_home: "होम",
+                    nav_schengen: "शेंगन अपॉइंटमेंट",
+                    nav_detailed: "BSL वीज़ा बुकिंग फोटो कन्वर्टर",
+                    nav_about: "के बारे में",
+                    first_about: "ShengenPhoto पर, हमारा मिशन शेंगन वीज़ा फ़ोटो तैयार करने की प्रक्रिया को यथासंभव सरल और सुलभ बनाना है।",
+                    second_about: "हमारा प्लेटफ़ॉर्म आपकी गोपनीयता को प्राथमिकता देता है, यह सुनिश्चित करके कि सभी छवि प्रसंस्करण आपके डिवाइस पर स्थानीय रूप से किया जाता है। इसका मतलब है कि आपकी फ़ोटो कभी भी आपके कंप्यूटर से नहीं निकलती, जिससे आप निश्चिंत हो सकते हैं कि आपका व्यक्तिगत डेटा सुरक्षित रहता है।",
+                    third_about: "हम अपनी सेवाएं पूरी तरह से मुफ्त में, बिना किसी छिपी हुई फीस या प्रीमियम सुविधाओं के प्रदान करने पर गर्व महसूस करते हैं, वेबसाइट में केवल Google विज्ञापन सेवा का उपयोग किया गया है। ShengenPhoto यात्रियों को बिना किसी परेशानी के उनके वीज़ा फ़ोटो आवश्यकताओं को पूरा करने में मदद करने के लिए समर्पित है।",
+                    drop_image: "अपनी छवि यहां छोड़ें या अपलोड करने के लिए क्लिक करें",
+                    convert: "परिवर्तित करें",
+                    download: "डाउनलोड करें",
+                    upload_success: "छवि सफलतापूर्वक अपलोड की गई। अब आप इसे क्रॉप और परिवर्तित कर सकते हैं।",
+                    convert_success: "छवि सफलतापूर्वक परिवर्तित की गई। अब आप इसे डाउनलोड कर सकते हैं।",
+                    error_message: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
+                    text_box: "क्या आप BLS International के माध्यम से शेंगन वीज़ा अपॉइंटमेंट बुक करने की तैयारी कर रहे हैं? हमारा मुफ्त ऑनलाइन टूल BLS अपॉइंटमेंट सिस्टम के लिए आपकी प्रोफ़ाइल फ़ोटो को समायोजित करने में आपकी मदद करने के लिए डिज़ाइन किया गया है। हमारा उद्देश्य आपकी फ़ोटो को सामान्य आवश्यकताओं को पूरा करने में मदद करना है, जिससे आपके वीज़ा अपॉइंटमेंट बुकिंग प्रक्रिया को सुचारू बनाने में मदद मिल सकती है।"
             }
+
         };
 
 

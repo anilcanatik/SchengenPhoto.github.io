@@ -2,18 +2,18 @@
 <html lang="en">
 
 <head>
-        <!-- Google tag (gtag.js) -->
+    <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCQKBW9K3L"></script>
     <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
 
-    gtag('config', 'G-WCQKBW9K3L');
+        gtag('config', 'G-WCQKBW9K3L');
     </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Welcome to ShengenPhoto.com</title>
+    <title>ShengenPhoto.com - Adjust Your Visa Needs</title>
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -25,6 +25,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.css">
 
     <style>
+        #spinningImage {
+            width: 30px; /* Adjust the size of the image */
+            height: 30px; /* Adjust the size of the image */
+            animation: spin 3s linear infinite; /* Infinite spin duration */
+            margin-left: 10px; /* Space between the text and the image */
+        }
+
+        @keyframes spin {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
         :root {
             --primary-color: #1abc9c;
             --secondary-color: #16a085;
@@ -51,9 +67,29 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 15px;
             height: 60px;
             color: var(--light-text-color);
+        }
+        .logo-text {
+            font-size: 24px; /* Set the text size to match your original version */
+            font-weight: bold; /* Set the font weight to bold */
+        }
+
+        .logo {
+            display: flex;
+            align-items: center; /* Vertically center the content */
+        }
+
+        .logo-link {
+            display: flex;
+            align-items: center; /* Align text and image horizontally */
+            text-decoration: none; /* Remove underline from the link */
+            color: var(--light-text-color); /* Ensure the color of the text */
+        }
+        .logo-link:hover {
+            text-decoration: none; /* Ensure no underline on hover */
+            color: var(--light-text-color); /* Maintain the text color on hover */
         }
 
         .nav-container {
@@ -82,11 +118,6 @@
 
         .nav-links a:hover {
             color: #e0f7fa;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
         }
 
         #languageSelector select {
@@ -119,7 +150,6 @@
             margin-bottom: 40px;
         }
 
-        /* Updated Button Design */
         .hero-button {
             padding: 15px 30px;
             font-size: 1.25rem;
@@ -130,14 +160,13 @@
             cursor: pointer;
             transition: background-color 0.3s ease, transform 0.3s ease;
             margin: 10px;
-            text-decoration: none; /* Ensure no underline */
+            text-decoration: none;
         }
 
         .hero-button:hover {
             background-color: var(--secondary-color);
-            color: var(--light-text-color); /* Ensure the color stays the same */
             transform: translateY(-3px);
-            text-decoration: none; /* Ensure no underline on hover */
+            text-decoration: none;
         }
 
         .features-section {
@@ -233,7 +262,12 @@
 <body>
     <header>
         <div class="header-content">
-            <div class="logo">ShengenPhoto.com</div>
+            <div class="logo">
+                <a href="index.html" class="logo-link">
+                    <span class="logo-text">Shengen Photo</span>
+                    <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
+                </a>
+            </div>
 
             <div class="nav-container">
                 <ul class="nav-links">
