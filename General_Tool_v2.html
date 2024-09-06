@@ -152,22 +152,8 @@
             color: var(--light-text-color);
         }
         
-        main {
-            padding: 40px 20px;
-            max-width: 800px;
-            margin: 0 auto;
-            background-color: #1f3b50;
-            border-radius: 10px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
-            text-align: center;
-            overflow: hidden;
-        }
-        h1 {
-            color: var(--primary-color);
-            margin-bottom: 20px;
-            text-align: center;
-        }
         .main-content {
+            display: flex;
             background-color: #34495e;
             padding: 30px;
             border-radius: 10px;
@@ -175,71 +161,90 @@
             margin-top: 30px;
         }
 
-        main h2 {
-            font-size: 28px;
-            margin-bottom: 20px;
-            color: #40aabf;
-        }
-        main p {
-            font-size: 18px;
-            margin-bottom: 30px;
-        }
-        .input-group {
-            margin-bottom: 20px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-        label {
-            flex: 1;
-            text-align: left;
-            font-size: 16px;
-        }
-        select, input[type="number"], #upload {
-            flex: 1;
-            padding: 8px;
-            background-color: #254e68;
-            border: 1px solid #3c6e91;
-            color: #ffffff;
-            border-radius: 5px;
-            margin-right: 10px;
-        }
-        #width,
-        #height {
-            max-width: 80px; /* Adjust the width of the input fields */
+        .sidebar {
+            width: 300px; /* Increased from 250px */
+            padding-right: 30px; /* Increased from 20px */
+            border-right: 1px solid var(--primary-color);
+            margin-right: 30px; /* Added margin for separation */
         }
 
-        #unit {
-            max-width: 120px; /* Adjust the width of the unit dropdown */
-            margin-left: 15px;
+        .content-area {
+            flex-grow: 1;
         }
-        #upload {
-            width: calc(100% - 10px);
-            margin-top: 15px;
+
+        .sidebar h2 {
+            color: var(--primary-color);
+            margin-bottom: 25px; /* Increased from 20px */
+            font-size: 1.5rem; /* Increased font size */
         }
-        #preview {
-            width: calc(100% - 40px); /* Reduced the width a bit to avoid overflow */
-            height: auto;
-            margin: 20px auto; /* Center the image preview */
-            border-radius: 10px;
-            padding: 10px;
-            box-sizing: border-box;
-            max-height: 500px;
-            object-fit: contain;
+
+        .input-group {
+            margin-bottom: 20px; /* Increased from 15px */
         }
-        #convertDownload {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
+
+        .input-group label {
+            display: block;
+            margin-bottom: 8px; /* Increased from 5px */
+            color: var(--light-text-color);
+            font-size: 1rem; /* Increased font size */
+        }
+
+        .input-group select,
+        .input-group input {
+            width: 100%;
+            padding: 10px; /* Increased from 8px */
+            border: 1px solid var(--primary-color);
+            background-color: var(--background-color);
+            color: var(--light-text-color);
+            border-radius: 4px;
+            font-size: 1rem; /* Increased font size */
+        }
+
+        #downloadBtn {
+            width: 100%;
+            padding: 12px; /* Increased from 10px */
             background-color: var(--primary-color);
             color: var(--light-text-color);
             border: none;
-            border-radius: 5px;
+            border-radius: 4px;
             cursor: pointer;
-            font-size: 18px;
+            transition: background-color 0.3s;
+            font-size: 1.1rem; /* Increased font size */
+            font-weight: bold;
         }
-        #convertDownload:hover {
-            background-color: #2b94a0;
+
+        #downloadBtn:hover {
+            background-color: var(--secondary-color);
+        }
+
+        /* Adjust the content area to accommodate the wider sidebar */
+        .content-area {
+            max-width: calc(100% - 330px); /* 300px sidebar + 30px margin */
+        }
+
+        /* Ensure the preview image and canvas fit within the content area */
+        #preview,
+        #canvas-container {
+            max-width: 100%;
+        }
+
+        /* Responsive design for smaller screens */
+        @media (max-width: 768px) {
+            .main-content {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                padding-right: 0;
+                border-right: none;
+                margin-right: 0;
+                margin-bottom: 30px;
+            }
+
+            .content-area {
+                max-width: 100%;
+            }
         }
 
         .footer {
@@ -310,13 +315,14 @@
 
         .upload-area.minimized {
             height: 50px;
-            padding: 10px;
-            font-size: 0.9em;
-            opacity: 0.8;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: var(--secondary-color);
+            cursor: pointer;
         }
 
         .upload-area.minimized p {
-            font-size: 14px;
             margin: 0;
         }
 
@@ -325,7 +331,7 @@
             display: block;
             font-size: 16px;
             font-weight: bold;
-            color: var(--primary-color);
+            color: var(--light-text-color);
         }
     </style>
 </head>
@@ -360,44 +366,57 @@
     </header>
     <div class="container">
         <main class="main-content">
-            <h1 data-lang="title">Image Crop and Convert</h1>
-
-            <div class="text_box">
-                <p data-lang="text_box">Are you preparing to book a visa application? Our free online tool is designed to help you adjust your visa photos for visa applications. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process. Simply upload an image, adjust it as needed, and download the result. This tool processes all images locally on your device - we don't store or transmit any of your data. Your privacy is ensured as all operations are performed entirely within your browser.</p>
-            </div>  
-
-            <div class="input-group">
-                <label for="photoType" data-lang="inputphototype">Select photo type:</label>
-                <select id="photoType">
-                    <option value="schengen" data-lang="inputSchengen">Schengen Visa Application</option>
-                    <option value="us" data-lang="inputUS">US Visa Application</option>
-                    <option value="custom" data-lang="inputCustom">Custom Selection</option>
-                </select>
+            <div class="sidebar">
+                <h2 data-lang="sidebarTitle">Photo Settings</h2>
+                <form id="photoSettingsForm">
+                    <div class="input-group">
+                        <label for="uploadType" data-lang="inputUploadType">Type:</label>
+                        <select id="uploadType">
+                            <option value="digital" data-lang="inputDigital">Digital Upload</option>
+                            <option value="printable" data-lang="inputPrintable">Printable version</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="photoType" data-lang="inputphototype">Select photo type:</label>
+                        <select id="photoType">
+                            <option value="schengen" data-lang="inputSchengen">Schengen Visa Application</option>
+                            <option value="us" data-lang="inputUS">US Visa Application</option>
+                            <option value="custom" data-lang="inputCustom">Custom Selection</option>
+                        </select>
+                    </div>
+                    <div class="input-group">
+                        <label for="width" data-lang="inputWidth">Width:</label>
+                        <input type="number" id="width" min="1" step="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="height" data-lang="inputHeight">Height:</label>
+                        <input type="number" id="height" min="1" step="1">
+                    </div>
+                    <div class="input-group">
+                        <label for="unit" data-lang="inputUnit">Unit:</label>
+                        <select id="unit">
+                            <option value="px">pixels</option>
+                            <option value="in">inches</option>
+                            <option value="cm">centimeters</option>
+                            <option value="mm">millimeters</option>
+                        </select>
+                    </div>
+                    <button type="button" id="downloadBtn" data-lang="download">Download</button>
+                </form>
             </div>
-
-            <div class="input-group">
-                <label for="width" data-lang="inputWidth">Width:</label>
-                <input type="number" id="width" min="1" step="1">
-                <label for="height" style="margin-left: 15px;" data-lang="inputHeight">Height:</label>
-                <input type="number" id="height" min="1" step="1">
-                <select id="unit" style="margin-left: 15px;">
-                    <option value="px">pixels</option>
-                    <option value="in">inches</option>
-                    <option value="cm">centimeters</option>
-                    <option value="mm">millimeters</option>
-                </select>
+            <div class="content-area">
+                <h1 data-lang="title">Image Crop and Convert</h1>
+                <div class="text_box">
+                    <p data-lang="text_box">Are you preparing to book a visa application? Our free online tool is designed to help you adjust your visa photos for visa applications. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process.</p>
+                </div>  
+                <div id="statusMessage" class="status-message" style="display: none;"></div>
+                <div class="upload-area" id="uploadArea">
+                    <p data-lang="drop_image">Drop your image here or click to upload</p>
+                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
+                </div>
+                <img id="preview" src="" alt="Preview" style="display: none; max-width: 100%;">
+                <div id="canvas-container"></div>
             </div>
-
-            <div id="statusMessage" class="status-message" style="display: none;"></div>
-
-            <div class="upload-area" id="uploadArea">
-                <p data-lang="drop_image">Drop your image here or click to upload</p>
-                <input type="file" id="fileInput" accept="image/*" style="display: none;">
-            </div>
-
-            <img id="preview" src="/api/placeholder/400/320" alt="Preview" style="display: none;">
-
-            <button id="convertDownload" data-lang="downloadButton">Convert & Download</button>
         </main>
     </div>
     
@@ -437,7 +456,12 @@
                 inputUS: "US Visa Application",
                 inputCustom: "Custom Selection",
                 inputWidth: "Width:",
-                inputHeight: "Height"
+                inputHeight: "Height",
+                inputUploadType: "Type:",
+                inputDigital: "Digital Upload",
+                inputPrintable: "Printable version",
+                sidebarTitle: "Photo Settings",
+                inputUnit: "Unit:"
 
 
             },
@@ -461,7 +485,12 @@
                 inputUS: "ABD Vize Başvurusu",
                 inputCustom: "Özel Seçim",
                 inputWidth: "Genişlik:",
-                inputHeight: "Yükseklik:"
+                inputHeight: "Yükseklik:",
+                inputUploadType: "Tür:",
+                inputDigital: "Dijital Yükleme",
+                inputPrintable: "Baskılı Sürüm",
+                sidebarTitle: "Fotoğraf Ayarları",
+                inputUnit: "Birim:"
             },
             zh: {
                 title: "图像裁剪和转换",
@@ -482,7 +511,12 @@
                 inputUS: "美国签证申请",
                 inputCustom: "自定义选择",
                 inputWidth: "宽度:",
-                inputHeight: "高度:"
+                inputHeight: "高度:",
+                inputUploadType: "类型:",
+                inputDigital: "数字上传",
+                inputPrintable: "可打印版本",
+                sidebarTitle: "照片设置",
+                inputUnit: "单位:"
             },
             ar: {
                 title: "قص وتحويل الصورة",
@@ -503,7 +537,12 @@
                 inputUS: "طلب تأشيرة الولايات المتحدة",
                 inputCustom: "اختيار مخصص",
                 inputWidth: "العرض:",
-                inputHeight: "الارتفاع:"
+                inputHeight: "الارتفاع:",
+                inputUploadType: "النوع:",
+                inputDigital: "تحميل رقمي",
+                inputPrintable: "نسخة قابلة للطباعة",
+                sidebarTitle: "إعدادات الصورة",
+                inputUnit: "الوحدة:"
             },
             hi: {
                 title: "छवि क्रॉप और परिवर्तन",
@@ -524,7 +563,12 @@
                 inputUS: "यूएस वीज़ा आवेदन",
                 inputCustom: "कस्टम चयन",
                 inputWidth: "चौड़ाई:",
-                inputHeight: "ऊँचाई:"
+                inputHeight: "ऊँचाई:",
+                inputUploadType: "प्रकार:",
+                inputDigital: "डिजिटल अपलोड",
+                inputPrintable: "प्रिंट करने योग्य संस्करण",
+                sidebarTitle: "फोटो सेटिंग्स",
+                inputUnit: "यूनिट:"
             }
 
 
@@ -553,33 +597,31 @@
         const unitSelect = document.getElementById('unit');
         const uploadInput = document.getElementById('fileInput');
         const previewImg = document.getElementById('preview');
-        const convertDownloadBtn = document.getElementById('convertDownload');
-        const uploadArea = document.getElementById('uploadArea'); // New upload area reference
+        const downloadBtn = document.getElementById('downloadBtn');
+        const uploadArea = document.getElementById('uploadArea');
+        const uploadTypeSelect = document.getElementById('uploadType');
 
         photoTypeSelect.addEventListener('change', updateDimensions);
         unitSelect.addEventListener('change', convertUnits);
         uploadInput.addEventListener('change', loadImage);
         widthInput.addEventListener('input', updateAspectRatio);
         heightInput.addEventListener('input', updateAspectRatio);
-        convertDownloadBtn.addEventListener('click', convertAndDownload);
+        downloadBtn.addEventListener('click', convertAndDownload);
+        uploadTypeSelect.addEventListener('change', updateDimensions);
 
-        // Event listener for clicks on the upload area
         uploadArea.addEventListener('click', () => {
             uploadInput.click();
         });
 
-        // Event listener for dragover
         uploadArea.addEventListener('dragover', (event) => {
             event.preventDefault();
             uploadArea.classList.add('dragover');
         });
 
-        // Event listener for dragleave
         uploadArea.addEventListener('dragleave', () => {
             uploadArea.classList.remove('dragover');
         });
 
-        // Event listener for drop
         uploadArea.addEventListener('drop', (event) => {
             event.preventDefault();
             uploadArea.classList.remove('dragover');
@@ -592,26 +634,46 @@
 
         function updateDimensions() {
             const photoType = photoTypeSelect.value;
-            let width, height;
+            const uploadType = uploadTypeSelect.value;
+            let width, height, unit;
 
-            switch (photoType) {
-                case 'schengen':
-                    width = 35;
-                    height = 45;
-                    break;
-                case 'us':
-                    width = 51;
-                    height = 51;
-                    break;
-                case 'custom':
-                    width = '';
-                    height = '';
-                    break;
+            if (uploadType === 'digital') {
+                unit = 'px';
+                switch (photoType) {
+                    case 'schengen':
+                        width = 467;
+                        height = 600;
+                        break;
+                    case 'us':
+                        width = 600;
+                        height = 600;
+                        break;
+                    case 'custom':
+                        width = '';
+                        height = '';
+                        break;
+                }
+            } else { // printable
+                unit = 'mm';
+                switch (photoType) {
+                    case 'schengen':
+                        width = 35;
+                        height = 45;
+                        break;
+                    case 'us':
+                        width = 51;
+                        height = 51;
+                        break;
+                    case 'custom':
+                        width = '';
+                        height = '';
+                        break;
+                }
             }
 
             widthInput.value = width;
             heightInput.value = height;
-            unitSelect.value = 'mm';
+            unitSelect.value = unit;
             convertUnits();
         }
 
@@ -622,19 +684,36 @@
 
             if (isNaN(width) || isNaN(height)) return;
 
-            switch (unit) {
-                case 'px':
-                    width = Math.round(width * 3.779527559);
-                    height = Math.round(height * 3.779527559);
-                    break;
-                case 'in':
-                    width = width / 25.4;
-                    height = height / 25.4;
-                    break;
-                case 'cm':
-                    width = width / 10;
-                    height = height / 10;
-                    break;
+            if (uploadTypeSelect.value === 'digital' && unit !== 'px') {
+                switch (unit) {
+                    case 'in':
+                        width = Math.round(width * 96);
+                        height = Math.round(height * 96);
+                        break;
+                    case 'cm':
+                        width = Math.round(width * 37.795275591);
+                        height = Math.round(height * 37.795275591);
+                        break;
+                    case 'mm':
+                        width = Math.round(width * 3.779527559);
+                        height = Math.round(height * 3.779527559);
+                        break;
+                }
+            } else if (uploadTypeSelect.value === 'printable' && unit !== 'mm') {
+                switch (unit) {
+                    case 'px':
+                        width = width / 3.779527559;
+                        height = height / 3.779527559;
+                        break;
+                    case 'in':
+                        width = width * 25.4;
+                        height = height * 25.4;
+                        break;
+                    case 'cm':
+                        width = width * 10;
+                        height = height * 10;
+                        break;
+                }
             }
 
             widthInput.value = width;
@@ -659,7 +738,7 @@
                 const reader = new FileReader();
                 reader.onload = function(e) {
                     previewImg.src = e.target.result;
-                    previewImg.style.display = 'block';  // Show the preview image
+                    previewImg.style.display = 'block';
                     if (cropper) {
                         cropper.destroy();
                     }
@@ -669,7 +748,7 @@
                         dragMode: 'move',
                         autoCropArea: 1,
                     });
-                    uploadArea.classList.add('minimized'); // Minimize the upload area
+                    uploadArea.classList.add('minimized');
                 }
                 reader.readAsDataURL(file);
                 showStatus(translations[document.documentElement.lang].upload_success, 'success');
@@ -724,7 +803,6 @@
 
         }
 
-        // Initialize with Schengen visa dimensions
         updateDimensions();
     </script>
 </body>
