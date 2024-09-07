@@ -803,6 +803,42 @@
 
         }
 
+        // Function to get URL parameters
+        function getUrlParameter(name) {
+            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+            var results = regex.exec(location.search);
+            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+        }
+
+        // Function to set initial values based on URL parameters
+        function setInitialValues() {
+            const type = getUrlParameter('type');
+            const photo = getUrlParameter('photo');
+
+            if (type) {
+                uploadTypeSelect.value = type;
+            }
+
+            if (photo) {
+                switch (photo) {
+                    case 'schengen':
+                        photoTypeSelect.value = 'schengen';
+                        break;
+                    case 'us':
+                        photoTypeSelect.value = 'us';
+                        break;
+                    default:
+                        photoTypeSelect.value = 'custom';
+                }
+            }
+
+            updateDimensions();
+        }
+
+        // Call setInitialValues when the page loads
+        window.addEventListener('load', setInitialValues);
+
         updateDimensions();
     </script>
 </body>

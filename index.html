@@ -136,11 +136,11 @@
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--light-text-color);
             text-align: center;
-            padding: 0 20px;
+            padding: 50px 20px;
         }
 
         .hero-title {
@@ -154,69 +154,63 @@
             margin-bottom: 50px;
         }
 
-        .hero-button {
-            padding: 15px 30px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            margin: 10px;
-            text-decoration: none;
-        }
-
-        .hero-button:hover {
-            background-color: var(--secondary-color);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-            text-decoration: none;
-        }
-
-        .features-section {
-            background-color: var(--background-color);
-            padding: 60px 20px;
-            text-align: center;
-        }
-
-        .features-title {
-            font-size: 2.5rem;
-            margin-bottom: 40px;
-        }
-
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
         }
 
         .feature-item {
-            background-color: #34495e;
-            padding: 30px;
+            background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            transition: all 0.3s ease;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: var(--light-text-color);
+            display: flex;
+            flex-direction: column;
         }
 
         .feature-item:hover {
             transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
         }
 
         .feature-title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 15px;
+            padding: 20px;
+            text-align: center;
+            font-size: 1.2rem;
+            margin: 0;
+            
         }
 
         .feature-description {
-            font-size: 1.1rem;
-            line-height: 1.6;
-            color: #7f8c8d;
+            padding: 0 20px 20px;
+            text-align: center;
+            font-size: 1rem;
+            margin: 0;
+            flex-grow: 1;
+        }
+
+        .features-section {
+            background-color: var(--background-color);
+            padding: 80px 20px;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-text-color);
         }
 
         .footer {
@@ -272,6 +266,51 @@
             margin: 0;
             text-align: center;
         }
+
+        .features-section {
+            background-color: var(--background-color);
+            padding: 80px 20px;
+        }
+
+        .features-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-text-color);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .feature-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-align: center;
+        }
+
+        .feature-item:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .feature-title {
+            font-size: 1.5rem;
+            margin-bottom: 15px;
+            color: var(--light-text-color);
+        }
+
+        .feature-description {
+            font-size: 1rem;
+            color: var(--light-text-color);
+        }
     </style>
 </head>
 
@@ -307,10 +346,19 @@
     </header>
 
     <div class="hero-section" data-aos="fade-in">
-        <h1 class="hero-title">Welcome to ShengenPhoto.com</h1>
+        <h1 class="hero-title">Choose your visa type</h1>
         <p class="hero-subtitle">Your one-stop solution for preparing Schengen Visa photos with ease.</p>
-        <a href="General_Tool_v2.html" class="hero-button">Visa Photo Edittor</a>
-        <a href="BSL_Spain.html" class="hero-button">BSL Visa Booking Photo Converter</a>
+        
+        <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
+            <a href="General_Tool_v2.html?type=digital&photo=schengen" class="feature-item">
+                <img src="images/eu.png" alt="Schengen Visa" class="feature-image">
+                <h3 class="feature-title">Schengen Visa</h3>
+            </a>
+            <a href="General_Tool_v2.html?type=digital&photo=us" class="feature-item">
+                <img src="images/us.webp" alt="US Visa" class="feature-image">
+                <h3 class="feature-title">US Visa</h3>
+            </a>
+        </div>
     </div>
 
     <div class="features-section">
@@ -318,15 +366,15 @@
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
             <div class="feature-item">
                 <h3 class="feature-title">Easy to Use</h3>
-                <p class="feature-description">Our tool is designed with simplicity in mind, making it easy for anyone to prepare their Schengen Visa photos.</p>
+                <p class="feature-description">Our intuitive interface makes photo preparation a breeze.</p>
             </div>
             <div class="feature-item">
                 <h3 class="feature-title">Privacy Ensured</h3>
-                <p class="feature-description">All image processing is done locally on your device, ensuring that your data is never stored or transmitted.</p>
+                <p class="feature-description">Your photos are processed locally, ensuring complete privacy.</p>
             </div>
             <div class="feature-item">
                 <h3 class="feature-title">Free of Charge</h3>
-                <p class="feature-description">Our service is completely free, with no hidden fees or premium features.</p>
+                <p class="feature-description">Enjoy our services without any cost or hidden fees.</p>
             </div>
         </div>
     </div>
