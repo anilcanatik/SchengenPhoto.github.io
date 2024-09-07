@@ -157,7 +157,7 @@
 
         .features-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 30px;
             max-width: 1200px;
             width: 100%;
@@ -168,7 +168,7 @@
             background-color: rgba(255, 255, 255, 0.1);
             border-radius: 10px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transition: all 0.3s ease;
             text-decoration: none;
             color: var(--light-text-color);
             display: flex;
@@ -178,29 +178,25 @@
         .feature-item:hover {
             transform: translateY(-10px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            text-decoration: none; /* This ensures no underline on hover */
+        }
+
+        .feature-item:hover,
+        .feature-item:focus {
+            color: var(--light-text-color); /* Maintains text color on hover and focus */
+            text-decoration: none; /* Ensures no underline on hover and focus */
         }
 
         .feature-image {
             width: 100%;
-            height: 200px;
+            height: auto;
             object-fit: cover;
-            object-position: center;
         }
 
         .feature-title {
-            padding: 15px;
+            font-size: 1.5rem;
+            margin: 15px 0;
             text-align: center;
-            font-size: 1.2rem;
-            margin: 0;
-            color: var(--light-text-color);
-        }
-
-        .feature-description {
-            padding: 0 20px 20px;
-            text-align: center;
-            font-size: 1rem;
-            margin: 0;
-            flex-grow: 1;
         }
 
         .features-section {
@@ -432,7 +428,7 @@
 
     <div class="hero-section" data-aos="fade-in">
         <h1 class="hero-title">Choose your visa type</h1>
-        <p class="hero-subtitle">Your one-stop solution for preparing Schengen Visa photos with ease.</p>
+        <p class="hero-subtitle">Your one-stop solution for preparing Visa photos with ease.</p>
         
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
             <a href="General_Tool_v2.html?type=digital&photo=schengen" class="feature-item">
@@ -454,27 +450,6 @@
 
     <div class="cta-section">
         <a href="#features" class="cta-button">Learn More</a>
-    </div>
-
-    <div id="features" class="features-section">
-        <h2 class="features-title" data-aos="fade-up">Why Choose Us?</h2>
-        <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
-            <div class="feature-item">
-                <i class="fas fa-user-friendly"></i>
-                <h3 class="feature-title">Easy to Use</h3>
-                <p class="feature-description">Our intuitive interface makes photo preparation a breeze.</p>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-lock"></i>
-                <h3 class="feature-title">Privacy Ensured</h3>
-                <p class="feature-description">Your photos are processed locally, ensuring complete privacy.</p>
-            </div>
-            <div class="feature-item">
-                <i class="fas fa-dollar-sign"></i>
-                <h3 class="feature-title">Free of Charge</h3>
-                <p class="feature-description">Enjoy our services without any cost or hidden fees.</p>
-            </div>
-        </div>
     </div>
 
     <div class="how-it-works-section">
@@ -502,6 +477,25 @@
             </div>
         </div>
     </div>
+    <div id="features" class="features-section">
+        <h2 class="features-title" data-aos="fade-up">Why Choose Us?</h2>
+        <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-item">
+                <h3 class="feature-title">Easy to Use</h3>
+                <p class="feature-description">Our intuitive interface makes photo preparation a breeze.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Privacy Ensured</h3>
+                <p class="feature-description">Your photos are processed locally, ensuring complete privacy.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Free of Charge</h3>
+                <p class="feature-description">Enjoy our services without any cost or hidden fees.</p>
+            </div>
+        </div>
+    </div>
+
+    
 
     <footer class="footer">
         <div class="footer-content">

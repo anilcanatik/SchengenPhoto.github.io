@@ -333,6 +333,59 @@
             font-weight: bold;
             color: var(--light-text-color);
         }
+
+        .how-it-works-section {
+            background-color: var(--background-color);
+            padding: 80px 20px;
+            margin-top: 50px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--light-text-color);
+        }
+
+        .steps-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            width: 100%;
+            margin: 0 auto;
+        }
+
+        .step-item {
+            background-color: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            padding: 30px;
+            text-align: center;
+        }
+
+        .step-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .step-title {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+            color: var(--light-text-color);
+        }
+
+        .step-description {
+            font-size: 1rem;
+            color: var(--light-text-color);
+        }
+
+        @media (max-width: 768px) {
+            .steps-grid {
+                grid-template-columns: 1fr;
+            }
+        }
     </style>
 </head>
 <body>
@@ -420,6 +473,33 @@
         </main>
     </div>
     
+   <!-- Add the How It Works section here -->
+   <div class="how-it-works-section">
+    <h2 class="section-title" data-aos="fade-up">How It Works</h2>
+    <div class="steps-grid" data-aos="fade-up" data-aos-delay="100">
+        <div class="step-item">
+            <div class="step-number">1</div>
+            <h3 class="step-title">Choose Your Visa Type</h3>
+            <p class="step-description">Select either Schengen or US visa photo requirements.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">2</div>
+            <h3 class="step-title">Upload Your Photo</h3>
+            <p class="step-description">Upload a clear, recent photo of yourself.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">3</div>
+            <h3 class="step-title">Adjust and Crop</h3>
+            <p class="step-description">Use our tool to adjust and crop your photo to meet visa requirements.</p>
+        </div>
+        <div class="step-item">
+            <div class="step-number">4</div>
+            <h3 class="step-title">Download</h3>
+            <p class="step-description">Download your visa-ready photo instantly.</p>
+        </div>
+    </div>
+</div>
+
     <footer class="footer">
         <div class="footer-content">
             <div class="footer-links">
@@ -575,6 +655,12 @@
         };
 
         function changeLanguage(lang) {
+            // Update the URL with the selected language
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+
+            // Update the page content
             document.querySelectorAll('[data-lang]').forEach(elem => {
                 const key = elem.getAttribute('data-lang');
                 if (translations[lang] && translations[lang][key]) {
@@ -582,7 +668,21 @@
                 }
             });
             document.documentElement.lang = lang;
+
+            // Update the language selector
+            document.getElementById('language').value = lang;
         }
+
+        function getLanguageFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang') || 'en'; // Default to English if no language is specified
+        }
+
+        // Call this function when the page loads
+        window.addEventListener('DOMContentLoaded', (event) => {
+            const lang = getLanguageFromURL();
+            changeLanguage(lang);
+        });
 
         function showStatus(message, type) {
             const statusMessage = document.getElementById('statusMessage');
@@ -840,6 +940,18 @@
         window.addEventListener('load', setInitialValues);
 
         updateDimensions();
+    </script>
+
+ 
+
+    <!-- AOS JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/aos/2.3.4/aos.js"></script>
+    <script>
+        AOS.init({
+            duration: 1000,
+            easing: 'ease-in-out',
+            once: true
+        });
     </script>
 </body>
 </html>
