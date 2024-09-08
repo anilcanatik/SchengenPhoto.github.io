@@ -328,10 +328,19 @@
             #canvas-container {
                 height: auto;
                 max-height: 300px;
+                overflow: auto;
+            }
+
+            #canvas-container img,
+            #canvas-container canvas {
+                max-width: 100%;
+                height: auto;
             }
 
             .button-group {
+                display: flex;
                 flex-direction: column;
+                margin-top: 20px;
             }
 
             .button {
@@ -498,7 +507,7 @@
                     drop_image: "将图像拖放到此处或点击上传",
                     convert: "转换",
                     download: "下载",
-                    upload_success: "图像上传成功。现在您可以裁剪和转换它。",
+                    upload_success: "图像上传成功���现在您可以裁剪和转换它。",
                     convert_success: "图像转换成功。现在您可以下载它。",
                     error_message: "发生错误。请重试。",
                     text_box: "您准备通过BLS International预约申根签证吗？我们的免费在线工具旨在帮助您调整您的个人照片，以适应BLS预约系统的要求。我们旨在帮助您的照片符合一般要求，这可能有助于简化您的签证预约流程。"
@@ -564,6 +573,7 @@
                 reader.onload = function(e) {
                     initCropper(e.target.result);
                     showStatus(translations[document.documentElement.lang].upload_success, 'success');
+                    document.getElementById('convertBtn').style.display = 'block';
                 };
                 reader.readAsDataURL(file);
             } else {
@@ -593,7 +603,7 @@
 
             canvasContainer.style.display = 'block';
             uploadArea.style.display = 'none';
-            document.getElementById('convertBtn').style.display = 'inline-block';
+            document.getElementById('convertBtn').style.display = 'block';
         }
 
         function convertImage() {
@@ -607,7 +617,7 @@
                     canvasContainer.innerHTML = '';
                     canvasContainer.appendChild(canvas);
                 }
-                document.getElementById('downloadBtn').style.display = 'inline-block';
+                document.getElementById('downloadBtn').style.display = 'block';
                 showStatus(translations[document.documentElement.lang].convert_success, 'success');
             }
         }
