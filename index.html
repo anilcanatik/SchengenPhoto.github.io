@@ -12,7 +12,7 @@
         gtag('config', 'G-WCQKBW9K3L');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ShengenPhoto.com - Adjust Your Visa Needs</title>
 
     <!-- Bootstrap CSS -->
@@ -386,10 +386,83 @@
             color: var(--light-text-color);
         }
 
-        /* Add responsive design for smaller screens */
+        /* Responsive styles */
         @media (max-width: 768px) {
-            .steps-grid {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .nav-container {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+            }
+
+            #languageSelector {
+                margin-top: 15px;
+            }
+
+            .hero-title {
+                font-size: 2.5rem;
+            }
+
+            .hero-subtitle {
+                font-size: 1.2rem;
+            }
+
+            .features-grid, .steps-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .feature-item, .step-item {
+                padding: 20px;
+            }
+
+            .feature-title, .step-title {
+                font-size: 1.2rem;
+            }
+
+            .section-title, .features-title {
+                font-size: 2rem;
+            }
+
+            .footer-links a {
+                display: block;
+                margin: 10px 0;
+            }
+        }
+
+        /* Hamburger menu styles */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--light-text-color);
+            cursor: pointer;
+        }
+
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
             }
         }
     </style>
@@ -404,6 +477,8 @@
                     <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
                 </a>
             </div>
+
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
 
             <div class="nav-container">
                 <ul class="nav-links">
@@ -450,6 +525,24 @@
 
     <div class="cta-section">
         <a href="#features" class="cta-button">Learn More</a>
+    </div>
+
+    <div id="features" class="features-section">
+        <h2 class="features-title" data-aos="fade-up">Why Choose Us?</h2>
+        <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
+            <div class="feature-item">
+                <h3 class="feature-title">Easy to Use</h3>
+                <p class="feature-description">Our intuitive interface makes photo preparation a breeze.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Privacy Ensured</h3>
+                <p class="feature-description">Your photos are processed locally, ensuring complete privacy.</p>
+            </div>
+            <div class="feature-item">
+                <h3 class="feature-title">Free of Charge</h3>
+                <p class="feature-description">Enjoy our services without any cost or hidden fees.</p>
+            </div>
+        </div>
     </div>
 
     <div class="how-it-works-section">
@@ -518,6 +611,11 @@
             duration: 1000,
             easing: 'ease-in-out',
             once: true
+        });
+
+        // Hamburger menu functionality
+        document.querySelector('.menu-toggle').addEventListener('click', function() {
+            document.querySelector('.nav-links').classList.toggle('active');
         });
     </script>
 </body>

@@ -11,7 +11,7 @@
     gtag('config', 'G-WCQKBW9K3L');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <meta name="description" content="BLS Spain Visa Appointment Photo creator - BLS Ispanya Randevu Fotografi yaratma - Resize and adjust the photo in accordance with BSL Spanish schengen visa.">
     <meta name="keywords" content="BLS visa photo, Schengen visa, Spanish visa, visa appointment profile photo, photo cropper">
     <title>Transform Your Photo for BLS Schengen Visa Appointment Booking</title>
@@ -277,19 +277,101 @@
             text-align: center;
         }
 
-    @media (max-width: 768px) {
-        .footer-links {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .header-content {
+                flex-direction: column;
+                height: auto;
+                padding: 15px;
+            }
+
+            .logo {
+                margin-bottom: 15px;
+            }
+
+            .nav-container {
+                width: 100%;
+            }
+
+            .nav-links {
+                display: none;
+                flex-direction: column;
+                width: 100%;
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                margin: 10px 0;
+                height: auto;
+            }
+
+            #languageSelector {
+                margin-top: 15px;
+                margin-left: 0;
+            }
+
+            .container {
+                padding: 10px;
+            }
+
+            .main-content {
+                padding: 15px;
+            }
+
+            .upload-area {
+                padding: 20px;
+            }
+
+            #canvas-container {
+                height: auto;
+                max-height: 300px;
+            }
+
+            .button-group {
+                flex-direction: column;
+            }
+
+            .button {
+                width: 100%;
+                margin-bottom: 10px;
+            }
+
+            .footer-links {
+                flex-direction: column;
+            }
+
+            .footer-links a {
+                margin: 10px 0;
+            }
         }
 
-        .footer-links a {
-            margin: 5px 0;
+        /* Hamburger menu styles */
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            color: var(--light-text-color);
+            cursor: pointer;
         }
-    }
 
-    
+        @media (max-width: 768px) {
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-container {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .nav-links {
+                margin-top: 15px;
+            }
+        }
     </style>
 </head>
 <body>
@@ -301,23 +383,23 @@
                     <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
                 </a>
             </div>
-                <div class="nav-container">
-                    <ul class="nav-links">
-                        <li><a href="index.html" data-lang= "nav_home." >Home</a></li>
-                        <li><a href="General_Tool_v2.html" data-lang= "nav_Schengen." >Visa Photo Edittor</a></li>
-                        <li><a href="BSL_Spain.html" data-lang= "nav_Detailed." >BSL Visa Booking Photo Converter</a></li>
-                        <li><a href="about.html" data-lang= "nav_About." >About</a></li>
-                      </ul>
-                </div>
-
-                <div id="languageSelector">
-                    <select id="language" onchange="changeLanguage(this.value)">
-                        <option value="en">English</option>
-                        <option value="tr">Türkçe</option>
-                        <option value="zh">中文</option>
-                        <option value="ar">العربية</option>
-                        <option value="hi">हिन्दी</option>
-                    </select>
+            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
+            <div class="nav-container">
+                <ul class="nav-links">
+                    <li><a href="index.html" data-lang="nav_home">Home</a></li>
+                    <li><a href="General_Tool_v2.html" data-lang="nav_Schengen">Visa Photo Editor</a></li>
+                    <li><a href="BSL_Spain.html" data-lang="nav_Detailed">BSL Visa Booking Photo Converter</a></li>
+                    <li><a href="about.html" data-lang="nav_About">About</a></li>
+                </ul>
+            </div>
+            <div id="languageSelector">
+                <select id="language" onchange="changeLanguage(this.value)">
+                    <option value="en">English</option>
+                    <option value="tr">Türkçe</option>
+                    <option value="zh">中文</option>
+                    <option value="ar">العربية</option>
+                    <option value="hi">हिन्दी</option>
+                </select>
             </div>
         </div>
     </header>
@@ -503,10 +585,10 @@
                 cropper.destroy();
             }
             cropper = new Cropper(image, {
-                aspectRatio: 275 / 354,
+                aspectRatio: 35 / 45,
                 viewMode: 1,
-                minCropBoxWidth: 275,
-                minCropBoxHeight: 354
+                dragMode: 'move',
+                autoCropArea: 1,
             });
 
             canvasContainer.style.display = 'block';
@@ -517,8 +599,8 @@
         function convertImage() {
             if (cropper) {
                 const canvas = cropper.getCroppedCanvas({
-                    width: 275,
-                    height: 354
+                    width: 35,
+                    height: 45
                 });
                 const canvasContainer = document.getElementById('canvas-container');
                 if (canvasContainer) {
@@ -591,6 +673,24 @@
             }
 
             changeLanguage('en');
+
+            // Hamburger menu functionality
+            document.querySelector('.menu-toggle').addEventListener('click', function() {
+                document.querySelector('.nav-links').classList.toggle('active');
+            });
+
+            // Adjust cropper size on window resize
+            window.addEventListener('resize', function() {
+                if (cropper) {
+                    cropper.destroy();
+                    cropper = new Cropper(previewImg, {
+                        aspectRatio: 35 / 45,
+                        viewMode: 1,
+                        dragMode: 'move',
+                        autoCropArea: 1,
+                    });
+                }
+            });
         }
 
         if (document.readyState === 'loading') {
