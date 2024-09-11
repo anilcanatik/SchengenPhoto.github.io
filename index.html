@@ -11,10 +11,12 @@
 
         gtag('config', 'G-WCQKBW9K3L');
     </script>
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ShengenPhoto: Easy Schengen & US Visa Photo Tool | VFS Global Compatible</title>
     <meta name="description" content="Create perfect Schengen and US visa photos meeting all requirements. Compatible with VFS Global, DS-160, and DV Lottery 2025. Covers all Schengen countries. Free passport photo tool with resizer and enhancer.">
+    <meta name="keywords" content="Schengen visa photo, US visa photo, DV Lottery 2025, visa photo size, photo enhancer, photo resizer, DS-160 photo requirements, VFS Global, Schengen countries, US visa B1/B2, diversity visa lottery, passport photo tool">
 
     <!-- Bootstrap CSS -->
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
@@ -472,6 +474,14 @@
     <link rel="icon" type="image/x-icon" href="/favicon.ico">
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+
+
+
+    
+
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -511,7 +521,7 @@
     </header>
 
     <div class="hero-section" data-aos="fade-in">
-        <h1 class="hero-title">Choose your visa type</h1>
+        <h1 class="hero-title">Choose your Visa Type for Photo Editing:</h1>
         <p class="hero-subtitle">Your one-stop solution for preparing Visa photos with ease.</p>
         
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
@@ -638,6 +648,216 @@
             document.querySelector('.nav-links').classList.toggle('active');
         });
     </script>
+    <script>
+        let cropper;
+        const translations = {
+    "en": {
+        "nav_home": "Home",
+        "nav_Schengen": "Schengen Visa Photo",
+        "nav_US": "US Visa Photo",
+        "nav_DetailedImage": "VFS Global Photo Tool",
+        "nav_About": "About",
+        "hero_title": "Schengen & US Visa Photo Tool",
+        "hero_subtitle": "Your one-stop solution for Schengen, US visa, and DV Lottery 2025 photos.",
+        "feature_schengen": "Schengen Visa Photo",
+        "feature_us": "US Visa Photo",
+        "feature_vfs": "VFS Global Photo Tool",
+        "features_title": "Why Choose Our Visa Photo Tool?",
+        "feature_1_title": "Schengen & US Visa Compatible",
+        "feature_1_desc": "Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2025.",
+        "feature_2_title": "VFS Global & DS-160 Compliant",
+        "feature_2_desc": "Ensures compatibility with VFS Global and DS-160 requirements.",
+        "feature_3_title": "Photo Enhancer & Resizer",
+        "feature_3_desc": "Automatically enhance and resize your photos to meet visa requirements.",
+        "feature_4_title": "Free & Privacy-Focused",
+        "feature_4_desc": "Use our tool for free with complete privacy - all processing done locally.",
+        "how_it_works_title": "How Our Visa Photo Tool Works",
+        "step_1_title": "Select Visa Type",
+        "step_1_desc": "Choose Schengen, US visa, or DV Lottery 2025 photo requirements.",
+        "step_2_title": "Upload Your Photo",
+        "step_2_desc": "Upload a clear, recent photo that meets basic guidelines.",
+        "step_3_title": "Enhance & Resize",
+        "step_3_desc": "Our tool automatically adjusts your photo to meet exact requirements.",
+        "step_4_title": "Download",
+        "step_4_desc": "Get your visa-ready photo instantly, compatible with official standards.",
+        "footer_home": "Home",
+        "footer_about": "About",
+        "footer_terms": "Terms and Conditions",
+        "footer_disclaimer": "Disclaimer: ShengenPhoto.com provides tools to assist in preparing photos for Schengen visa, US visa, and DV Lottery 2025 applications. While we aim to ensure your photos meet general requirements, acceptance is not guaranteed. Please verify the current requirements on the official websites.",
+        "footer_copyright": "© 2024 ShengenPhoto.com. All rights reserved."
+    },
+    "tr": {
+        "nav_home": "Ana Sayfa",
+        "nav_Schengen": "Schengen Vize Fotoğrafı",
+        "nav_US": "ABD Vize Fotoğrafı",
+        "nav_DetailedImage": "VFS Global Fotoğraf Aracı",
+        "nav_About": "Hakkında",
+        "hero_title": "Schengen ve ABD Vize Fotoğrafı Aracı",
+        "hero_subtitle": "Schengen, ABD vizesi ve DV Lottery 2025 fotoğrafları için tek durak çözümünüz.",
+        "feature_schengen": "Schengen Vize Fotoğrafı",
+        "feature_us": "ABD Vize Fotoğrafı",
+        "feature_vfs": "VFS Global Fotoğraf Aracı",
+        "features_title": "Neden Vize Fotoğrafı Aracımızı Seçmelisiniz?",
+        "feature_1_title": "Schengen ve ABD Vizesi Uyumlu",
+        "feature_1_desc": "Tüm Schengen ülkeleri, ABD vizesi (B1/B2) ve DV Lottery 2025 gereksinimlerini karşılar.",
+        "feature_2_title": "VFS Global ve DS-160 Uyumlu",
+        "feature_2_desc": "VFS Global ve DS-160 gereksinimleriyle uyumluluğu sağlar.",
+        "feature_3_title": "Fotoğraf Geliştirici ve Yeniden Boyutlandırıcı",
+        "feature_3_desc": "Fotoğraflarınızı vize gereksinimlerini karşılamak için otomatik olarak geliştirir ve yeniden boyutlandırır.",
+        "feature_4_title": "Ücretsiz ve Gizlilik Odaklı",
+        "feature_4_desc": "Aracımızı ücretsiz ve tam gizlilikle kullanın - tüm işlemler yerel olarak yapılır.",
+        "how_it_works_title": "Vize Fotoğrafı Aracımız Nasıl Çalışır",
+        "step_1_title": "Vize Türünü Seçin",
+        "step_1_desc": "Schengen, ABD vizesi veya DV Lottery 2025 fotoğraf gereksinimlerini seçin.",
+        "step_2_title": "Fotoğrafınızı Yükleyin",
+        "step_2_desc": "Temel kurallara uyan net, güncel bir fotoğraf yükleyin.",
+        "step_3_title": "Geliştir ve Yeniden Boyutlandır",
+        "step_3_desc": "Aracımız fotoğrafınızı otomatik olarak tam gereksinimleri karşılayacak şekilde ayarlar.",
+        "step_4_title": "İndirin",
+        "step_4_desc": "Resmi standartlara uygun vize fotoğrafınızı anında alın.",
+        "footer_home": "Ana Sayfa",
+        "footer_about": "Hakkında",
+        "footer_terms": "Şartlar ve Koşullar",
+        "footer_disclaimer": "Feragatname: ShengenPhoto.com, Schengen vizesi, ABD vizesi ve DV Lottery 2025 başvuruları için fotoğraf hazırlamaya yardımcı araçlar sağlar. Fotoğraflarınızın genel gereksinimleri karşılamasını sağlamaya çalışsak da, kabul garantisi verilmez. Lütfen güncel gereksinimleri resmi web sitelerinden doğrulayın.",
+        "footer_copyright": "© 2024 ShengenPhoto.com. Tüm hakları saklıdır."
+    },
+    "zh": {
+        "nav_home": "首页",
+        "nav_Schengen": "申根签证照片",
+        "nav_US": "美国签证照片",
+        "nav_DetailedImage": "VFS Global照片工具",
+        "nav_About": "关于我们",
+        "hero_title": "申根和美国签证照片工具",
+        "hero_subtitle": "您的申根、美国签证和DV Lottery 2025照片一站式解决方案。",
+        "feature_schengen": "申根签证照片",
+        "feature_us": "美国签证照片",
+        "feature_vfs": "VFS Global照片工具",
+        "features_title": "为什么选择我们的签证照片工具？",
+        "feature_1_title": "兼容申根和美国签证",
+        "feature_1_desc": "满足所有申根国家、美国签证（B1/B2）和DV Lottery 2025的要求。",
+        "feature_2_title": "符合VFS Global和DS-160标准",
+        "feature_2_desc": "确保与VFS Global和DS-160要求兼容。",
+        "feature_3_title": "照片增强和调整大小",
+        "feature_3_desc": "自动增强和调整照片大小以满足签证要求。",
+        "feature_4_title": "免费且注重隐私",
+        "feature_4_desc": "免费使用我们的工具，完全保护隐私 - 所有处理都在本地完成。",
+        "how_it_works_title": "我们的签证照片工具如何工作",
+        "step_1_title": "选择签证类型",
+        "step_1_desc": "选择申根、美国签证或DV Lottery 2025照片要求。",
+        "step_2_title": "上传您的照片",
+        "step_2_desc": "上传符合基本指南的清晰、近期照片。",
+        "step_3_title": "增强和调整大小",
+        "step_3_desc": "我们的工具自动调整您的照片以满足确切要求。",
+        "step_4_title": "下载",
+        "step_4_desc": "立即获取符合官方标准的签证就绪照片。",
+        "footer_home": "首页",
+        "footer_about": "关于我们",
+        "footer_terms": "条款和条件",
+        "footer_disclaimer": "免责声明：ShengenPhoto.com提供工具协助准备申根签证、美国签证和DV Lottery 2025申请的照片。虽然我们努力确保您的照片满足一般要求，但不保证一定被接受。请在官方网站上验证当前要求。",
+        "footer_copyright": "© 2024 ShengenPhoto.com。保留所有权利。"
+    },
+    "ar": {
+        "nav_home": "الرئيسية",
+        "nav_Schengen": "صورة تأشيرة شنغن",
+        "nav_US": "صورة تأشيرة أمريكا",
+        "nav_DetailedImage": "أداة صور VFS Global",
+        "nav_About": "حول",
+        "hero_title": "أداة صور تأشيرة شنغن وأمريكا",
+        "hero_subtitle": "حلك الشامل لصور تأشيرة شنغن وأمريكا وقرعة التنوع 2025.",
+        "feature_schengen": "صورة تأشيرة شنغن",
+        "feature_us": "صورة تأشيرة أمريكا",
+        "feature_vfs": "أداة صور VFS Global",
+        "features_title": "لماذا تختار أداة صور التأشيرة الخاصة بنا؟",
+        "feature_1_title": "متوافقة مع تأشيرة شنغن وأمريكا",
+        "feature_1_desc": "تلبي متطلبات جميع دول شنغن وتأشيرة أمريكا (B1/B2) وقرعة التنوع 2025.",
+        "feature_2_title": "متوافقة مع VFS Global وDS-160",
+        "feature_2_desc": "تضمن التوافق مع متطلبات VFS Global وDS-160.",
+        "feature_3_title": "محسن ومعدل حجم الصور",
+        "feature_3_desc": "تحسين وتعديل حجم صورك تلقائيًا لتلبية متطلبات التأشيرة.",
+        "feature_4_title": "مجاني ويركز على الخصوصية",
+        "feature_4_desc": "استخدم أداتنا مجانًا مع خصوصية كاملة - جميع المعالجات تتم محليًا.",
+        "how_it_works_title": "كيف تعمل أداة صور التأشيرة الخاصة بنا",
+        "step_1_title": "اختر نوع التأشيرة",
+        "step_1_desc": "اختر متطلبات صور تأشيرة شنغن أو أمريكا أو قرعة التنوع 2025.",
+        "step_2_title": "ارفع صورتك",
+        "step_2_desc": "ارفع صورة واضحة وحديثة تلبي الإرشادات الأساسية.",
+        "step_3_title": "تحسين وتعديل الحجم",
+        "step_3_desc": "تقوم أداتنا تلقائيًا بضبط صورتك لتلبية المتطلبات الدقيقة.",
+        "step_4_title": "تنزيل",
+        "step_4_desc": "احصل على صورة جاهزة للتأشيرة فورًا، متوافقة مع المعايير الرسمية.",
+        "footer_home": "الرئيسية",
+        "footer_about": "حول",
+        "footer_terms": "الشروط والأحكام",
+        "footer_disclaimer": "إخلاء المسؤولية: يوفر ShengenPhoto.com أدوات للمساعدة في إعداد الصور لطلبات تأشيرة شنغن وأمريكا وقرعة التنوع 2025. بينما نهدف إلى ضمان تلبية صورك للمتطلبات العامة، فإن القبول غير مضمون. يرجى التحقق من المتطلبات الحالية على المواقع الرسمية.",
+        "footer_copyright": "© 2024 ShengenPhoto.com. جميع الحقوق محفوظة."
+    },
+    "hi": {
+        "nav_home": "होम",
+        "nav_Schengen": "शेंगेन वीज़ा फोटो",
+        "nav_US": "यूएस वीज़ा फोटो",
+        "nav_DetailedImage": "VFS ग्लोबल फोटो टूल",
+        "nav_About": "हमारे बारे में",
+        "hero_title": "शेंगेन और यूएस वीज़ा फोटो टूल",
+        "hero_subtitle": "शेंगेन, यूएस वीज़ा और डीवी लॉटरी 2025 फोटो के लिए आपका वन-स्टॉप समाधान।",
+        "feature_schengen": "शेंगेन वीज़ा फोटो",
+        "feature_us": "यूएस वीज़ा फोटो",
+        "feature_vfs": "VFS ग्लोबल फोटो टूल",
+        "features_title": "हमारा वीज़ा फोटो टूल क्यों चुनें?",
+        "feature_1_title": "शेंगेन और यूएस वीज़ा के अनुकूल",
+        "feature_1_desc": "सभी शेंगेन देशों, यूएस वीज़ा (B1/B2), और डीवी लॉटरी 2025 की आवश्यकताओं को पूरा करता है।",
+        "feature_2_title": "VFS ग्लोबल और DS-160 के अनुरूप",
+        "feature_2_desc": "VFS ग्लोबल और DS-160 आवश्यकताओं के साथ अनुकूलता सुनिश्चित करता है।",
+        "feature_3_title": "फोटो एन्हांसर और रीसाइज़र",
+        "feature_3_desc": "वीज़ा आवश्यकताओं को पूरा करने के लिए आपकी फोटो को स्वचालित रूप से बेहतर और आकार में बदलता है।",
+        "feature_4_title": "मुफ्त और गोपनीयता-केंद्रित",
+        "feature_4_desc": "हमारे टूल का उपयोग पूरी गोपनीयता के साथ मुफ्त में करें - सभी प्रोसेसिंग स्थानीय रूप से की जाती है।",
+        "how_it_works_title": "हमारा वीज़ा फोटो टूल कैसे काम करता है",
+        "step_1_title": "वीज़ा प्रकार चुनें",
+        "step_1_desc": "शेंगेन, यूएस वीज़ा, या डीवी लॉटरी 2025 फोटो आवश्यकताओं का चयन करें।",
+        "step_2_title": "अपनी फोटो अपलोड करें",
+        "step_2_desc": "बुनियादी दिशानिर्देशों को पूरा करने वाली एक स्पष्ट, हाल की फोटो अपलोड करें।",
+        "step_3_title": "बेहतर बनाएं और आकार बदलें",
+        "step_3_desc": "हमारा टूल स्वचालित रूप से सटीक आवश्यकताओं को पूरा करने के लिए आपकी फोटो को समायोजित करता है।",
+        "step_4_title": "डाउनलोड करें",
+        "step_4_desc": "आधिकारिक मानकों के अनुरूप अपनी वीज़ा-तैयार फोटो तुरंत प्राप्त करें।",
+        "footer_home": "होम",
+        "footer_about": "हमारे बारे में",
+        "footer_terms": "नियम और शर्तें",
+        "footer_disclaimer": "अस्वीकरण: ShengenPhoto.com शेंगेन वीज़ा, यूएस वीज़ा और डीवी लॉटरी 2025 आवेदनों के लिए फोटो तैयार करने में सहायता के लिए टूल प्रदान करता है। हालांकि हम आपकी फोटो के सामान्य आवश्यकताओं को पूरा करने का प्रयास करते हैं, स्वीकृति की गारंटी नहीं है। कृपया आधिकारिक वेबसाइटों पर वर्तमान आवश्यकताओं की पुष्टि करें।",
+        "footer_copyright": "© 2024 ShengenPhoto.com। सर्वाधिकार सुरक्षित।"
+        }
+    };
+
+    function changeLanguage(lang) {
+            // Update the URL with the selected language
+            const url = new URL(window.location);
+            url.searchParams.set('lang', lang);
+            window.history.pushState({}, '', url);
+
+            // Update the page content
+            document.querySelectorAll('[data-lang]').forEach(elem => {
+                const key = elem.getAttribute('data-lang');
+                if (translations[lang] && translations[lang][key]) {
+                    elem.textContent = translations[lang][key];
+                }
+            });
+            document.documentElement.lang = lang;
+
+            // Update the language selector
+            document.getElementById('language').value = lang;
+        }
+
+        function getLanguageFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('lang') || 'en'; // Default to English if no language is specified
+        }
+
+
+    </script>
+
+
+
+
 </body>
 
 </html>
