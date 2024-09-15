@@ -16,6 +16,16 @@
     <priority>0.8</priority>
   </url>
   <url>
+    <loc>https://www.schengenphoto.com/Blog.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  <url>
+    <loc>https://www.schengenphoto.com/Blog/us-visa-photo-guide.html</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
     <loc>https://www.schengenphoto.com/about.html</loc>
     <changefreq>monthly</changefreq>
     <priority>0.5</priority>
