@@ -533,6 +533,7 @@
                         <select id="photoType">
                             <option value="schengen" data-lang="inputSchengen">Schengen Visa Application</option>
                             <option value="us" data-lang="inputUS">US Visa Application</option>
+                            <option value="uk" data-lang="inputUK">UK Visa Application</option>
                             <option value="custom" data-lang="inputCustom">Custom Selection</option>
                         </select>
                     </div>
@@ -579,7 +580,7 @@
         <div class="step-item">
             <div class="step-number">1</div>
             <h3 class="step-title">Choose Your Visa Type</h3>
-            <p class="step-description">Select either Schengen or US visa photo requirements.</p>
+            <p class="step-description">Select either Schengen, US, UK or custom visa photo requirements.</p>
         </div>
         <div class="step-item">
             <div class="step-number">2</div>
@@ -633,6 +634,7 @@
                 inputphototype: "Select photo type:",
                 inputSchengen: "Schengen Visa Application",
                 inputUS: "US Visa Application",
+                inputUK: "UK Visa Application",
                 inputCustom: "Custom Selection",
                 inputWidth: "Width:",
                 inputHeight: "Height",
@@ -662,6 +664,7 @@
                 inputphototype: "Fotoğraf türünü seçin:",
                 inputSchengen: "Schengen Vize Başvurusu",
                 inputUS: "ABD Vize Başvurusu",
+                inputUS: "İngiltere Vize Başvurusu",
                 inputCustom: "Özel Seçim",
                 inputWidth: "Genişlik:",
                 inputHeight: "Yükseklik:",
@@ -688,6 +691,7 @@
                 inputphototype: "选择照片类型：",
                 inputSchengen: "申根签证申请",
                 inputUS: "美国签证申请",
+                inputUK: "英国签证申请",
                 inputCustom: "自定义选择",
                 inputWidth: "宽度:",
                 inputHeight: "高度:",
@@ -714,6 +718,7 @@
                 inputphototype: "اختر نوع الصورة:",
                 inputSchengen: "طلب تأشيرة شنغن",
                 inputUS: "طلب تأشيرة الولايات المتحدة",
+                inputUK: "طلب تأشيرة المملكة المتحدة",
                 inputCustom: "اختيار مخصص",
                 inputWidth: "العرض:",
                 inputHeight: "الارتفاع:",
@@ -740,6 +745,7 @@
                 inputphototype: "फ़ोटो प्रकार चुनें:",
                 inputSchengen: "शेंगन वीज़ा आवेदन",
                 inputUS: "यूएस वीज़ा आवेदन",
+                inputUK: "यूके वीज़ा आवेदन",
                 inputCustom: "कस्टम चयन",
                 inputWidth: "चौड़ाई:",
                 inputHeight: "ऊँचाई:",
@@ -847,6 +853,10 @@
                         width = 600;
                         height = 600;
                         break;
+                    case 'uk':
+                        width = 600;
+                        height = 750;
+                        break;    
                     case 'custom':
                         width = '';
                         height = '';
@@ -862,6 +872,10 @@
                     case 'us':
                         width = 51;
                         height = 51;
+                        break;
+                    case 'uk':
+                        width = 35;
+                        height = 45;
                         break;
                     case 'custom':
                         width = '';
@@ -1027,6 +1041,9 @@
                     case 'us':
                         photoTypeSelect.value = 'us';
                         break;
+                    case 'uk':
+                        photoTypeSelect.value = 'uk';
+                        break;   
                     default:
                         photoTypeSelect.value = 'custom';
                 }

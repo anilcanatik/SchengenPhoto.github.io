@@ -15,8 +15,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>ShengenPhoto: Easy Schengen & US Visa Photo Tool | VFS Global Compatible</title>
-    <meta name="description" content="Create perfect Schengen and US visa photos meeting all requirements. Compatible with VFS Global, DS-160, and DV Lottery 2025. Covers all Schengen countries. Free passport photo tool with resizer and enhancer.">
-    <meta name="keywords" content="Schengen visa photo, US visa photo, DV Lottery 2025, visa photo size, photo enhancer, photo resizer, DS-160 photo requirements, VFS Global, Schengen countries, US visa B1/B2, diversity visa lottery, passport photo tool">
+    <meta name="description" content="Create perfect Schengen, UK visa and US visa photos meeting all requirements. Compatible with VFS Global, DS-160, and DV Lottery 2025. Covers all Schengen countries. Free passport photo tool with resizer and enhancer.">
+    <meta name="keywords" content="Schengen visa photo, US visa photo, UK visa photo, DV Lottery 2025, visa photo size, photo enhancer, photo resizer, DS-160 photo requirements, VFS Global, Schengen countries, US visa B1/B2, diversity visa lottery, passport photo tool">
 
     <!-- Bootstrap CSS -->
     <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
@@ -480,6 +480,21 @@
             }
         }
 
+        @media (min-width: 1024px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 30px;
+            }
+
+            .feature-item {
+                padding: 30px;
+            }
+
+            .feature-title {
+                font-size: 1.5rem;
+            }
+        }
+
         /* Hamburger menu styles */
         .menu-toggle {
             display: none;
@@ -488,6 +503,22 @@
             font-size: 1.5rem;
             color: var(--light-text-color);
             cursor: pointer;
+        }
+
+        @media (min-width: 1440px) {
+            .features-grid {
+                grid-template-columns: repeat(4, 1fr);
+                max-width: 1400px;
+
+            }
+
+            .feature-item {
+                padding: 40px;
+            }
+
+            .feature-title {
+                font-size: 1.8rem;
+            }
         }
 
         @media (max-width: 768px) {
@@ -567,6 +598,13 @@
                      class="feature-image">
                 <h3 class="feature-title" data-lang="feature_us">US Visa Photo</h3>
             </a>
+            <a href="General_Tool_v2.html?type=digital&photo=uk" class="feature-item">
+                <img src="images/uk-600x400.webp" 
+                     srcset="images/uk-600x400.webp 1x, images/uk-600x400.webp 2x" 
+                     alt="UK Visa Photo Tool" 
+                     class="feature-image">
+                <h3 class="feature-title" data-lang="feature_us">UK Visa Photo</h3>
+            </a>
             <a href="BLS_Spain.html" class="feature-item">
                 <img src="images/bls-300x200.png" 
                      srcset="images/bls-300x200.png 1x, images/bls-600x400.png 2x" 
@@ -585,7 +623,7 @@
         <h2 class="features-title" data-aos="fade-up" data-lang="features_title">Why Choose Our Visa Photo Tool?</h2>
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
             <div class="feature-item">
-                <h3 class="feature-title" data-lang="feature_1_title">Schengen & US Visa Compatible</h3>
+                <h3 class="feature-title" data-lang="feature_1_title">Schengen, US & UK Visa Compatible</h3>
                 <p class="feature-description" data-lang="feature_1_desc">Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2025.</p>
             </div>
             <div class="feature-item">
