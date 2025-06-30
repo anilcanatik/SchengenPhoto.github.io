@@ -463,6 +463,7 @@
 
     <script>
         let cropper;
+        let previewImg;
         const translations = {
             en: {
                     title: "BLS Appointment Photo Formatter",
@@ -593,6 +594,7 @@
             const image = document.createElement('img');
             image.src = imageSrc;
             canvasContainer.appendChild(image);
+            previewImg = image;
 
             if (cropper) {
                 cropper.destroy();
