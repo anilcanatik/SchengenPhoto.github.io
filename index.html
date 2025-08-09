@@ -13,18 +13,21 @@
     </script>
     
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SchengenPhoto: Easy Schengen & US Visa Photo Tool | VFS Global Compatible</title>
-    <meta name="description" content="Create perfect Schengen, UK visa and US visa photos meeting all requirements. Compatible with VFS Global, DS-160, and DV Lottery 2025. Covers all Schengen countries. Free passport photo tool with resizer and enhancer.">
-    <meta name="keywords" content="Schengen visa photo, US visa photo, UK visa photo, DV Lottery 2025, visa photo size, photo enhancer, photo resizer, DS-160 photo requirements, VFS Global, Schengen countries, US visa B1/B2, diversity visa lottery, passport photo tool">
+    <link rel="canonical" href="https://www.schengenphoto.com/index.html">
+    <meta property="og:title" content="SchengenPhoto: Easy Schengen & US Visa Photo Tool">
+    <meta property="og:description" content="Create perfect Schengen, UK and US visa photos. VFS Global, DS-160, and DV Lottery compatible.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.schengenphoto.com/index.html">
+    <meta property="og:image" content="https://www.schengenphoto.com/images/us.webp">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="SchengenPhoto: Visa Photo Tool">
+    <meta name="twitter:description" content="Free, privacy-friendly visa photo tool for Schengen, UK and US.">
+    <meta name="description" content="Create perfect Schengen, UK visa and US visa photos meeting all requirements. Compatible with VFS Global, DS-160, and DV Lottery 2026. Covers all Schengen countries. Free passport photo tool with resizer and enhancer.">
+    <meta name="keywords" content="Schengen visa photo, US visa photo, UK visa photo, DV Lottery 2026, visa photo size, photo enhancer, photo resizer, DS-160 photo requirements, VFS Global, Schengen countries, US visa B1/B2, diversity visa lottery, passport photo tool">
 
-    <!-- Bootstrap CSS -->
-    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"></noscript>
-
-    <!-- Tailwind CSS -->
-    <link rel="preload" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
-    <noscript><link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.3/dist/tailwind.min.css"></noscript>
+    <!-- Removed unused Bootstrap/Tailwind to reduce payload -->
 
     <!-- AOS CSS -->
     <link rel="preconnect" href="https://cdnjs.cloudflare.com">
@@ -56,25 +59,28 @@
         }
 
         :root {
-            --primary-color: #1abc9c;
-            --secondary-color: #16a085;
-            --background-color: #2c3e50;
-            --text-color: #ecf0f1;
+            --primary-color: #4ecdc4;
+            --secondary-color: #3a8bff;
+            --background-color: #0b1220;
+            --surface-color: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-color: #e5e7eb;
             --light-text-color: #ffffff;
         }
 
         body {
-            font-family: 'Roboto', sans-serif;
-            background-color: var(--background-color);
+            font-family: 'Inter', 'Roboto', sans-serif;
+            background: radial-gradient(1200px 800px at 80% -20%, #1f2937 10%, #0b1220 60%, #070b14 100%);
             color: var(--text-color);
             margin: 0;
             padding: 0;
         }
 
         header {
-            background: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+            background: transparent;
             padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: saturate(140%) blur(4px);
         }
 
         .header-content {
@@ -135,12 +141,14 @@
         }
 
         #languageSelector select {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            background-color: var(--light-text-color);
-            color: var(--primary-color);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255,255,255,0.04);
+            color: var(--light-text-color);
         }
+        select option { background-color: #0b1220; color: #e5e7eb; }
+        select option:checked { background-color: #1f2937; color: #ffffff; }
 
         .hero-section {
             display: flex;
@@ -148,7 +156,7 @@
             justify-content: center;
             align-items: center;
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            background: transparent;
             color: var(--light-text-color);
             text-align: center;
             padding: 50px 20px;
@@ -210,7 +218,7 @@
         }
 
         .features-section {
-            background-color: var(--background-color);
+            background: transparent;
             padding: 80px 20px;
         }
 
@@ -222,11 +230,13 @@
         }
 
         .footer {
-            background-color: #2c3e50;
-            color: #ffffff;
-            padding: 20px 0;
-            font-family: Arial, sans-serif;
+            background: transparent;
+            color: var(--text-color);
+            padding: 30px 0;
+            border-top: 1px solid var(--border-color);
+            font-family: 'Inter', Arial, sans-serif;
             font-size: 14px;
+            backdrop-filter: saturate(140%) blur(4px);
         }
 
         .footer-content {
@@ -241,26 +251,26 @@
         }
 
         .footer-links a {
-            color: #4ecdc4;
+            color: var(--primary-color);
             text-decoration: none;
             margin: 0 15px;
             transition: color 0.3s ease;
         }
 
         .footer-links a:hover {
-            color: #ffffff;
+            color: var(--light-text-color);
         }
 
         .footer-disclaimer {
             font-size: 12px;
-            color: #bdc3c7;
+            color: #9ca3af;
             margin-bottom: 15px;
             line-height: 1.5;
             text-align: center;
         }
 
         .footer-disclaimer a {
-            color: #4ecdc4;
+            color: var(--primary-color);
             text-decoration: none;
         }
 
@@ -539,8 +549,8 @@
 
     
 
+    <meta name="theme-color" content="#2c3e50">
 </head>
-<!DOCTYPE html>
 
 
 
@@ -554,18 +564,12 @@
                 </a>
             </div>
 
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="index.html" data-lang="nav_home">Home</a></li>
-                    <li><a href="General_Tool_v2.html" data-lang="nav_Schengen">Schengen Visa Photo</a></li>
-                    <li><a href="General_Tool_v2.html?type=digital&photo=us" data-lang="nav_US">US Visa Photo</a></li>
-                    <li><a href="BLS_Spain.html" data-lang="nav_DetailedImage">VFS Global Photo Tool</a></li>
-                    <li><a href="Blog.html" data-lang="nav_Blog">Blog</a></li>
-                    <li><a href="about.html" data-lang="nav_About">About</a></li>
-                </ul>
-            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Visa_editor.html">Visa Editor</a></li>
+                <li><a href="Blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
 
             <div id="languageSelector">
                 <select id="language" onchange="changeLanguage(this.value)">
@@ -581,32 +585,32 @@
 
     <div class="hero-section" data-aos="fade-in">
         <h1 class="hero-title" data-lang="hero_title">Schengen & US Visa Photo Tool</h1>
-        <p class="hero-subtitle" data-lang="hero_subtitle">Your one-stop solution for Schengen, US visa, and DV Lottery 2025 photos.</p>
+        <p class="hero-subtitle" data-lang="hero_subtitle">Your one-stop solution for Schengen, US visa, and DV Lottery 2026 photos.</p>
         
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
-            <a href="General_Tool_v2.html?type=digital&photo=schengen" class="feature-item">
-                <img src="images/eu-300x200.png" 
+            <a href="Visa_editor.html" class="feature-item">
+                <img src="images/eu-300x200.png" loading="lazy" width="300" height="200"
                      srcset="images/eu-300x200.png 1x, images/eu-600x400.png 2x" 
                      alt="Schengen Visa Photo Tool" 
                      class="feature-image">
                 <h3 class="feature-title" data-lang="feature_schengen">Schengen Visa Photo</h3>
             </a>
-            <a href="General_Tool_v2.html?type=digital&photo=us" class="feature-item">
-                <img src="images/us-300x200.png" 
+            <a href="Visa_editor.html" class="feature-item">
+                <img src="images/us-300x200.png" loading="lazy" width="300" height="200"
                      srcset="images/us-300x200.png 1x, images/us-600x400.png 2x" 
                      alt="US Visa Photo Tool" 
                      class="feature-image">
                 <h3 class="feature-title" data-lang="feature_us">US Visa Photo</h3>
             </a>
-            <a href="General_Tool_v2.html?type=digital&photo=uk" class="feature-item">
-                <img src="images/uk-600x400.webp" 
+            <a href="Visa_editor.html" class="feature-item">
+                <img src="images/uk-600x400.webp" loading="lazy" width="600" height="400"
                      srcset="images/uk-600x400.webp 1x, images/uk-600x400.webp 2x" 
                      alt="UK Visa Photo Tool" 
                      class="feature-image">
                 <h3 class="feature-title" data-lang="feature_uk">UK Visa Photo</h3>
             </a>
-            <a href="BLS_Spain.html" class="feature-item">
-                <img src="images/bls-300x200.png" 
+            <a href="Visa_editor.html" class="feature-item">
+                <img src="images/bls-300x200.png" loading="lazy" width="300" height="200"
                      srcset="images/bls-300x200.png 1x, images/bls-600x400.png 2x" 
                      alt="VFS Global Photo Tool" 
                      class="feature-image">
@@ -624,7 +628,7 @@
         <div class="features-grid" data-aos="fade-up" data-aos-delay="100">
             <div class="feature-item">
                 <h3 class="feature-title" data-lang="feature_1_title">Schengen, US & UK Visa Compatible</h3>
-                <p class="feature-description" data-lang="feature_1_desc">Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2025.</p>
+                <p class="feature-description" data-lang="feature_1_desc">Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2026.</p>
             </div>
             <div class="feature-item">
                 <h3 class="feature-title" data-lang="feature_2_title">VFS Global & DS-160 Compliant</h3>
@@ -647,7 +651,7 @@
             <div class="step-item">
                 <div class="step-number">1</div>
                 <h3 class="step-title" data-lang="step_1_title">Select Visa Type</h3>
-                <p class="step-description" data-lang="step_1_desc">Choose Schengen, US visa, or DV Lottery 2025 photo requirements.</p>
+                <p class="step-description" data-lang="step_1_desc">Choose Schengen, US visa, or DV Lottery 2026 photo requirements.</p>
             </div>
             <div class="step-item">
                 <div class="step-number">2</div>
@@ -675,7 +679,7 @@
                 <a href="privacyPolicy.html" data-lang="footer_terms">Terms and Conditions</a>
             </div>
             <div class="footer-disclaimer" data-lang="footer_disclaimer">
-                Disclaimer: SchengenPhoto.com provides tools to assist in preparing photos for Schengen visa, US visa, and DV Lottery 2025 applications. While we aim to ensure your photos meet general requirements, acceptance is not guaranteed. Please verify the current requirements on the official websites.
+                Disclaimer: SchengenPhoto.com provides tools to assist in preparing photos for Schengen visa, US visa, and DV Lottery 2026 applications. While we aim to ensure your photos meet general requirements, acceptance is not guaranteed. Please verify the current requirements on the official websites.
             </div>
             <p class="footer-copyright" data-lang="footer_copyright">&copy; 2024 SchengenPhoto.com. All rights reserved.</p>
         </div>
@@ -698,19 +702,22 @@
         let cropper;
         const translations = {
             "en": {
+                "logo_text": "SchengenPhoto",
                 "nav_home": "Home",
                 "nav_Schengen": "Schengen Visa Photo",
                 "nav_US": "US Visa Photo",
                 "nav_DetailedImage": "BLS Global Photo Tool",
+                "nav_Blog": "Blog",
                 "nav_About": "About",
                 "hero_title": "Schengen & US Visa Photo Tool",
-                "hero_subtitle": "Your one-stop solution for Schengen, US visa, and DV Lottery 2025 photos",
+                "hero_subtitle": "Your one-stop solution for Schengen, US visa, and DV Lottery 2026 photos",
                 "feature_schengen": "Schengen Visa Photo",
                 "feature_us": "US Visa Photo",
+                "feature_uk": "UK Visa Photo",
                 "feature_vfs": "BLS Global Photo Tool",
                 "features_title": "Why Choose Our Visa Photo Tool?",
                 "feature_1_title": "Schengen & US Visa Compatible",
-                "feature_1_desc": "Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2025.",
+                "feature_1_desc": "Meets requirements for all Schengen countries, US visa (B1/B2), and DV Lottery 2026.",
                 "feature_2_title": "VFS Global & DS-160 Compliant",
                 "feature_2_desc": "Ensures compatibility with VFS Global and DS-160 requirements.",
                 "feature_3_title": "Photo Enhancer & Resizer",
@@ -719,33 +726,37 @@
                 "feature_4_desc": "Use our tool for free with complete privacy - all processing done locally.",
                 "how_it_works_title": "How Our Visa Photo Tool Works",
                 "step_1_title": "Select Visa Type",
-                "step_1_desc": "Choose Schengen, US visa, or DV Lottery 2025 photo requirements.",
+                "step_1_desc": "Choose Schengen, US visa, or DV Lottery 2026 photo requirements.",
                 "step_2_title": "Upload Your Photo",
                 "step_2_desc": "Upload a clear, recent photo that meets basic guidelines.",
                 "step_3_title": "Enhance & Resize",
                 "step_3_desc": "Our tool automatically adjusts your photo to meet exact requirements.",
                 "step_4_title": "Download",
                 "step_4_desc": "Get your visa-ready photo instantly, compatible with official standards.",
+                "cta_button": "Learn More",
                 "footer_home": "Home",
                 "footer_about": "About",
                 "footer_terms": "Terms and Conditions",
-                "footer_disclaimer": "Disclaimer: SchengenPhoto.com provides tools to assist in preparing photos for Schengen visa, US visa, and DV Lottery 2025 applications. While we aim to ensure your photos meet general requirements, acceptance is not guaranteed. Please verify the current requirements on the official websites.",
+                "footer_disclaimer": "Disclaimer: SchengenPhoto.com provides tools to assist in preparing photos for Schengen visa, US visa, and DV Lottery 2026 applications. While we aim to ensure your photos meet general requirements, acceptance is not guaranteed. Please verify the current requirements on the official websites.",
                 "footer_copyright": "© 2024 SchengenPhoto.com. All rights reserved."
             },
             "tr": {
+                "logo_text": "SchengenPhoto",
                 "nav_home": "Ana Sayfa",
                 "nav_Schengen": "Schengen Vize Fotoğrafı",
                 "nav_US": "ABD Vize Fotoğrafı",
                 "nav_DetailedImage": "BLS Fotoğraf Aracı",
+                "nav_Blog": "Blog",
                 "nav_About": "Hakkında",
                 "hero_title": "Schengen ve ABD Vize Fotoğrafı Aracı",
-                "hero_subtitle": "Schengen, ABD vizesi ve DV Lottery 2025 fotoğrafları için tek durak çözümünüz",
+                "hero_subtitle": "Schengen, ABD vizesi ve DV Lottery 2026 fotoğrafları için tek durak çözümünüz",
                 "feature_schengen": "Schengen Vize Fotoğrafı",
                 "feature_us": "ABD Vize Fotoğrafı",
+                "feature_uk": "Birleşik Krallık Vize Fotoğrafı",
                 "feature_vfs": "BLS Randevu Fotoğraf Aracı",
                 "features_title": "Neden Vize Fotoğrafı Aracımızı Seçmelisiniz?",
                 "feature_1_title": "Schengen ve ABD Vizesi Uyumlu",
-                "feature_1_desc": "Tüm Schengen ülkeleri, ABD vizesi (B1/B2) ve DV Lottery 2025 gereksinimlerini karşılar.",
+                "feature_1_desc": "Tüm Schengen ülkeleri, ABD vizesi (B1/B2) ve DV Lottery 2026 gereksinimlerini karşılar.",
                 "feature_2_title": "VFS Global ve DS-160 Uyumlu",
                 "feature_2_desc": "VFS Global ve DS-160 gereksinimleriyle uyumluluğu sağlar.",
                 "feature_3_title": "Fotoğraf Geliştirici ve Yeniden Boyutlandırıcı",
@@ -754,33 +765,37 @@
                 "feature_4_desc": "Aracımızı ücretsiz ve tam gizlilikle kullanın - tüm işlemler yerel olarak yapılır.",
                 "how_it_works_title": "Vize Fotoğrafı Aracımız Nasıl Çalışır",
                 "step_1_title": "Vize Türünü Seçin",
-                "step_1_desc": "Schengen, ABD vizesi veya DV Lottery 2025 fotoğraf gereksinimlerini seçin.",
+                "step_1_desc": "Schengen, ABD vizesi veya DV Lottery 2026 fotoğraf gereksinimlerini seçin.",
                 "step_2_title": "Fotoğrafınızı Yükleyin",
                 "step_2_desc": "Temel kurallara uyan net, güncel bir fotoğraf yükleyin.",
                 "step_3_title": "Geliştir ve Yeniden Boyutlandır",
                 "step_3_desc": "Aracımız fotoğrafınızı otomatik olarak tam gereksinimleri karşılayacak şekilde ayarlar.",
                 "step_4_title": "İndirin",
                 "step_4_desc": "Resmi standartlara uygun vize fotoğrafınızı anında alın.",
+                "cta_button": "Daha Fazla Bilgi",
                 "footer_home": "Ana Sayfa",
                 "footer_about": "Hakkında",
                 "footer_terms": "Şartlar ve Koşullar",
-                "footer_disclaimer": "Feragatname: SchengenPhoto.com, Schengen vizesi, ABD vizesi ve DV Lottery 2025 başvuruları için fotoğraf hazırlamaya yardımcı araçlar sağlar. Fotoğraflarınızın genel gereksinimleri karşılamasını sağlamaya çalışsak da, kabul garantisi verilmez. Lütfen güncel gereksinimleri resmi web sitelerinden doğrulayın.",
+                "footer_disclaimer": "Feragatname: SchengenPhoto.com, Schengen vizesi, ABD vizesi ve DV Lottery 2026 başvuruları için fotoğraf hazırlamaya yardımcı araçlar sağlar. Fotoğraflarınızın genel gereksinimleri karşılamasını sağlamaya çalışsak da, kabul garantisi verilmez. Lütfen güncel gereksinimleri resmi web sitelerinden doğrulayın.",
                 "footer_copyright": "© 2024 SchengenPhoto.com. Tüm hakları saklıdır."
             },
             "zh": {
+                "logo_text": "SchengenPhoto",
                 "nav_home": "首页",
                 "nav_Schengen": "申根签证照片",
                 "nav_US": "美国签证照片",
                 "nav_DetailedImage": "BLS 照片工具",
+                "nav_Blog": "博客",
                 "nav_About": "关于我们",
                 "hero_title": "申根和美国签证照片工具",
-                "hero_subtitle": "您的申根、美国签证和DV Lottery 2025照片一站式解决方案。",
+                "hero_subtitle": "您的申根、美国签证和DV Lottery 2026照片一站式解决方案。",
                 "feature_schengen": "申根签证照片",
                 "feature_us": "美国签证照片",
+                "feature_uk": "英国签证照片",
                 "feature_vfs": "BLS 照片工具",
                 "features_title": "为什么选择我们的签证照片工具？",
                 "feature_1_title": "兼容申根和美国签证",
-                "feature_1_desc": "满足所有申根国家、美国签证（B1/B2）和DV Lottery 2025的要求。",
+                "feature_1_desc": "满足所有申根国家、美国签证（B1/B2）和DV Lottery 2026的要求。",
                 "feature_2_title": "符合VFS Global和DS-160标准",
                 "feature_2_desc": "确保与VFS Global和DS-160要求兼容。",
                 "feature_3_title": "照片增强和调整大小",
@@ -789,33 +804,37 @@
                 "feature_4_desc": "免费使用我们的工具，完全保护隐私 - 所有处理都在本地完成。",
                 "how_it_works_title": "我们的签证照片工具如何工作",
                 "step_1_title": "选择签证类型",
-                "step_1_desc": "选择申根、美国签证或DV Lottery 2025照片要求。",
+                "step_1_desc": "选择申根、美国签证或DV Lottery 2026照片要求。",
                 "step_2_title": "上传您的照片",
                 "step_2_desc": "上传符合基本指南的清晰、近期照片。",
                 "step_3_title": "增强和调整大小",
                 "step_3_desc": "我们的工具自动调整您的照片以满足确切要求。",
                 "step_4_title": "下载",
                 "step_4_desc": "立即获取符合官方标准的签证就绪照片。",
+                "cta_button": "了解更多",
                 "footer_home": "首页",
                 "footer_about": "关于我们",
                 "footer_terms": "条款和条件",
-                "footer_disclaimer": "免责声明：SchengenPhoto.com提供工具协助准备申根签证、美国签证和DV Lottery 2025申请的照片。虽然我们努力确保您的照片满足一般要求，但不保证一定被接受。请在官方网站上验证当前要求。",
+                "footer_disclaimer": "免责声明：SchengenPhoto.com提供工具协助准备申根签证、美国签证和DV Lottery 2026申请的照片。虽然我们努力确保您的照片满足一般要求，但不保证一定被接受。请在官方网站上验证当前要求。",
                 "footer_copyright": "© 2024 SchengenPhoto.com。保留所有权利。"
             },
             "ar": {
+                "logo_text": "SchengenPhoto",
                 "nav_home": "الرئيسية",
                 "nav_Schengen": "صورة تأشيرة شنغن",
                 "nav_US": "صورة تأشيرة أمريكا",
                 "nav_DetailedImage": "أداة صور BLS",
+                "nav_Blog": "المدونة",
                 "nav_About": "حول",
                 "hero_title": "أداة صور تأشيرة شنغن وأمريكا",
-                "hero_subtitle": "حلك الشامل لصور تأشيرة شنغن وأمريكا وقرعة التنوع 2025.",
+                "hero_subtitle": "حلك الشامل لصور تأشيرة شنغن وأمريكا وقرعة التنوع 2026.",
                 "feature_schengen": "صورة تأشيرة شنغن",
                 "feature_us": "صورة تأشيرة أمريكا",
+                "feature_uk": "صورة تأشيرة المملكة المتحدة",
                 "feature_vfs": "أداة صور BLS",
                 "features_title": "لماذا تختار أداة صور التأشيرة الخاصة بنا؟",
                 "feature_1_title": "متوافقة مع تأشيرة شنغن وأمريكا",
-                "feature_1_desc": "تلبي متطلبات جميع دول شنغن وتأشيرة أمريكا (B1/B2) وقرعة التنوع 2025.",
+                "feature_1_desc": "تلبي متطلبات جميع دول شنغن وتأشيرة أمريكا (B1/B2) وقرعة التنوع 2026.",
                 "feature_2_title": "متوافقة مع VFS Global وDS-160",
                 "feature_2_desc": "تضمن التوافق مع متطلبات VFS Global وDS-160.",
                 "feature_3_title": "محسن ومعدل حجم الصور",
@@ -824,33 +843,37 @@
                 "feature_4_desc": "استخدم أداتنا مجانًا مع خصوصية كاملة - جميع المعالجات تتم محليًا.",
                 "how_it_works_title": "كيف تعمل أداة صور التأشيرة الخاصة بنا",
                 "step_1_title": "اختر نوع التأشيرة",
-                "step_1_desc": "اختر متطلبات صور تأشيرة شنغن أو أمريكا أو قرعة التنوع 2025.",
+                "step_1_desc": "اختر متطلبات صور تأشيرة شنغن أو أمريكا أو قرعة التنوع 2026.",
                 "step_2_title": "ارفع صورتك",
                 "step_2_desc": "ارفع صورة واضحة وحديثة تلبي الإرشادات الأساسية.",
                 "step_3_title": "تحسين وتعديل الحجم",
                 "step_3_desc": "تقوم أداتنا تلقائيًا بضبط صورتك لتلبية المتطلبات الدقيقة.",
                 "step_4_title": "تنزيل",
                 "step_4_desc": "احصل على صورة جاهزة للتأشيرة فورًا، متوافقة مع المعايير الرسمية.",
+                "cta_button": "اعرف المزيد",
                 "footer_home": "الرئيسية",
                 "footer_about": "حول",
                 "footer_terms": "الشروط والأحكام",
-                "footer_disclaimer": "إخلاء المسؤولية: يوفر SchengenPhoto.com أدوات للمساعدة في إعداد الصور لطلبات تأشيرة شنغن وأمريكا وقرعة التنوع 2025. بينما نهدف إلى ضمان تلبية صورك للمتطلبات العامة، فإن القبول غير مضمون. يرجى التحقق من المتطلبات الحالية على المواقع الرسمية.",
+                "footer_disclaimer": "إخلاء المسؤولية: يوفر SchengenPhoto.com أدوات للمساعدة في إعداد الصور لطلبات تأشيرة شنغن وأمريكا وقرعة التنوع 2026. بينما نهدف إلى ضمان تلبية صورك للمتطلبات العامة، فإن القبول غير مضمون. يرجى التحقق من المتطلبات الحالية على المواقع الرسمية.",
                 "footer_copyright": "© 2024 SchengenPhoto.com. جميع الحقوق محفوظة."
             },
             "hi": {
+                "logo_text": "SchengenPhoto",
                 "nav_home": "होम",
                 "nav_Schengen": "शेंगेन वीज़ा फोटो",
                 "nav_US": "यूएस वीज़ा फोटो",
                 "nav_DetailedImage": "BLS ग्लोबल फोटो टूल",
+                "nav_Blog": "ब्लॉग",
                 "nav_About": "हमारे बारे में",
                 "hero_title": "शेंगेन और यूएस वीज़ा फोटो टूल",
-                "hero_subtitle": "शेंगेन, यूएस वीज़ा और डीवी लॉटरी 2025 फोटो के लिए आपका वन-स्टॉप समाधान।",
+                "hero_subtitle": "शेंगेन, यूएस वीज़ा और डीवी लॉटरी 2026 फोटो के लिए आपका वन-स्टॉप समाधान।",
                 "feature_schengen": "शेंगेन वीज़ा फोटो",
                 "feature_us": "यूएस वीज़ा फोटो",
+                "feature_uk": "यूके वीज़ा फोटो",
                 "feature_vfs": "BLS ग्लोबल फोटो टूल",
                 "features_title": "हमारा वीज़ा फोटो टूल क्यों चुनें?",
                 "feature_1_title": "शेंगेन और यूएस वीज़ा के अनुकूल",
-                "feature_1_desc": "सभी शेंगेन देशों, यूएस वीज़ा (B1/B2), और डीवी लॉटरी 2025 की आवश्यकताओं को पूरा करता है।",
+                "feature_1_desc": "सभी शेंगेन देशों, यूएस वीज़ा (B1/B2), और डीवी लॉटरी 2026 की आवश्यकताओं को पूरा करता है।",
                 "feature_2_title": "VFS ग्लोबल और DS-160 के अनुरूप",
                 "feature_2_desc": "VFS ग्लोबल और DS-160 आवश्यकताओं के साथ अनुकूलता सुनिश्चित करता है।",
                 "feature_3_title": "फोटो एन्हांसर और रीसाइज़र",
@@ -859,17 +882,18 @@
                 "feature_4_desc": "हमारे टूल का उपयोग पूरी गोपनीयता के साथ मुफ्त में करें - सभी प्रोसेसिंग स्थानीय रूप से की जाती है।",
                 "how_it_works_title": "हमारा वीज़ा फोटो टूल कैसे काम करता है",
                 "step_1_title": "वीज़ा प्रकार चुनें",
-                "step_1_desc": "शेंगेन, यूएस वीज़ा, या डीवी लॉटरी 2025 फोटो आवश्यकताओं का चयन करें।",
+                "step_1_desc": "शेंगेन, यूएस वीज़ा, या डीवी लॉटरी 2026 फोटो आवश्यकताओं का चयन करें।",
                 "step_2_title": "अपनी फोटो अपलोड करें",
                 "step_2_desc": "बुनियादी दिशानिर्देशों को पूरा करने वाली एक स्पष्ट, हाल की फोटो अपलोड करें।",
                 "step_3_title": "बेहतर बनाएं और आकार बदलें",
                 "step_3_desc": "हमारा टूल स्वचालित रूप से सटीक आवश्यकताओं को पूरा करने के लिए आपकी फोटो को समायोजित करता है।",
                 "step_4_title": "डाउनलोड करें",
                 "step_4_desc": "आधिकारिक मानकों के अनुरूप अपनी वीज़ा-तैयार फोटो तुरंत प्राप्त करें।",
+                "cta_button": "और जानें",
                 "footer_home": "होम",
                 "footer_about": "हमारे बारे में",
                 "footer_terms": "नियम और शर्तें",
-                "footer_disclaimer": "अस्वीकरण: SchengenPhoto.com शेंगेन वीज़ा, यूएस वीज़ा और डीवी लॉटरी 2025 आवेदनों के लिए फोटो तैयार करने में सहायता के लिए टूल प्रदान करता है। हालांकि हम आपकी फोटो के सामान्य आवश्यकताओं को पूरा करने का प्रयास करते हैं, स्वीकृति की गारंटी नहीं है। कृपया आधिकारिक वेबसाइटों पर वर्तमान आवश्यकताओं की पुष्टि करें।",
+                "footer_disclaimer": "अस्वीकरण: SchengenPhoto.com शेंगेन वीज़ा, यूएस वीज़ा और डीवी लॉटरी 2026 आवेदनों के लिए फोटो तैयार करने में सहायता के लिए टूल प्रदान करता है। हालांकि हम आपकी फोटो के सामान्य आवश्यकताओं को पूरा करने का प्रयास करते हैं, स्वीकृति की गारंटी नहीं है। कृपया आधिकारिक वेबसाइटों पर वर्तमान आवश्यकताओं की पुष्टि करें।",
                 "footer_copyright": "© 2024 SchengenPhoto.com। सर्वाधिकार सुरक्षित।"
             }
         };

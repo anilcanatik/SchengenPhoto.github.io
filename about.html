@@ -11,7 +11,7 @@
     gtag('config', 'G-WCQKBW9K3L');
     </script>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Learn more about SchengenPhoto.com, your go-to tool for preparing Schengen Visa photos.">
     <meta name="keywords" content="About SchengenPhoto, Schengen visa photo, visa appointment profile photo, about us">
     <title>About Us - SchengenPhoto.com</title>
@@ -37,20 +37,22 @@
 
 
         :root {
-            --primary-color: #1abc9c;
-            --secondary-color: #16a085;
-            --background-color: #2c3e50;
-            --text-color: #ecf0f1;
+            --primary-color: #4ecdc4;
+            --secondary-color: #3a8bff;
+            --background-color: #0b1220;
+            --surface-color: rgba(255, 255, 255, 0.06);
+            --border-color: rgba(255, 255, 255, 0.12);
+            --text-color: #e5e7eb;
             --light-text-color: #ffffff;
-            --success-color: #27ae60;
-            --error-color: #e74c3c;
+            --success-color: #22c55e;
+            --error-color: #ef4444;
         }
         body {
-            font-family: 'Arial', sans-serif;
+            font-family: 'Inter', 'Arial', sans-serif;
             line-height: 1.6;
             margin: 0;
             padding: 0;
-            background-color: var(--background-color);
+            background: radial-gradient(1200px 800px at 80% -20%, #1f2937 10%, #0b1220 60%, #070b14 100%);
             color: var(--text-color);
         }
         .container {
@@ -59,9 +61,10 @@
             padding: 20px;
         }
         header {
-            background-color: var(--primary-color);
+            background: transparent;
             padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            border-bottom: 1px solid var(--border-color);
+            backdrop-filter: saturate(140%) blur(4px);
         }
         .header-content {
             display: flex;
@@ -131,18 +134,22 @@
             margin-left: 20px;
         }
         #languageSelector select {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            background-color: var(--light-text-color);
-            color: var(--primary-color);
+            padding: 6px 10px;
+            border-radius: 8px;
+            border: 1px solid var(--border-color);
+            background-color: rgba(255,255,255,0.04);
+            color: var(--light-text-color);
         }
+        select option { background-color: #0b1220; color: #e5e7eb; }
+        select option:checked { background-color: #1f2937; color: #ffffff; }
         .main-content {
-            background-color: #34495e;
+            background-color: var(--surface-color);
+            border: 1px solid var(--border-color);
             padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.25);
             margin-top: 30px;
+            backdrop-filter: blur(8px);
         }
         h1 {
             color: var(--primary-color);
@@ -220,20 +227,14 @@
             background-color: var(--error-color);
             color: var(--light-text-color);
         }
-        .footer {
-        background-color: #f8f8f8;
-        color: #333;
-        padding: 20px 0;
-        font-family: Arial, sans-serif;
-        font-size: 14px;
-    }
-
     .footer {
-        background-color: #2c3e50; /* Dark blue background color */
-        color: #ffffff;
-        padding: 20px 0;
-        font-family: Arial, sans-serif;
+        background: transparent;
+        color: var(--text-color);
+        padding: 30px 0;
+        border-top: 1px solid var(--border-color);
+        font-family: 'Inter', Arial, sans-serif;
         font-size: 14px;
+        backdrop-filter: saturate(140%) blur(4px);
     }
 
     .footer-content {
@@ -248,32 +249,26 @@
     }
 
     .footer-links a {
-        color: #4ecdc4; /* Mint green color for links */
+        color: var(--primary-color);
         text-decoration: none;
         margin: 0 15px;
         transition: color 0.3s ease;
     }
 
     .footer-links a:hover {
-        color: #ffffff;
+        color: var(--light-text-color);
     }
 
     .footer-disclaimer {
         font-size: 12px;
-        color: #bdc3c7; /* Light gray color */
+        color: #9ca3af;
         margin-bottom: 15px;
         line-height: 1.5;
         text-align: center;
     }
 
-    .footer-disclaimer a {
-        color: #4ecdc4; /* Mint green color for links */
-        text-decoration: none;
-    }
-
-    .footer-disclaimer a:hover {
-        text-decoration: underline;
-    }
+    .footer-disclaimer a { color: var(--primary-color); text-decoration: none; }
+    .footer-disclaimer a:hover { text-decoration: underline; }
 
     .footer-copyright {
         font-size: 12px;
@@ -374,20 +369,16 @@
         <div class="header-content">
             <div class="logo">
                 <a href="index.html" class="logo-link">
-                    <span class="logo-text">Schengen Photo</span>
-                    <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
+                    <span class="logo-text" data-lang="logo_text">SchengenPhoto</span>
+                    <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
                 </a>
             </div>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="index.html" data-lang="nav_home">Home</a></li>
-                    <li><a href="General_Tool_v2.html" data-lang="nav_Schengen">Visa Photo Editor</a></li>
-                    <li><a href="BLS_Spain.html" data-lang="nav_Detailed">BSL Visa Booking Photo Converter</a></li>
-                    <li><a href="Blog.html" data-lang="nav_Blog">Blog</a></li>
-                    <li><a href="about.html" data-lang="nav_About">About</a></li>
-                </ul>
-            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="Visa_editor.html">Visa Editor</a></li>
+                <li><a href="Blog.html">Blog</a></li>
+                <li><a href="about.html">About</a></li>
+            </ul>
             <div id="languageSelector">
                 <select id="language" onchange="changeLanguage(this.value)">
                     <option value="en">English</option>
@@ -436,10 +427,12 @@
     let cropper;
             const translations = {
                 en: {
+                    logo_text: "SchengenPhoto",
                     title: "About SchengenPhoto ",
                     nav_home: "Home",
-                    nav_schengen: "Schengen Appointment",
-                    nav_detailed: "BSL Visa Booking Photo Converter",
+                    nav_Schengen: "Schengen Visa Photo",
+                    nav_DetailedImage: "BLS Global Photo Tool",
+                    nav_Blog: "Blog",
                     nav_About: "About",
                     first_about: "At SchengenPhoto , our mission is to make the process of preparing Schengen Visa photos as simple and accessible as possible.", 
                     second_about: "Our platform prioritizes your privacy by ensuring that all image processing is done locally on your device. This means your photos never leave your computer, giving you peace of mind that your personal data remains secure.",
@@ -453,10 +446,12 @@
                     text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process."
                 },
                 tr: {
+                    logo_text: "SchengenPhoto",
                     title: "SchengenPhoto  Hakkında",
                     nav_home: "Ana Sayfa",
-                    nav_schengen: "Schengen Randevusu",
-                    nav_detailed: "BSL Vize Rezervasyonu Fotoğraf Dönüştürücü",
+                    nav_Schengen: "Schengen Vize Fotoğrafı",
+                    nav_DetailedImage: "BLS Fotoğraf Aracı",
+                    nav_Blog: "Blog",
                     nav_About: "Hakkında",
                     first_about: "SchengenPhoto 'da amacımız, Schengen Vizesi fotoğraflarını hazırlama sürecini olabildiğince basit ve erişilebilir hale getirmektir.",
                     second_about: "Platformumuz, tüm görüntü işleme işlemlerinin cihazınızda yerel olarak yapılmasını sağlayarak gizliliğinizi ön planda tutar. Bu, fotoğraflarınızın bilgisayarınızdan çıkmadığı anlamına gelir ve kişisel verilerinizin güvende kaldığından emin olmanızı sağlar.",
@@ -470,10 +465,12 @@
                     text_box: "BLS International üzerinden Schengen vizesi randevusu almak için mi hazırlanıyorsunuz? Ücretsiz çevrimiçi aracımız, BLS randevu sistemi için profil fotoğrafınızı ayarlamanıza yardımcı olmak için tasarlanmıştır. Fotoğrafınızın genel gereksinimleri karşılamasına yardımcı olmayı amaçlıyoruz, bu da vize randevusu alma sürecinizi kolaylaştırabilir."
                 },
                 zh: {
+                    logo_text: "SchengenPhoto",
                     title: "关于SchengenPhoto ",
                     nav_home: "首页",
-                    nav_schengen: "申根预约",
-                    nav_detailed: "BSL签证预约照片转换器",
+                    nav_Schengen: "申根签证照片",
+                    nav_DetailedImage: "BLS 照片工具",
+                    nav_Blog: "博客",
                     nav_About: "关于",
                     first_about: "在SchengenPhoto ，我们的使命是让准备申根签证照片的过程尽可能简单和方便。",
                     second_about: "我们的平台优先考虑您的隐私，确保所有图像处理都在您的设备上本地完成。这意味着您的照片永远不会离开您的计算机，让您安心，您的个人数据保持安全。",
@@ -487,10 +484,12 @@
                     text_box: "您准备通过BLS International预约申根签证吗？我们的免费在线工具旨在帮助您调整您的个人照片，以适应BLS预约系统的要求。我们旨在帮助您的照片符合一般要求，这可能有助于简化您的签证预约流程。"
                 },
                 ar: {
+                    logo_text: "SchengenPhoto",
                     title: "حول SchengenPhoto ",
-                    nav_home: "الصفحة الرئيسية",
-                    nav_schengen: "موعد شنغن",
-                    nav_detailed: "محول صورة حجز تأشيرة BSL",
+                    nav_home: "الرئيسية",
+                    nav_Schengen: "صورة تأشيرة شنغن",
+                    nav_DetailedImage: "أداة صور BLS",
+                    nav_Blog: "المدونة",
                     nav_About: "حول",
                     first_about: "في SchengenPhoto ، مهمتنا هي جعل عملية تحضير صور تأشيرة شنغن بسيطة وسهلة الوصول قدر الإمكان.",
                     second_about: "تعمل منصتنا على حماية خصوصيتك من خلال ضمان معالجة جميع الصور محليًا على جهازك. هذا يعني أن صورك لا تغادر جهاز الكمبيوتر الخاص بك، مما يمنحك راحة البال بأن بياناتك الشخصية تظل آمنة.",
@@ -504,11 +503,13 @@
                     text_box: "هل تستعد لحجز موعد تأشيرة شنغن من خلال BLS International؟ تم تصميم أداتنا المجانية عبر الإنترنت لمساعدتك في تعديل صورتك الشخصية لنظام حجز المواعيد لدى BLS. نهدف إلى مساعدة صورتك على تلبية المتطلبات العامة، مما قد يساعد في تبسيط عملية حجز موعد التأشيرة."
                 },
                 hi: {
+                    logo_text: "SchengenPhoto",
                     title: "SchengenPhoto  के बारे में",
                     nav_home: "होम",
-                    nav_schengen: "शेंगन अपॉइंटमेंट",
-                    nav_detailed: "BSL वीज़ा बुकिंग फोटो कन्वर्टर",
-                    nav_About: "के बारे में",
+                    nav_Schengen: "शेंगेन वीज़ा फोटो",
+                    nav_DetailedImage: "BLS ग्लोबल फोटो टूल",
+                    nav_Blog: "ब्लॉग",
+                    nav_About: "हमारे बारे में",
                     first_about: "SchengenPhoto  पर, हमारा मिशन शेंगन वीज़ा फ़ोटो तैयार करने की प्रक्रिया को यथासंभव सरल और सुलभ बनाना है।",
                     second_about: "हमारा प्लेटफ़ॉर्म आपकी गोपनीयता को प्राथमिकता देता है, यह सुनिश्चित करके कि सभी छवि प्रसंस्करण आपके डिवाइस पर स्थानीय रूप से किया जाता है। इसका मतलब है कि आपकी फ़ोटो कभी भी आपके कंप्यूटर से नहीं निकलती, जिससे आप निश्चिंत हो सकते हैं कि आपका व्यक्तिगत डेटा सुरक्षित रहता है।",
                     third_about: "हम अपनी सेवाएं पूरी तरह से मुफ्त में, बिना किसी छिपी हुई फीस या प्रीमियम सुविधाओं के प्रदान करने पर गर्व महसूस करते हैं, वेबसाइट में केवल Google विज्ञापन सेवा का उपयोग किया गया है। SchengenPhoto  यात्रियों को बिना किसी परेशानी के उनके वीज़ा फ़ोटो आवश्यकताओं को पूरा करने में मदद करने के लिए समर्पित है।",

@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
+  <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Unified Visa Photo Editor</title>
   <link rel="canonical" href="https://www.schengenphoto.com/Visa_editor.html">
   <meta name="description" content="Unified visa photo editor for Schengen, US, UK and BLS/VFS presets. Crop, resize, and download with privacy-first processing.">
-    <style>
+  <style>
     #spinningImage { width: 30px; height: 30px; animation: spin 3s linear infinite; margin-left: 10px; }
     @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
     :root { --primary-color:#4ecdc4; --secondary-color:#3a8bff; --background-color:#0b1220; --surface-color:rgba(255,255,255,0.06); --border-color:rgba(255,255,255,0.12); --text-color:#e5e7eb; --light-text:#fff; }
@@ -36,7 +36,7 @@
     footer{ margin-top:40px; border-top:1px solid var(--border-color); padding:30px 0; text-align:center; color:#9ca3af; }
 
     /* Responsive */
-        @media (max-width: 768px) {
+    @media (max-width: 768px) {
       .main { flex-direction: column; margin: 16px; padding: 16px; }
       .sidebar { width: 100%; border-right: none; padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px; }
       .type-buttons { grid-template-columns: repeat(2, minmax(0,1fr)); }
@@ -45,8 +45,8 @@
     }
     @media (max-width: 420px) {
       .type-buttons { grid-template-columns: 1fr; }
-        }
-    </style>
+    }
+  </style>
   <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js" defer></script>
   <script>
@@ -58,62 +58,70 @@
   </script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
+  <header>
+    <div class="header-content">
       <div class="logo">
         <a href="index.html" class="logo-link">
           <span class="logo-text" data-lang="logo_text">SchengenPhoto</span>
           <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
         </a>
       </div>
-                <ul class="nav-links">
+      <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
         <li><a href="Visa_editor.html">Visa Editor</a></li>
         <li><a href="Blog.html">Blog</a></li>
         <li><a href="about.html">About</a></li>
-                </ul>
-      <div id="languageSelector"><select><option>EN</option></select></div>
-        </div>
-    </header>
-    
-  <main class="main">
-    <aside class="sidebar">
-      <h2>Photo Settings</h2>
-      <div class="input-group">
-        <label>Type</label>
-        <input type="hidden" id="uploadType" value="digital" />
-        <div id="uploadButtons" class="type-buttons">
-          <button type="button" class="type-btn active" data-upload="digital">Digital Upload</button>
-          <button type="button" class="type-btn" data-upload="printable">Printable</button>
-            </div>    
-            </div>
-      <div class="input-group">
-        <label>Select photo type</label>
-        <input type="hidden" id="photoType" value="schengen" />
-        <div id="typeButtons" class="type-buttons">
-          <button type="button" class="type-btn active" data-type="schengen">Schengen</button>
-          <button type="button" class="type-btn" data-type="us">US</button>
-          <button type="button" class="type-btn" data-type="uk">UK</button>
-          <button type="button" class="type-btn" data-type="bls">BLS/VFS</button>
-          <button type="button" class="type-btn" data-type="custom">Custom</button>
-        </div>
-      </div>
-      <div class="input-group">
-        <label for="unit">Unit</label>
-        <select id="unit">
-          <option value="px">pixels</option>
-          <option value="mm">millimeters</option>
-          <option value="cm">centimeters</option>
-          <option value="in">inches</option>
+      </ul>
+      <div id="languageSelector">
+        <select id="language">
+          <option value="en">English</option>
+          <option value="tr">Türkçe</option>
+          <option value="zh">中文</option>
+          <option value="ar">العربية</option>
+          <option value="hi">हिन्दी</option>
         </select>
       </div>
-      <div class="input-group"><label for="width">Width</label><input id="width" type="number" min="1"></div>
-      <div class="input-group"><label for="height">Height</label><input id="height" type="number" min="1"></div>
-      <button id="downloadBtn" class="btn-primary">Download</button>
+    </div>
+  </header>
+
+  <main class="main">
+    <aside class="sidebar">
+      <h2 data-lang="sidebarTitle">Photo Settings</h2>
+      <div class="input-group">
+        <label data-lang="label_type">Type</label>
+        <input type="hidden" id="uploadType" value="digital" />
+        <div id="uploadButtons" class="type-buttons">
+          <button type="button" class="type-btn active" data-upload="digital" data-lang="type_digital">Digital Upload</button>
+          <button type="button" class="type-btn" data-upload="printable" data-lang="type_printable">Printable</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <label data-lang="label_photo_type">Select photo type</label>
+        <input type="hidden" id="photoType" value="schengen" />
+        <div id="typeButtons" class="type-buttons">
+          <button type="button" class="type-btn active" data-type="schengen" data-lang="type_schengen">Schengen</button>
+          <button type="button" class="type-btn" data-type="us" data-lang="type_us">US</button>
+          <button type="button" class="type-btn" data-type="uk" data-lang="type_uk">UK</button>
+          <button type="button" class="type-btn" data-type="bls" data-lang="type_bls">BLS/VFS</button>
+          <button type="button" class="type-btn" data-type="custom" data-lang="type_custom">Custom</button>
+        </div>
+      </div>
+      <div class="input-group">
+        <label for="unit" data-lang="label_unit">Unit</label>
+        <select id="unit">
+          <option value="px" data-lang="unit_px">pixels</option>
+          <option value="mm" data-lang="unit_mm">millimeters</option>
+          <option value="cm" data-lang="unit_cm">centimeters</option>
+          <option value="in" data-lang="unit_in">inches</option>
+        </select>
+      </div>
+      <div class="input-group"><label for="width" data-lang="label_width">Width</label><input id="width" type="number" min="1"></div>
+      <div class="input-group"><label for="height" data-lang="label_height">Height</label><input id="height" type="number" min="1"></div>
+      <button id="downloadBtn" class="btn-primary" data-lang="download">Download</button>
     </aside>
     <section class="content">
-      <p>Drop your image below or click to upload. All processing happens locally in your browser.</p>
-      <div class="upload-area" id="uploadArea"><input id="fileInput" type="file" accept="image/*" style="display:none"><p>Drop or click to upload</p></div>
+      <p data-lang="drop_text">Drop your image below or click to upload. All processing happens locally in your browser.</p>
+      <div class="upload-area" id="uploadArea"><input id="fileInput" type="file" accept="image/*" style="display:none"><p data-lang="drop_cta">Drop or click to upload</p></div>
       <img id="preview" style="display:none; max-width:100%" alt="Preview" />
       <div id="canvas-container"></div>
     </section>
@@ -122,10 +130,38 @@
   <footer>
     <div>Disclaimer: Tool assists in preparing visa photos and does not guarantee acceptance. Verify official requirements.</div>
     <div>© 2024 SchengenPhoto.com</div>
-    </footer>
+  </footer>
 
-    <script>
-        let cropper;
+  <script>
+    // Translations
+    const translations = {
+      en: { logo_text: 'SchengenPhoto', sidebarTitle: 'Photo Settings', label_type: 'Type', type_digital: 'Digital Upload', type_printable: 'Printable', label_photo_type: 'Select photo type', type_schengen: 'Schengen', type_us: 'US', type_uk: 'UK', type_bls: 'BLS/VFS', type_custom: 'Custom', label_unit: 'Unit', unit_px: 'pixels', unit_mm: 'millimeters', unit_cm: 'centimeters', unit_in: 'inches', label_width: 'Width', label_height: 'Height', download: 'Download', drop_text: 'Drop your image below or click to upload. All processing happens locally in your browser.', drop_cta: 'Drop or click to upload' },
+      tr: { logo_text: 'SchengenPhoto', sidebarTitle: 'Fotoğraf Ayarları', label_type: 'Tür', type_digital: 'Dijital Yükleme', type_printable: 'Baskı', label_photo_type: 'Fotoğraf türünü seçin', type_schengen: 'Schengen', type_us: 'ABD', type_uk: 'İngiltere', type_bls: 'BLS/VFS', type_custom: 'Özel', label_unit: 'Birim', unit_px: 'piksel', unit_mm: 'milimetre', unit_cm: 'santimetre', unit_in: 'inç', label_width: 'Genişlik', label_height: 'Yükseklik', download: 'İndir', drop_text: 'Resminizi aşağıya bırakın veya yüklemek için tıklayın. Tüm işlemler tarayıcınızda yerel olarak yapılır.', drop_cta: 'Bırakın veya yükleyin' },
+      zh: { logo_text: 'SchengenPhoto', sidebarTitle: '照片设置', label_type: '类型', type_digital: '数字上传', type_printable: '可打印', label_photo_type: '选择照片类型', type_schengen: '申根', type_us: '美国', type_uk: '英国', type_bls: 'BLS/VFS', type_custom: '自定义', label_unit: '单位', unit_px: '像素', unit_mm: '毫米', unit_cm: '厘米', unit_in: '英寸', label_width: '宽度', label_height: '高度', download: '下载', drop_text: '在下方拖放图像或点击上传。所有处理均在您的浏览器本地完成。', drop_cta: '拖放或点击上传' },
+      ar: { logo_text: 'SchengenPhoto', sidebarTitle: 'إعدادات الصورة', label_type: 'النوع', type_digital: 'رفع رقمي', type_printable: 'للطفباعة', label_photo_type: 'اختر نوع الصورة', type_schengen: 'شنغن', type_us: 'أمريكا', type_uk: 'بريطانيا', type_bls: 'BLS/VFS', type_custom: 'مخصص', label_unit: 'الوحدة', unit_px: 'بكسل', unit_mm: 'ملليمتر', unit_cm: 'سنتيمتر', unit_in: 'بوصة', label_width: 'العرض', label_height: 'الارتفاع', download: 'تنزيل', drop_text: 'أسقط صورتك أدناه أو انقر للرفع. تتم كل المعالجة محليًا في متصفحك.', drop_cta: 'أسقط أو انقر للرفع' },
+      hi: { logo_text: 'SchengenPhoto', sidebarTitle: 'फ़ोटो सेटिंग्स', label_type: 'प्रकार', type_digital: 'डिजिटल अपलोड', type_printable: 'प्रिंट योग्य', label_photo_type: 'फ़ोटो प्रकार चुनें', type_schengen: 'शेंगेन', type_us: 'यूएस', type_uk: 'यूके', type_bls: 'BLS/VFS', type_custom: 'कस्टम', label_unit: 'इकाई', unit_px: 'पिक्सेल', unit_mm: 'मिलीमीटर', unit_cm: 'सेंटिमीटर', unit_in: 'इंच', label_width: 'चौड़ाई', label_height: 'ऊंचाई', download: 'डाउनलोड', drop_text: 'नीचे अपनी छवि छोड़ें या अपलोड करने के लिए क्लिक करें। सभी प्रोसेसिंग आपके ब्राउज़र में स्थानीय रूप से होती है।', drop_cta: 'ड्रॉप करें या क्लिक करें' }
+    };
+
+    function changeLanguage(lang){
+      document.querySelectorAll('[data-lang]').forEach(el=>{
+        const key = el.getAttribute('data-lang');
+        if (translations[lang] && translations[lang][key]) {
+          el.textContent = translations[lang][key];
+        }
+      });
+      document.documentElement.lang = lang;
+      const sel = document.getElementById('language');
+      if (sel) sel.value = lang;
+      const url = new URL(window.location);
+      url.searchParams.set('lang', lang);
+      window.history.replaceState({}, '', url);
+    }
+
+    function getLanguageFromURL(){
+      const urlParams = new URLSearchParams(window.location.search);
+      return urlParams.get('lang') || 'en';
+    }
+    let cropper;
     const els = {
       photoType: document.getElementById('photoType'),
       uploadType: document.getElementById('uploadType'),
@@ -174,7 +210,7 @@
 
     function loadImage(file) {
       if (!file) return;
-                const reader = new FileReader();
+      const reader = new FileReader();
       reader.onload = e => {
         els.preview.src = e.target.result;
         els.preview.style.display = 'block';
@@ -183,9 +219,9 @@
         const ratio = (w && h) ? w/h : NaN;
         cropper = new Cropper(els.preview, {
           aspectRatio: ratio,
-                viewMode: 1,
-                dragMode: 'move',
-                autoCropArea: 1,
+          viewMode: 1,
+          dragMode: 'move',
+          autoCropArea: 1,
           background: false,
           responsive: true,
         });
@@ -280,7 +316,10 @@
 
     // Init
     setDimensionsByPreset();
-    </script>
+    const initLang = getLanguageFromURL();
+    changeLanguage(initLang);
+    document.getElementById('language').addEventListener('change', (e)=> changeLanguage(e.target.value));
+  </script>
 </body>
 </html>
 

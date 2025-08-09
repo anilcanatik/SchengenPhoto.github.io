@@ -1,1086 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-        <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-WCQKBW9K3L"></script>
-    <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
-    gtag('js', new Date());
-
-    gtag('config', 'G-WCQKBW9K3L');
-    </script>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <meta name="description" content="BLS Spain Visa Appointment Photo creator - BLS Ispanya Randevu Fotografi yaratma - Resize and adjust the photo in accordance with BSL Spanish schengen visa.">
-    <meta name="keywords" content="BLS visa photo, Schengen visa, Spanish visa, visa appointment profile photo, photo cropper">
-    <title>Visa Photo Adjuster</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css">
-
-    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-6537404494506413"
-     crossorigin="anonymous"></script>
-
-    <style>
-
-        #spinningImage {
-                            width: 30px; /* Adjust the size of the image */
-                            height: 30px; /* Adjust the size of the image */
-                            animation: spin 3s linear infinite; /* Infinite spin duration */
-                            margin-left: 10px; /* Space between the text and the image */
-                        }
-
-                        @keyframes spin {
-                            from {
-                                transform: rotate(0deg);
-                            }
-                            to {
-                                transform: rotate(360deg);
-                            }
-                        }
-
-
-
-        :root {
-            --primary-color: #1abc9c;
-            --secondary-color: #16a085;
-            --background-color: #2c3e50;
-            --text-color: #ecf0f1;
-            --light-text-color: #ffffff;
-            --success-color: #27ae60;
-            --error-color: #e74c3c;
-        }
-        
-        body {
-            font-family: 'Arial', sans-serif;
-            line-height: 1.6;
-            margin: 0;
-            padding: 0;
-            background-color: var(--background-color);
-            color: var(--text-color);
-        }         
-        header {
-            background-color: var(--primary-color);
-            padding: 15px 0;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            height: 60px;
-        }
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-            font-size: 20px;
-            font-weight: bold;
-            color: var(--light-text-color);
-        }
-        .nav-links {
-            list-style-type: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links li {
-            margin-left: 15px;
-            display: flex;
-            align-items: center; /* This centers children vertically */
-            height: 80px;
-        }
-
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-links a:hover,
-        .nav-links a:active,
-        .nav-links a:focus {
-            color: white; /* Keeps links white on interaction */
-            text-decoration: underline; /* Optional: adds underline on hover for better UX */
-        }
-        .logo-text {
-            font-size: 24px; /* Set the text size to match your original version */
-            font-weight: bold; /* Set the font weight to bold */
-        }
-
-        .logo {
-            display: flex;
-            align-items: center; /* Vertically center the content */
-        }
-
-        .logo-link {
-            display: flex;
-            align-items: center; /* Align text and image horizontally */
-            text-decoration: none; /* Remove underline from the link */
-            color: var(--light-text-color); /* Ensure the color of the text */
-        }
-        .logo-link:hover {
-            text-decoration: none; /* Ensure no underline on hover */
-            color: var(--light-text-color); /* Maintain the text color on hover */
-        }
-        #languageSelector {
-            margin-left: 20px;
-        }
-        #languageSelector select {
-            padding: 5px;
-            border-radius: 5px;
-            border: none;
-            background-color: var(--light-text-color);
-            color: var(--primary-color);
-        }
-        .status-message {
-            margin-top: 20px;
-            padding: 10px;
-            border-radius: 5px;
-            text-align: center;
-        }
-        .success {
-            background-color: var(--success-color);
-            color: var(--light-text-color);
-        }
-        .error {
-            background-color: var(--error-color);
-            color: var(--light-text-color);
-        }
-        
-        .main-content {
-            display: flex;
-            background-color: #34495e;
-            padding: 30px;
-            border-radius: 10px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-            margin-top: 30px;
-        }
-
-        .sidebar {
-            width: 300px; /* Increased from 250px */
-            padding-right: 30px; /* Increased from 20px */
-            border-right: 1px solid var(--primary-color);
-            margin-right: 30px; /* Added margin for separation */
-        }
-
-        .content-area {
-            flex-grow: 1;
-        }
-
-        .sidebar h2 {
-            color: var(--primary-color);
-            margin-bottom: 25px; /* Increased from 20px */
-            font-size: 1.5rem; /* Increased font size */
-        }
-
-        .input-group {
-            margin-bottom: 20px; /* Increased from 15px */
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px; /* Increased from 5px */
-            color: var(--light-text-color);
-            font-size: 1rem; /* Increased font size */
-        }
-
-        .input-group select,
-        .input-group input {
-            width: 100%;
-            padding: 10px; /* Increased from 8px */
-            border: 1px solid var(--primary-color);
-            background-color: var(--background-color);
-            color: var(--light-text-color);
-            border-radius: 4px;
-            font-size: 1rem; /* Increased font size */
-        }
-
-        #downloadBtn {
-            width: 100%;
-            padding: 12px; /* Increased from 10px */
-            background-color: var(--primary-color);
-            color: var(--light-text-color);
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 1.1rem; /* Increased font size */
-            font-weight: bold;
-        }
-
-        #downloadBtn:hover {
-            background-color: var(--secondary-color);
-        }
-
-        /* Adjust the content area to accommodate the wider sidebar */
-        .content-area {
-            max-width: calc(100% - 330px); /* 300px sidebar + 30px margin */
-        }
-
-        /* Ensure the preview image and canvas fit within the content area */
-        #preview,
-        #canvas-container {
-            max-width: 100%;
-        }
-
-        /* Responsive design for smaller screens */
-        @media (max-width: 768px) {
-            .header-content {
-                flex-direction: column;
-                height: auto;
-                padding: 15px;
-            }
-
-            .logo {
-                margin-bottom: 15px;
-            }
-
-            .nav-container {
-                width: 100%;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                width: 100%;
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links li {
-                margin: 10px 0;
-                height: auto;
-            }
-
-            #languageSelector {
-                margin-top: 15px;
-                margin-left: 0;
-            }
-
-            .container {
-                padding: 10px;
-            }
-
-            .main-content {
-                flex-direction: column;
-                padding: 15px;
-            }
-
-            .sidebar {
-                width: 100%;
-                padding-right: 0;
-                border-right: none;
-                margin-right: 0;
-                margin-bottom: 30px;
-            }
-
-            .content-area {
-                max-width: 100%;
-            }
-
-            .upload-area {
-                padding: 20px;
-            }
-
-            .upload-area.minimized {
-                height: auto;
-                padding: 10px;
-            }
-
-            #canvas-container {
-                height: auto;
-            }
-
-            .how-it-works-section {
-                padding: 40px 20px;
-            }
-
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .step-item {
-                padding: 20px;
-            }
-
-            .footer-links {
-                flex-direction: column;
-            }
-
-            .footer-links a {
-                margin: 10px 0;
-            }
-        }
-
-        /* Hamburger menu styles */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.5rem;
-            color: var(--light-text-color);
-            cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .nav-container {
-                flex-direction: column;
-                align-items: flex-start;
-            }
-
-            .nav-links {
-                margin-top: 15px;
-            }
-        }
-
-        .footer {
-            background-color: #2c3e50; /* Dark blue background color */
-            color: #ffffff;
-            padding: 20px 0;
-            font-family: Arial, sans-serif;
-            font-size: 14px;
-        }
-
-        .footer-content {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
-
-        .footer-links {
-            margin-bottom: 15px;
-            text-align: center;
-        }
-
-        .footer-links a {
-            color: #4ecdc4; /* Mint green color for links */
-            text-decoration: none;
-            margin: 0 15px;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #ffffff;
-        }
-
-        .footer-disclaimer {
-            font-size: 12px;
-            color: #bdc3c7; /* Light gray color */
-            margin-bottom: 15px;
-            line-height: 1.5;
-            text-align: center;
-        }
-
-        .footer-disclaimer a {
-            color: #4ecdc4; /* Mint green color for links */
-            text-decoration: none;
-        }
-
-        .footer-disclaimer a:hover {
-            text-decoration: underline;
-        }
-
-        .footer-copyright {
-            font-size: 12px;
-            color: #bdc3c7; /* Light gray color */
-            margin: 0;
-            text-align: center;
-        }
-
-        .upload-area {
-            border: 3px dashed var(--primary-color);
-            border-radius: 10px;
-            padding: 40px;
-            text-align: center;
-            cursor: pointer;
-            transition: background-color 0.3s ease, height 0.3s ease, padding 0.3s ease, font-size 0.3s ease, opacity 0.3s ease;
-        }
-        .upload-area:hover, .upload-area.dragover {
-            background-color: rgba(26, 188, 156, 0.1);
-        }
-
-        .upload-area.minimized {
-            height: 50px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            background-color: var(--secondary-color);
-            cursor: pointer;
-        }
-
-        .upload-area.minimized p {
-            margin: 0;
-        }
-
-        .upload-area.minimized p::before {
-            content: "Upload a new photo";
-            display: block;
-            font-size: 16px;
-            font-weight: bold;
-            color: var(--light-text-color);
-        }
-
-        .how-it-works-section {
-            background-color: var(--background-color);
-            padding: 80px 20px;
-            margin-top: 50px;
-        }
-
-        .section-title {
-            font-size: 2.5rem;
-            text-align: center;
-            margin-bottom: 50px;
-            color: var(--light-text-color);
-        }
-
-        .steps-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
-            max-width: 1200px;
-            width: 100%;
-            margin: 0 auto;
-        }
-
-        .step-item {
-            background-color: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
-            padding: 30px;
-            text-align: center;
-        }
-
-        .step-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .step-title {
-            font-size: 1.3rem;
-            margin-bottom: 10px;
-            color: var(--light-text-color);
-        }
-
-        .step-description {
-            font-size: 1rem;
-            color: var(--light-text-color);
-        }
-
-        @media (max-width: 768px) {
-            .steps-grid {
-                grid-template-columns: 1fr;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Unified Visa Photo Editor</title>
+  <link rel="canonical" href="https://www.schengenphoto.com/Visa_editor.html">
+  <meta name="description" content="Unified visa photo editor for Schengen, US, UK and BLS/VFS presets. Crop, resize, and download with privacy-first processing.">
+  <style>
+    #spinningImage { width: 30px; height: 30px; animation: spin 3s linear infinite; margin-left: 10px; }
+    @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
+    :root { --primary-color:#4ecdc4; --secondary-color:#3a8bff; --background-color:#0b1220; --surface-color:rgba(255,255,255,0.06); --border-color:rgba(255,255,255,0.12); --text-color:#e5e7eb; --light-text:#fff; }
+    body { font-family:'Inter', Arial, sans-serif; margin:0; color:var(--text-color); background: radial-gradient(1200px 800px at 80% -20%, #1f2937 10%, #0b1220 60%, #070b14 100%); }
+    header { background:transparent; border-bottom:1px solid var(--border-color); padding:15px 0; backdrop-filter:saturate(140%) blur(4px); }
+    .header-content{ display:flex; align-items:center; justify-content:space-between; padding:0 20px; }
+    .logo-link{ color:var(--light-text); text-decoration:none; font-weight:700; font-size:22px; }
+    .nav-links{ list-style:none; display:flex; gap:16px; margin:0; padding:0; }
+    .nav-links a{ color:var(--light-text); text-decoration:none; }
+    #languageSelector select{ padding:6px 10px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.04); color:var(--light-text); }
+    select option{ background:#0b1220; color:#e5e7eb; }
+
+    .main{ max-width:1200px; margin:40px auto; display:flex; gap:30px; background:var(--surface-color); border:1px solid var(--border-color); border-radius:16px; padding:30px; backdrop-filter:blur(8px); box-shadow:0 10px 30px rgba(0,0,0,0.25); }
+    .sidebar{ width:320px; border-right:1px solid var(--border-color); padding-right:24px; }
+    .content{ flex:1; }
+    .input-group{ margin-bottom:16px; }
+    .input-group label{ display:block; margin-bottom:6px; color:var(--light-text); }
+    .input-group input, .input-group select{ width:100%; padding:12px; border:1px solid var(--border-color); background:rgba(255,255,255,0.04); color:var(--light-text); border-radius:10px; font-size:16px; }
+    .type-buttons{ display:grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap:10px; margin-top:8px; }
+    .type-btn{ padding:10px 12px; border:1px solid var(--border-color); border-radius:10px; background:rgba(255,255,255,0.04); color:var(--light-text); cursor:pointer; font-weight:600; }
+    .type-btn:hover{ border-color: var(--primary-color); }
+    .type-btn.active{ background: linear-gradient(135deg, var(--secondary-color), var(--primary-color)); border-color: transparent; color:#fff; box-shadow:0 6px 16px rgba(0,0,0,0.25); }
+    .btn-primary{ width:100%; padding:12px; border:none; color:#fff; font-weight:700; border-radius:10px; background:linear-gradient(135deg,var(--secondary-color),var(--primary-color)); box-shadow:0 8px 20px rgba(0,0,0,0.25); cursor:pointer; }
+    .upload-area{ border:2px dashed var(--border-color); border-radius:16px; padding:40px; text-align:center; min-height:180px; background:rgba(255,255,255,0.03); }
+    .upload-area:hover, .upload-area.dragover{ background:rgba(255,255,255,0.06); border-color:var(--primary-color); }
+    #canvas-container{ margin-top:16px; }
+    footer{ margin-top:40px; border-top:1px solid var(--border-color); padding:30px 0; text-align:center; color:#9ca3af; }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .main { flex-direction: column; margin: 16px; padding: 16px; }
+      .sidebar { width: 100%; border-right: none; padding-right: 0; border-bottom: 1px solid var(--border-color); padding-bottom: 16px; margin-bottom: 16px; }
+      .type-buttons { grid-template-columns: repeat(2, minmax(0,1fr)); }
+      .btn-primary { padding: 14px; }
+      .upload-area { min-height: 140px; padding: 24px; }
+    }
+    @media (max-width: 420px) {
+      .type-buttons { grid-template-columns: 1fr; }
+    }
+  </style>
+  <link rel="preload" href="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/cropperjs/1.5.12/cropper.min.js" defer></script>
+  <script>
+    window.addEventListener('DOMContentLoaded', () => {
+      const style = document.createElement('style');
+      style.textContent = 'select option{background:#0b1220;color:#e5e7eb}';
+      document.head.appendChild(style);
+    });
+  </script>
 </head>
 <body>
-    <header>
-        <div class="header-content">
-            <div class="logo">
-                <a href="index.html" class="logo-link">
-                    <span class="logo-text">Schengen Photo</span>
-                    <img src="images/icon-atom.svg" id="spinningImage" alt="Spinning Logo">
-                </a>
-            </div>
-            <button class="menu-toggle" aria-label="Toggle menu">☰</button>
-            <div class="nav-container">
-                <ul class="nav-links">
-                    <li><a href="index.html" data-lang="nav_home">Home</a></li>
-                    <li><a href="General_Tool_v2.html" data-lang="nav_Schengen">Visa Photo Editor</a></li>
-                    <li><a href="BLS_Spain.html" data-lang="nav_DetailedImage">BSL Visa Booking Photo Converter</a></li>
-                    <li><a href="Blog.html" data-lang="nav_Blog">Blog</a></li>
-                    <li><a href="about.html" data-lang="nav_About">About</a></li>
-                </ul>
-            </div>
-
-            <div id="languageSelector">
-                <select id="language" onchange="changeLanguage(this.value)">
-                    <option value="en">English</option>
-                    <option value="tr">Türkçe</option>
-                    <option value="zh">中文</option>
-                    <option value="ar">العربية</option>
-                    <option value="hi">हिन्दी</option>
-                </select>
-            </div>
-        </div>
-    </header>
-    <div class="container">
-        <main class="main-content">
-            <div class="sidebar">
-                <h2 data-lang="sidebarTitle">Photo Settings</h2>
-                <form id="photoSettingsForm">
-                    <div class="input-group">
-                        <label for="uploadType" data-lang="inputUploadType">Type:</label>
-                        <select id="uploadType">
-                            <option value="digital" data-lang="inputDigital">Digital Upload</option>
-                            <option value="printable" data-lang="inputPrintable">Printable version</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="photoType" data-lang="inputphototype">Select photo type:</label>
-                        <select id="photoType">
-                            <option value="schengen" data-lang="inputSchengen">Schengen Visa Application</option>
-                            <option value="us" data-lang="inputUS">US Visa Application</option>
-                            <option value="uk" data-lang="inputUK">UK Visa Application</option>
-                            <option value="custom" data-lang="inputCustom">Custom Selection</option>
-                        </select>
-                    </div>
-                    <div class="input-group">
-                        <label for="width" data-lang="inputWidth">Width:</label>
-                        <input type="number" id="width" min="1" step="1">
-                    </div>
-                    <div class="input-group">
-                        <label for="height" data-lang="inputHeight">Height:</label>
-                        <input type="number" id="height" min="1" step="1">
-                    </div>
-                    <div class="input-group">
-                        <label for="unit" data-lang="inputUnit">Unit:</label>
-                        <select id="unit">
-                            <option value="px">pixels</option>
-                            <option value="in">inches</option>
-                            <option value="cm">centimeters</option>
-                            <option value="mm">millimeters</option>
-                        </select>
-                    </div>
-                    <button type="button" id="downloadBtn" data-lang="download">Download</button>
-                </form>
-            </div>
-            <div class="content-area">
-                <h1 data-lang="title">Image Crop and Convert</h1>
-                <div class="text_box">
-                    <p data-lang="text_box">Are you preparing to book a visa application? Our free online tool is designed to help you adjust your visa photos for visa applications. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process.</p>
-                </div>  
-                <div id="statusMessage" class="status-message" style="display: none;"></div>
-                <div class="upload-area" id="uploadArea">
-                    <p data-lang="drop_image">Drop your image here or click to upload</p>
-                    <input type="file" id="fileInput" accept="image/*" style="display: none;">
-                </div>
-                <img id="preview" src="" alt="Preview" style="display: none; max-width: 100%;">
-                <div id="canvas-container"></div>
-            </div>
-        </main>
+  <header>
+    <div class="header-content">
+      <div class="logo">
+        <a href="index.html" class="logo-link">
+          <span class="logo-text" data-lang="logo_text">SchengenPhoto</span>
+          <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
+        </a>
+      </div>
+      <ul class="nav-links">
+        <li><a href="index.html">Home</a></li>
+        <li><a href="Blog.html">Blog</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <div id="languageSelector"><select><option>EN</option></select></div>
     </div>
-    
-   <!-- Add the How It Works section here -->
-   <div class="how-it-works-section">
-    <h2 class="section-title" data-aos="fade-up">How It Works</h2>
-    <div class="steps-grid" data-aos="fade-up" data-aos-delay="100">
-        <div class="step-item">
-            <div class="step-number">1</div>
-            <h3 class="step-title">Choose Your Visa Type</h3>
-            <p class="step-description">Select either Schengen, US, UK or custom visa photo requirements.</p>
+  </header>
+
+  <main class="main">
+    <aside class="sidebar">
+      <h2>Photo Settings</h2>
+      <div class="input-group">
+        <label>Type</label>
+        <input type="hidden" id="uploadType" value="digital" />
+        <div id="uploadButtons" class="type-buttons">
+          <button type="button" class="type-btn active" data-upload="digital">Digital Upload</button>
+          <button type="button" class="type-btn" data-upload="printable">Printable</button>
         </div>
-        <div class="step-item">
-            <div class="step-number">2</div>
-            <h3 class="step-title">Upload Your Photo</h3>
-            <p class="step-description">Upload a clear, recent photo of yourself.</p>
+      </div>
+      <div class="input-group">
+        <label>Select photo type</label>
+        <input type="hidden" id="photoType" value="schengen" />
+        <div id="typeButtons" class="type-buttons">
+          <button type="button" class="type-btn active" data-type="schengen">Schengen</button>
+          <button type="button" class="type-btn" data-type="us">US</button>
+          <button type="button" class="type-btn" data-type="uk">UK</button>
+          <button type="button" class="type-btn" data-type="bls">BLS/VFS</button>
+          <button type="button" class="type-btn" data-type="custom">Custom</button>
         </div>
-        <div class="step-item">
-            <div class="step-number">3</div>
-            <h3 class="step-title">Adjust and Crop</h3>
-            <p class="step-description">Use our tool to adjust and crop your photo to meet visa requirements.</p>
-        </div>
-        <div class="step-item">
-            <div class="step-number">4</div>
-            <h3 class="step-title">Download</h3>
-            <p class="step-description">Download your visa-ready photo instantly.</p>
-        </div>
-    </div>
-</div>
+      </div>
+      <div class="input-group">
+        <label for="unit">Unit</label>
+        <select id="unit">
+          <option value="px">pixels</option>
+          <option value="mm">millimeters</option>
+          <option value="cm">centimeters</option>
+          <option value="in">inches</option>
+        </select>
+      </div>
+      <div class="input-group"><label for="width">Width</label><input id="width" type="number" min="1"></div>
+      <div class="input-group"><label for="height">Height</label><input id="height" type="number" min="1"></div>
+      <button id="downloadBtn" class="btn-primary">Download</button>
+    </aside>
+    <section class="content">
+      <p>Drop your image below or click to upload. All processing happens locally in your browser.</p>
+      <div class="upload-area" id="uploadArea"><input id="fileInput" type="file" accept="image/*" style="display:none"><p>Drop or click to upload</p></div>
+      <img id="preview" style="display:none; max-width:100%" alt="Preview" />
+      <div id="canvas-container"></div>
+    </section>
+  </main>
 
-    <footer class="footer">
-        <div class="footer-content">
-            <div class="footer-links">
-                <a href="General_Tool_v2.html">Home</a>
-                <a href="about.html">About</a>
-                <a href="privacyPolicy.html">Terms and Conditions</a>
-            </div>
-            <div class="footer-content">
-                <p>Disclaimer: This tool assists in preparing photos for visa applications. It does not guarantee photo acceptance or visa success. Always verify current requirements on the official websites.</p>
-                <p class="footer-copyright">&copy; 2024 SchengenPhoto.com. All rights reserved.</p>
-            </div>
-        </div>
-    </footer>
+  <footer>
+    <div>Disclaimer: Tool assists in preparing visa photos and does not guarantee acceptance. Verify official requirements.</div>
+    <div>© 2024 SchengenPhoto.com</div>
+  </footer>
 
-    <script>
-        let cropper;
-        const translations = {
-            en: {
-                title: "Image Crop and Convert",
-                nav_home: "Home",
-                nav_schengen: "Schengen Appointment",
-                nav_detailed: "Detailed Sizer",
-                nav_about: "About",
-                drop_image: "Drop your image here or click to upload",
-                convert: "Convert",
-                download: "Download",
-                upload_success: "Image uploaded successfully. You can now crop and convert it.",
-                convert_success: "Image converted successfully. You can now download it.",
-                error_message: "An error occurred. Please try again.",
-                text_box: "Are you preparing to book a Schengen visa appointment through BLS International? Our free online tool is designed to help you adjust your profile photo for the BLS appointment system. We aim to help your photo meet the general requirements, which may help streamline your visa appointment booking process.",
-                downloadButton: "Convert & Download",
-                inputphototype: "Select photo type:",
-                inputSchengen: "Schengen Visa Application",
-                inputUS: "US Visa Application",
-                inputUK: "UK Visa Application",
-                inputCustom: "Custom Selection",
-                inputWidth: "Width:",
-                inputHeight: "Height",
-                inputUploadType: "Type:",
-                inputDigital: "Digital Upload",
-                inputPrintable: "Printable version",
-                sidebarTitle: "Photo Settings",
-                inputUnit: "Unit:"
+  <script>
+    let cropper;
+    const els = {
+      photoType: document.getElementById('photoType'),
+      uploadType: document.getElementById('uploadType'),
+      width: document.getElementById('width'),
+      height: document.getElementById('height'),
+      unit: document.getElementById('unit'),
+      uploadArea: document.getElementById('uploadArea'),
+      fileInput: document.getElementById('fileInput'),
+      preview: document.getElementById('preview'),
+      canvas: document.getElementById('canvas-container'),
+      downloadBtn: document.getElementById('downloadBtn')
+    };
 
+    function setDimensionsByPreset() {
+      const type = els.photoType.value;
+      const mode = els.uploadType.value; // digital vs printable
+      let w, h, unit;
+      if (mode === 'digital') {
+        unit = 'px';
+        if (type === 'schengen') { w = 467; h = 600; }
+        else if (type === 'us') { w = 600; h = 600; }
+        else if (type === 'uk') { w = 600; h = 750; }
+        // BLS appointment portals tend to require extremely small images
+        else if (type === 'bls') { w = 180; h = 240; }
+        else { w = ''; h = ''; }
+      } else {
+        unit = 'mm';
+        if (type === 'schengen') { w = 35; h = 45; }
+        else if (type === 'us') { w = 51; h = 51; }
+        else if (type === 'uk') { w = 35; h = 45; }
+        else if (type === 'bls') { w = 35; h = 45; } // printable BLS profile
+        else { w = ''; h = ''; }
+      }
+      els.width.value = w; els.height.value = h; els.unit.value = unit;
+      if (cropper && w && h) cropper.setAspectRatio(Number(w)/Number(h));
+    }
 
-            },
+    function pxFromUnit(value, unit) {
+      const v = parseFloat(value);
+      if (unit === 'px') return Math.round(v);
+      if (unit === 'in') return Math.round(v * 96);
+      if (unit === 'cm') return Math.round(v * 37.795275591);
+      if (unit === 'mm') return Math.round(v * 3.779527559);
+      return Math.round(v);
+    }
 
-            tr: {
-                title: "Resim Kırpma ve Dönüştürme",
-                nav_home: "Ana Sayfa",
-                nav_schengen: "Schengen Randevusu",
-                nav_detailed: "Detaylı Boyutlandırıcı",
-                nav_about: "Hakkında",
-                drop_image: "Resminizi buraya bırakın veya yüklemek için tıklayın",
-                convert: "Dönüştür",
-                download: "İndir",
-                upload_success: "Resim başarıyla yüklendi. Şimdi kırpabilir ve dönüştürebilirsiniz.",
-                convert_success: "Resim başarıyla dönüştürüldü. Şimdi indirebilirsiniz.",
-                error_message: "Bir hata oluştu. Lütfen tekrar deneyin.",
-                text_box: "BLS International üzerinden Schengen vizesi randevusu almak için mi hazırlanıyorsunuz? Ücretsiz çevrimiçi aracımız, BLS randevu sistemi için profil fotoğrafınızı ayarlamanıza yardımcı olmak için tasarlanmıştır. Fotoğrafınızın genel gereksinimleri karşılamasına yardımcı olmayı amaçlıyoruz, bu da vize randevusu alma sürecinizi kolaylaştırabilir.",
-                downloadButton: "Dönüştür & İndir",
-                inputphototype: "Fotoğraf türünü seçin:",
-                inputSchengen: "Schengen Vize Başvurusu",
-                inputUS: "ABD Vize Başvurusu",
-                inputUS: "İngiltere Vize Başvurusu",
-                inputCustom: "Özel Seçim",
-                inputWidth: "Genişlik:",
-                inputHeight: "Yükseklik:",
-                inputUploadType: "Tür:",
-                inputDigital: "Dijital Yükleme",
-                inputPrintable: "Baskılı Sürüm",
-                sidebarTitle: "Fotoğraf Ayarları",
-                inputUnit: "Birim:"
-            },
-            zh: {
-                title: "图像裁剪和转换",
-                nav_home: "首页",
-                nav_schengen: "申根预约",
-                nav_detailed: "详细调整器",
-                nav_about: "关于",
-                drop_image: "将图像拖放到此处或点击上传",
-                convert: "转换",
-                download: "下载",
-                upload_success: "图像上传成功。现在您可以裁剪和转换它。",
-                convert_success: "图像转换成功。现在您可以下载它。",
-                error_message: "发生错误。请重试。",
-                text_box: "您准备通过BLS International预约申根签证吗？我们的免费在线工具旨在帮助您调整您的个人照片，以适应BLS预约系统的要求。我们旨在帮助您的照片符合一般要求，这可能有助于简化您的签证预约流程。",
-                downloadButton: "转换并下载",
-                inputphototype: "选择照片类型：",
-                inputSchengen: "申根签证申请",
-                inputUS: "美国签证申请",
-                inputUK: "英国签证申请",
-                inputCustom: "自定义选择",
-                inputWidth: "宽度:",
-                inputHeight: "高度:",
-                inputUploadType: "类型:",
-                inputDigital: "数字上传",
-                inputPrintable: "可打印版本",
-                sidebarTitle: "照片设置",
-                inputUnit: "单位:"
-            },
-            ar: {
-                title: "قص وتحويل الصورة",
-                nav_home: "الصفحة الرئيسية",
-                nav_schengen: "موعد شنغن",
-                nav_detailed: "أداة التعديل التفصيلية",
-                nav_about: "حول",
-                drop_image: "أسقط الصورة هنا أو انقر للتحميل",
-                convert: "تحويل",
-                download: "تنزيل",
-                upload_success: "تم تحميل الصورة بنجاح. يمكنك الآن قصها وتحويلها.",
-                convert_success: "تم تحويل الصورة بنجاح. يمكنك الآن تنزيلها.",
-                error_message: "حدث خطأ. يرجى المحاولة مرة أخرى.",
-                text_box: "هل تستعد لحجز موعد تأشيرة شنغن من خلال BLS International؟ تم تصميم أداتنا المجانية عبر الإنترنت لمساعدتك في تعديل صورتك الشخصية لنظام حجز المواعيد لدى BLS. نهدف إلى مساعدة صورتك على تلبية المتطلبات العامة، مما قد يساعد في تبسيط عملية حجز موعد التأشيرة.",
-                downloadButton: "تحويل وتنزيل",
-                inputphototype: "اختر نوع الصورة:",
-                inputSchengen: "طلب تأشيرة شنغن",
-                inputUS: "طلب تأشيرة الولايات المتحدة",
-                inputUK: "طلب تأشيرة المملكة المتحدة",
-                inputCustom: "اختيار مخصص",
-                inputWidth: "العرض:",
-                inputHeight: "الارتفاع:",
-                inputUploadType: "النوع:",
-                inputDigital: "تحميل رقمي",
-                inputPrintable: "نسخة قابلة للطباعة",
-                sidebarTitle: "إعدادات الصورة",
-                inputUnit: "الوحدة:"
-            },
-            hi: {
-                title: "छवि क्रॉप और परिवर्तन",
-                nav_home: "होम",
-                nav_schengen: "शेंगन अपॉइंटमेंट",
-                nav_detailed: "विस्तृत आकारकर्ता",
-                nav_about: "के बारे में",
-                drop_image: "अपनी छवि यहां छोड़ें या अपलोड करने के लिए क्लिक करें",
-                convert: "परिवर्तित करें",
-                download: "डाउनलोड करें",
-                upload_success: "छवि सफलतापूर्वक अपलोड की गई। अब आप इसे क्रॉप और परिवर्तित कर सकते हैं।",
-                convert_success: "छवि सफलतापूर्वक परिवर्तित की गई। अब आप इसे डाउनलोड कर सकते हैं।",
-                error_message: "एक त्रुटि हुई। कृपया पुनः प्रयास करें।",
-                text_box: "क्या आप BLS International के माध्यम से शेंगन वीज़ा अपॉइंटमेंट बुक करने की तैयारी कर रहे हैं? हमारा मुफ्त ऑनलाइन टूल BLS अपॉइंटमेंट सिस्टम के लिए आपकी प्रोफ़ाइल फ़ोटो को समायोजित करने में आपकी मदद करने के लिए डिज़ाइन किया गया है। हमारा उद्देश्य आपकी फ़ोटो को सामान्य आवश्यकताओं को पूरा करने में मदद करना है, जिससे आपके वीज़ा अपॉइंटमेंट बुकिंग प्रक्रिया को सुचारू बनाने में मदद मिल सकती है।",
-                downloadButton: "परिवर्तित करें और डाउनलोड करें",
-                inputphototype: "फ़ोटो प्रकार चुनें:",
-                inputSchengen: "शेंगन वीज़ा आवेदन",
-                inputUS: "यूएस वीज़ा आवेदन",
-                inputUK: "यूके वीज़ा आवेदन",
-                inputCustom: "कस्टम चयन",
-                inputWidth: "चौड़ाई:",
-                inputHeight: "ऊँचाई:",
-                inputUploadType: "प्रकार:",
-                inputDigital: "डिजिटल अपलोड",
-                inputPrintable: "प्रिंट करने योग्य संस्करण",
-                sidebarTitle: "फोटो सेटिंग्स",
-                inputUnit: "यूनिट:"
-            }
-
-
-        };
-
-        function changeLanguage(lang) {
-            // Update the URL with the selected language
-            const url = new URL(window.location);
-            url.searchParams.set('lang', lang);
-            window.history.pushState({}, '', url);
-
-            // Update the page content
-            document.querySelectorAll('[data-lang]').forEach(elem => {
-                const key = elem.getAttribute('data-lang');
-                if (translations[lang] && translations[lang][key]) {
-                    elem.textContent = translations[lang][key];
-                }
-            });
-            document.documentElement.lang = lang;
-
-            // Update the language selector
-            document.getElementById('language').value = lang;
-        }
-
-        function getLanguageFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('lang') || 'en'; // Default to English if no language is specified
-        }
-
-        // Call this function when the page loads
-        window.addEventListener('DOMContentLoaded', (event) => {
-            const lang = getLanguageFromURL();
-            changeLanguage(lang);
+    function loadImage(file) {
+      if (!file) return;
+      const reader = new FileReader();
+      reader.onload = e => {
+        els.preview.src = e.target.result;
+        els.preview.style.display = 'block';
+        if (cropper) cropper.destroy();
+        const w = parseFloat(els.width.value), h = parseFloat(els.height.value);
+        const ratio = (w && h) ? w/h : NaN;
+        cropper = new Cropper(els.preview, {
+          aspectRatio: ratio,
+          viewMode: 1,
+          dragMode: 'move',
+          autoCropArea: 1,
+          background: false,
+          responsive: true,
         });
+        els.uploadArea.style.display = 'none';
+      };
+      reader.readAsDataURL(file);
+    }
 
-        function showStatus(message, type) {
-            const statusMessage = document.getElementById('statusMessage');
-            statusMessage.textContent = message;
-            statusMessage.className = `status-message ${type}`;
-            statusMessage.style.display = 'block';
+    async function convertAndDownload() {
+      if (!cropper) { alert('Please upload an image first.'); return; }
+      const pixelWidth = pxFromUnit(els.width.value, els.unit.value);
+      const pixelHeight = pxFromUnit(els.height.value, els.unit.value);
+      const baseCanvas = cropper.getCroppedCanvas({ width: pixelWidth, height: pixelHeight, fillColor: '#ffffff' });
+
+      // For BLS we aggressively compress to a tiny file size
+      if (els.photoType.value === 'bls') {
+        const TARGET_BYTES = 15 * 1024; // ~15KB
+        let quality = 0.7;
+        let scale = 1.0;
+
+        // Helper to get blob from canvas
+        const canvasToBlob = (canvas, mime, q) => new Promise(resolve => canvas.toBlob(resolve, mime, q));
+
+        let workingCanvas = baseCanvas;
+        let blob = await canvasToBlob(workingCanvas, 'image/jpeg', quality);
+
+        // Iteratively reduce until we are tiny
+        while (blob && blob.size > TARGET_BYTES && (quality > 0.35 || scale > 0.5)) {
+          // Reduce both quality and dimensions a bit
+          quality = Math.max(0.35, quality - 0.05);
+          scale = Math.max(0.5, scale - 0.1);
+
+          const scaled = document.createElement('canvas');
+          const ctx = scaled.getContext('2d');
+          scaled.width = Math.round(baseCanvas.width * scale);
+          scaled.height = Math.round(baseCanvas.height * scale);
+          ctx.fillStyle = '#ffffff';
+          ctx.fillRect(0, 0, scaled.width, scaled.height);
+          ctx.drawImage(baseCanvas, 0, 0, scaled.width, scaled.height);
+          workingCanvas = scaled;
+          blob = await canvasToBlob(workingCanvas, 'image/jpeg', quality);
         }
 
-        const photoTypeSelect = document.getElementById('photoType');
-        const widthInput = document.getElementById('width');
-        const heightInput = document.getElementById('height');
-        const unitSelect = document.getElementById('unit');
-        const uploadInput = document.getElementById('fileInput');
-        const previewImg = document.getElementById('preview');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const uploadArea = document.getElementById('uploadArea');
-        const uploadTypeSelect = document.getElementById('uploadType');
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'visa_photo.jpg';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+        return;
+      }
 
-        photoTypeSelect.addEventListener('change', updateDimensions);
-        unitSelect.addEventListener('change', convertUnits);
-        uploadInput.addEventListener('change', loadImage);
-        widthInput.addEventListener('input', updateAspectRatio);
-        heightInput.addEventListener('input', updateAspectRatio);
-        downloadBtn.addEventListener('click', convertAndDownload);
-        uploadTypeSelect.addEventListener('change', updateDimensions);
+      // Non-BLS: export standard JPEG
+      baseCanvas.toBlob(blob => {
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url; a.download = 'visa_photo.jpg';
+        document.body.appendChild(a); a.click(); a.remove();
+        URL.revokeObjectURL(url);
+      }, 'image/jpeg', 0.92);
+    }
 
-        uploadArea.addEventListener('click', () => {
-            uploadInput.click();
-        });
+    // Events
+    // Photo type buttons
+    const typeButtons = document.getElementById('typeButtons');
+    typeButtons.addEventListener('click', (e) => {
+      const btn = e.target.closest('.type-btn');
+      if (!btn) return;
+      document.querySelectorAll('.type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      els.photoType.value = btn.getAttribute('data-type');
+      setDimensionsByPreset();
+    });
+    els.uploadType.addEventListener('change', setDimensionsByPreset);
+    // Upload type buttons
+    const uploadButtons = document.getElementById('uploadButtons');
+    uploadButtons.addEventListener('click', (e) => {
+      const btn = e.target.closest('.type-btn');
+      if (!btn) return;
+      document.querySelectorAll('#uploadButtons .type-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      els.uploadType.value = btn.getAttribute('data-upload');
+      setDimensionsByPreset();
+    });
+    els.width.addEventListener('input', () => { if (cropper) cropper.setAspectRatio(parseFloat(els.width.value)/parseFloat(els.height.value)); });
+    els.height.addEventListener('input', () => { if (cropper) cropper.setAspectRatio(parseFloat(els.width.value)/parseFloat(els.height.value)); });
+    els.downloadBtn.addEventListener('click', convertAndDownload);
+    els.uploadArea.addEventListener('click', () => els.fileInput.click());
+    els.fileInput.addEventListener('change', e => loadImage(e.target.files[0]));
+    els.uploadArea.addEventListener('dragover', e => { e.preventDefault(); els.uploadArea.classList.add('dragover'); });
+    els.uploadArea.addEventListener('dragleave', () => els.uploadArea.classList.remove('dragover'));
+    els.uploadArea.addEventListener('drop', e => { e.preventDefault(); els.uploadArea.classList.remove('dragover'); loadImage(e.dataTransfer.files[0]); });
 
-        uploadArea.addEventListener('dragover', (event) => {
-            event.preventDefault();
-            uploadArea.classList.add('dragover');
-        });
-
-        uploadArea.addEventListener('dragleave', () => {
-            uploadArea.classList.remove('dragover');
-        });
-
-        uploadArea.addEventListener('drop', (event) => {
-            event.preventDefault();
-            uploadArea.classList.remove('dragover');
-            const files = event.dataTransfer.files;
-            if (files.length > 0) {
-                uploadInput.files = files;
-                loadImage({ target: uploadInput });
-            }
-        });
-
-        function updateDimensions() {
-            const photoType = photoTypeSelect.value;
-            const uploadType = uploadTypeSelect.value;
-            let width, height, unit;
-
-            if (uploadType === 'digital') {
-                unit = 'px';
-                switch (photoType) {
-                    case 'schengen':
-                        width = 467;
-                        height = 600;
-                        break;
-                    case 'us':
-                        width = 600;
-                        height = 600;
-                        break;
-                    case 'uk':
-                        width = 600;
-                        height = 750;
-                        break;    
-                    case 'custom':
-                        width = '';
-                        height = '';
-                        break;
-                }
-            } else { // printable
-                unit = 'mm';
-                switch (photoType) {
-                    case 'schengen':
-                        width = 35;
-                        height = 45;
-                        break;
-                    case 'us':
-                        width = 51;
-                        height = 51;
-                        break;
-                    case 'uk':
-                        width = 35;
-                        height = 45;
-                        break;
-                    case 'custom':
-                        width = '';
-                        height = '';
-                        break;
-                }
-            }
-
-            widthInput.value = width;
-            heightInput.value = height;
-            unitSelect.value = unit;
-            convertUnits();
-        }
-
-        function convertUnits() {
-            const unit = unitSelect.value;
-            let width = parseFloat(widthInput.value);
-            let height = parseFloat(heightInput.value);
-
-            if (isNaN(width) || isNaN(height)) return;
-
-            if (uploadTypeSelect.value === 'digital' && unit !== 'px') {
-                switch (unit) {
-                    case 'in':
-                        width = Math.round(width * 96);
-                        height = Math.round(height * 96);
-                        break;
-                    case 'cm':
-                        width = Math.round(width * 37.795275591);
-                        height = Math.round(height * 37.795275591);
-                        break;
-                    case 'mm':
-                        width = Math.round(width * 3.779527559);
-                        height = Math.round(height * 3.779527559);
-                        break;
-                }
-            } else if (uploadTypeSelect.value === 'printable' && unit !== 'mm') {
-                switch (unit) {
-                    case 'px':
-                        width = width / 3.779527559;
-                        height = height / 3.779527559;
-                        break;
-                    case 'in':
-                        width = width * 25.4;
-                        height = height * 25.4;
-                        break;
-                    case 'cm':
-                        width = width * 10;
-                        height = height * 10;
-                        break;
-                }
-            }
-
-            widthInput.value = width;
-            heightInput.value = height;
-
-            if (cropper) {
-                cropper.setAspectRatio(width / height);
-            }
-        }
-
-        function updateAspectRatio() {
-            const width = parseFloat(widthInput.value);
-            const height = parseFloat(heightInput.value);
-            if (!isNaN(width) && !isNaN(height) && cropper) {
-                cropper.setAspectRatio(width / height);
-            }
-        }
-
-        function loadImage(event) {
-            const file = event.target.files[0];
-            if (file) {
-                const reader = new FileReader();
-                reader.onload = function(e) {
-                    previewImg.src = e.target.result;
-                    previewImg.style.display = 'block';
-                    if (cropper) {
-                        cropper.destroy();
-                    }
-                    cropper = new Cropper(previewImg, {
-                        aspectRatio: parseFloat(widthInput.value) / parseFloat(heightInput.value) || NaN,
-                        viewMode: 1,
-                        dragMode: 'move',
-                        autoCropArea: 1,
-                    });
-                    uploadArea.classList.add('minimized');
-                }
-                reader.readAsDataURL(file);
-                showStatus(translations[document.documentElement.lang].upload_success, 'success');
-            }
-        }
-
-        function convertAndDownload() {
-            if (!cropper) {
-                alert('Please upload an image first.');
-                return;
-            }
-
-            const width = parseFloat(widthInput.value);
-            const height = parseFloat(heightInput.value);
-            const unit = unitSelect.value;
-
-            let pixelWidth, pixelHeight;
-            switch (unit) {
-                case 'px':
-                    pixelWidth = Math.round(width);
-                    pixelHeight = Math.round(height);
-                    break;
-                case 'in':
-                    pixelWidth = Math.round(width * 96);
-                    pixelHeight = Math.round(height * 96);
-                    break;
-                case 'cm':
-                    pixelWidth = Math.round(width * 37.795275591);
-                    pixelHeight = Math.round(height * 37.795275591);
-                    break;
-                case 'mm':
-                    pixelWidth = Math.round(width * 3.779527559);
-                    pixelHeight = Math.round(height * 3.779527559);
-                    break;
-            }
-
-            cropper.getCroppedCanvas({
-                width: pixelWidth,
-                height: pixelHeight,
-            }).toBlob((blob) => {
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = url;
-                a.download = 'adjusted_photo.png';
-                document.body.appendChild(a);
-                a.click();
-                window.URL.revokeObjectURL(url);
-                document.body.removeChild(a);
-            }, 'image/png');
-            showStatus(translations[document.documentElement.lang].convert_success, 'success')
-
-        }
-
-        // Function to get URL parameters
-        function getUrlParameter(name) {
-            name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
-            var regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
-            var results = regex.exec(location.search);
-            return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
-        }
-
-        // Function to set initial values based on URL parameters
-        function setInitialValues() {
-            const type = getUrlParameter('type');
-            const photo = getUrlParameter('photo');
-
-            if (type) {
-                uploadTypeSelect.value = type;
-            }
-
-            if (photo) {
-                switch (photo) {
-                    case 'schengen':
-                        photoTypeSelect.value = 'schengen';
-                        break;
-                    case 'us':
-                        photoTypeSelect.value = 'us';
-                        break;
-                    case 'uk':
-                        photoTypeSelect.value = 'uk';
-                        break;   
-                    default:
-                        photoTypeSelect.value = 'custom';
-                }
-            }
-
-            updateDimensions();
-        }
-
-        // Call setInitialValues when the page loads
-        window.addEventListener('load', setInitialValues);
-
-        updateDimensions();
-
-        // Hamburger menu functionality
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
-
-        // Adjust cropper size on window resize
-        window.addEventListener('resize', function() {
-            if (cropper) {
-                cropper.destroy();
-                cropper = new Cropper(previewImg, {
-                    aspectRatio: parseFloat(widthInput.value) / parseFloat(heightInput.value) || NaN,
-                    viewMode: 1,
-                    dragMode: 'move',
-                    autoCropArea: 1,
-                });
-            }
-        });
-
-        // AOS JS
-        AOS.init({
-            duration: 1000,
-            easing: 'ease-in-out',
-            once: true
-        });
-    </script>
+    // Init
+    setDimensionsByPreset();
+  </script>
 </body>
 </html>
+
