@@ -81,7 +81,7 @@
 
         header {
             background: transparent;
-            padding: 15px 0;
+            padding: 10px 0;
             border-bottom: 1px solid var(--border-color);
             backdrop-filter: saturate(140%) blur(4px);
         }
@@ -90,9 +90,12 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 15px;
+            padding: 0 20px;
             height: 60px;
             color: var(--light-text-color);
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
         }
         .logo-text {
             font-size: 24px; /* Set the text size to match your original version */
@@ -127,20 +130,30 @@
             display: flex;
             margin: 0;
             padding: 0;
+            gap: 8px;
         }
 
         .nav-links li {
-            margin-left: 15px;
+            margin-left: 0;
         }
 
         .nav-links a {
             text-decoration: none;
             color: var(--light-text-color);
-            transition: color 0.3s ease;
+            transition: color 0.2s ease, background-color 0.2s ease;
+            padding: 8px 12px;
+            border-radius: 8px;
+            display: inline-block;
         }
 
         .nav-links a:hover {
             color: #e0f7fa;
+            background-color: rgba(255, 255, 255, 0.08);
+        }
+
+        .nav-links a.active {
+            color: var(--primary-color);
+            background-color: rgba(255, 255, 255, 0.08);
         }
 
         #languageSelector select {
@@ -432,13 +445,9 @@
         /* Responsive styles */
         @media (max-width: 768px) {
             .header-content {
-                flex-direction: column;
-                height: auto;
-                padding: 15px;
-            }
-
-            .logo {
-                margin-bottom: 15px;
+                flex-direction: row;
+                height: 60px;
+                padding: 0 12px;
             }
 
             .nav-container {
@@ -448,7 +457,14 @@
             .nav-links {
                 display: none;
                 flex-direction: column;
-                width: 100%;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background-color: rgba(11, 18, 32, 0.98);
+                border-top: 1px solid var(--border-color);
+                padding: 10px 16px;
+                gap: 6px;
             }
 
             .nav-links.active {
@@ -456,11 +472,11 @@
             }
 
             .nav-links li {
-                margin: 10px 0;
+                margin: 0;
             }
 
             #languageSelector {
-                margin-top: 15px;
+                margin-top: 0;
             }
 
             .hero-title {
@@ -512,10 +528,12 @@
         .menu-toggle {
             display: none;
             background: none;
-            border: none;
-            font-size: 1.5rem;
+            border: 1px solid var(--border-color);
+            font-size: 1.2rem;
             color: var(--light-text-color);
             cursor: pointer;
+            padding: 6px 10px;
+            border-radius: 8px;
         }
 
         @media (min-width: 1440px) {
@@ -566,6 +584,10 @@
                     <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
                 </a>
             </div>
+
+                <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">
+                    <i class="fas fa-bars"></i>
+                </button>
 
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
@@ -622,9 +644,6 @@
         </div>
     </div>
 
-    <div class="cta-section">
-        <a href="#features" class="cta-button" data-lang="cta_button">Learn More</a>
-    </div>
 
     <div id="features" class="features-section">
         <h2 class="features-title" data-aos="fade-up" data-lang="features_title">Why Choose Our Visa Photo Tool?</h2>
@@ -698,9 +717,28 @@
         });
 
         // Hamburger menu functionality
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+            (function() {
+                const toggle = document.querySelector('.menu-toggle');
+                const nav = document.querySelector('.nav-links');
+                if (toggle && nav) {
+                    toggle.addEventListener('click', function() {
+                        const isOpen = nav.classList.toggle('active');
+                        toggle.setAttribute('aria-expanded', String(isOpen));
+                    });
+                }
+            })();
+
+            // Highlight active nav link based on current path
+            (function() {
+                const path = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+                const links = document.querySelectorAll('.nav-links a');
+                links.forEach(link => {
+                    const href = (link.getAttribute('href') || '').toLowerCase();
+                    if (href === path) {
+                        link.classList.add('active');
+                    }
+                });
+            })();
     
         let cropper;
         const translations = {

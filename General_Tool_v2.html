@@ -11,11 +11,13 @@
     @keyframes spin { from { transform: rotate(0deg);} to { transform: rotate(360deg);} }
     :root { --primary-color:#4ecdc4; --secondary-color:#3a8bff; --background-color:#0b1220; --surface-color:rgba(255,255,255,0.06); --border-color:rgba(255,255,255,0.12); --text-color:#e5e7eb; --light-text:#fff; }
     body { font-family:'Inter', Arial, sans-serif; margin:0; color:var(--text-color); background: radial-gradient(1200px 800px at 80% -20%, #1f2937 10%, #0b1220 60%, #070b14 100%); }
-    header { background:transparent; border-bottom:1px solid var(--border-color); padding:15px 0; backdrop-filter:saturate(140%) blur(4px); }
-    .header-content{ display:flex; align-items:center; justify-content:space-between; padding:0 20px; }
+    header { background:transparent; border-bottom:1px solid var(--border-color); padding:10px 0; backdrop-filter:saturate(140%) blur(4px); }
+    .header-content{ display:flex; align-items:center; justify-content:space-between; padding:0 20px; height:60px; color:var(--light-text); max-width:1200px; margin:0 auto; position:relative; }
     .logo-link{ color:var(--light-text); text-decoration:none; font-weight:700; font-size:22px; }
-    .nav-links{ list-style:none; display:flex; gap:16px; margin:0; padding:0; }
-    .nav-links a{ color:var(--light-text); text-decoration:none; }
+    .nav-links{ list-style:none; display:flex; gap:8px; margin:0; padding:0; }
+    .nav-links a{ color:var(--light-text); text-decoration:none; padding:8px 12px; border-radius:8px; transition: color .2s ease, background-color .2s ease; display:inline-block; }
+    .nav-links a:hover{ color:#e0f7fa; background-color: rgba(255,255,255,.08); }
+    .nav-links a.active{ color: var(--primary-color); background-color: rgba(255,255,255,.08); }
     #languageSelector select{ padding:6px 10px; border-radius:8px; border:1px solid var(--border-color); background:rgba(255,255,255,0.04); color:var(--light-text); }
     select option{ background:#0b1220; color:#e5e7eb; }
 
@@ -55,6 +57,22 @@
       style.textContent = 'select option{background:#0b1220;color:#e5e7eb}';
       document.head.appendChild(style);
     });
+    // Mobile menu toggle and active link highlight
+    (function(){
+      const toggle = document.querySelector('.menu-toggle');
+      const nav = document.querySelector('.nav-links');
+      if (toggle && nav) {
+        toggle.addEventListener('click', function(){
+          const isOpen = nav.classList.toggle('active');
+          toggle.setAttribute('aria-expanded', String(isOpen));
+        });
+      }
+      const current = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+      document.querySelectorAll('.nav-links a').forEach(a=>{
+        const href = (a.getAttribute('href')||'').toLowerCase();
+        if (href === current) a.classList.add('active');
+      });
+    })();
   </script>
 </head>
 <body>
@@ -66,8 +84,10 @@
           <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
         </a>
       </div>
+        <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
       <ul class="nav-links">
         <li><a href="index.html">Home</a></li>
+        <li><a href="Visa_editor.html">Visa Editor</a></li>
         <li><a href="Blog.html">Blog</a></li>
         <li><a href="about.html">About</a></li>
       </ul>

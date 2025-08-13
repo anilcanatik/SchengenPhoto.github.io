@@ -63,19 +63,8 @@
             margin: 0 auto;
             padding: 20px;
         }
-        header {
-            background: transparent;
-            padding: 15px 0;
-            border-bottom: 1px solid var(--border-color);
-            backdrop-filter: saturate(140%) blur(4px);
-        }
-        .header-content {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            height: 60px;
-        }
+        header { background: transparent; padding: 10px 0; border-bottom: 1px solid var(--border-color); backdrop-filter: saturate(140%) blur(4px); }
+        .header-content { display: flex; align-items: center; justify-content: space-between; padding: 0 20px; height: 60px; color: var(--light-text-color); max-width: 1200px; margin: 0 auto; position: relative; }
 
         .nav-container {
             display: flex;
@@ -88,31 +77,14 @@
             font-weight: bold;
             color: var(--light-text-color);
         }
-        .nav-links {
-            list-style-type: none;
-            display: flex;
-            margin: 0;
-            padding: 0;
-        }
+        .nav-links { list-style-type: none; display: flex; margin: 0; padding: 0; gap: 8px; }
 
-        .nav-links li {
-            margin-left: 15px;
-            display: flex;
-            align-items: center; /* This centers children vertically */
-            height: 80px;
-        }
+        .nav-links li { margin-left: 0; display: flex; align-items: center; height: 60px; }
 
-        .nav-links a {
-            text-decoration: none;
-            color: white;
-        }
+        .nav-links a { text-decoration: none; color: var(--light-text-color); padding: 8px 12px; border-radius: 8px; transition: color .2s ease, background-color .2s ease; display: inline-block; }
 
-        .nav-links a:hover,
-        .nav-links a:active,
-        .nav-links a:focus {
-            color: white; /* Keeps links white on interaction */
-            text-decoration: underline; /* Optional: adds underline on hover for better UX */
-        }
+        .nav-links a:hover { color: #e0f7fa; background-color: rgba(255,255,255,.08); }
+        .nav-links a.active { color: var(--primary-color); background-color: rgba(255,255,255,.08); }
         .logo-text {
             font-size: 24px; /* Set the text size to match your original version */
             font-weight: bold; /* Set the font weight to bold */
@@ -280,89 +252,20 @@
         text-align: center;
     }
 
+    /* Mobile nav */
+    .menu-toggle { display: none; background: none; border: 1px solid var(--border-color); font-size: 1.2rem; color: var(--light-text-color); cursor: pointer; padding: 6px 10px; border-radius: 8px; }
     @media (max-width: 768px) {
-        .header-content {
-            flex-direction: column;
-            height: auto;
-            padding: 15px;
-        }
-
-        .logo {
-            margin-bottom: 15px;
-        }
-
-        .nav-container {
-            width: 100%;
-        }
-
-        .nav-links {
-            display: none;
-            flex-direction: column;
-            width: 100%;
-        }
-
-        .nav-links.active {
-            display: flex;
-        }
-
-        .nav-links li {
-            margin: 10px 0;
-            height: auto;
-        }
-
-        #languageSelector {
-            margin-top: 15px;
-            margin-left: 0;
-        }
-
-        .container {
-            padding: 10px;
-        }
-
-        .main-content {
-            padding: 20px;
-        }
-
-        h1 {
-            font-size: 1.8rem;
-        }
-
-        p {
-            font-size: 0.9rem;
-        }
-
-        .footer-links {
-            flex-direction: column;
-        }
-
-        .footer-links a {
-            margin: 5px 0;
-        }
-    }
-
-    /* Hamburger menu styles */
-    .menu-toggle {
-        display: none;
-        background: none;
-        border: none;
-        font-size: 1.5rem;
-        color: var(--light-text-color);
-        cursor: pointer;
-    }
-
-    @media (max-width: 768px) {
-        .menu-toggle {
-            display: block;
-        }
-
-        .nav-container {
-            flex-direction: column;
-            align-items: flex-start;
-        }
-
-        .nav-links {
-            margin-top: 15px;
-        }
+        .header-content { padding: 0 12px; }
+        .nav-links { display: none; flex-direction: column; position: absolute; top: 60px; left: 0; right: 0; background-color: rgba(11,18,32,.98); border-top: 1px solid var(--border-color); padding: 10px 16px; gap: 6px; }
+        .nav-links.active { display: flex; }
+        .menu-toggle { display: block; }
+        #languageSelector { margin-top: 0; margin-left: 0; }
+        .container { padding: 10px; }
+        .main-content { padding: 20px; }
+        h1 { font-size: 1.8rem; }
+        p { font-size: 0.9rem; }
+        .footer-links { flex-direction: column; }
+        .footer-links a { margin: 5px 0; }
     }
 
     </style>
@@ -376,6 +279,7 @@
                     <img src="images/icon-atom.svg" id="spinningImage" alt="Visa Photo Tool Logo">
                 </a>
             </div>
+            <button class="menu-toggle" aria-label="Toggle navigation" aria-expanded="false">&#9776;</button>
             <ul class="nav-links">
                 <li><a href="index.html">Home</a></li>
                 <li><a href="Visa_editor.html">Visa Editor</a></li>
@@ -555,10 +459,22 @@
             changeLanguage(lang);
         });
 
-        // Hamburger menu functionality
-        document.querySelector('.menu-toggle').addEventListener('click', function() {
-            document.querySelector('.nav-links').classList.toggle('active');
-        });
+        // Mobile nav and active link
+        (function(){
+            const toggle = document.querySelector('.menu-toggle');
+            const nav = document.querySelector('.nav-links');
+            if (toggle && nav) {
+                toggle.addEventListener('click', function(){
+                    const isOpen = nav.classList.toggle('active');
+                    toggle.setAttribute('aria-expanded', String(isOpen));
+                });
+            }
+            const current = (location.pathname.split('/').pop() || 'index.html').toLowerCase();
+            document.querySelectorAll('.nav-links a').forEach(a=>{
+                const href = (a.getAttribute('href')||'').toLowerCase();
+                if (href === current) a.classList.add('active');
+            });
+        })();
         </script>   
     </body>
     </html>
