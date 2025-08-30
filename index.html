@@ -939,24 +939,32 @@
             }
         };
 
+            // Updates all translatable text and persists the language
+            // selection both in the URL and localStorage.
             function changeLanguage(lang) {
-                    // Update the URL with the selected language
-                    const url = new URL(window.location);
-                    url.searchParams.set('lang', lang);
-                    window.history.pushState({}, '', url);
+                // Update the URL with the selected language so it can be
+                // bookmarked or shared
+                const url = new URL(window.location);
+                url.searchParams.set('lang', lang);
+                window.history.pushState({}, '', url);
 
-                    // Update the page content
-                    document.querySelectorAll('[data-lang]').forEach(elem => {
-                        const key = elem.getAttribute('data-lang');
-                        if (translations[lang] && translations[lang][key]) {
-                            elem.textContent = translations[lang][key];
-                        }
+                // Update the page content
+                Object.keys(translations[lang]).forEach(key => {
+                    const elements = document.querySelectorAll(`[data-lang="${key}"]`);
+                    elements.forEach(element => {
+                        element.textContent = translations[lang][key];
                     });
-                    document.documentElement.lang = lang;
+                });
 
-                    // Update the language selector
-                    document.getElementById('language').value = lang;
-                }
+                // Update links with the new language
+                updateLinksWithLanguage(lang);
+
+                document.documentElement.lang = lang;
+                document.getElementById('language').value = lang;
+
+                // Store the selected language for subsequent visits
+                localStorage.setItem('selectedLanguage', lang);
+            }
 
                 function getLanguageFromURL() {
                     const urlParams = new URLSearchParams(window.location.search);
@@ -976,24 +984,6 @@
             });
         }
 
-            function changeLanguage(lang) {
-                // Existing language change logic
-                Object.keys(translations[lang]).forEach(key => {
-                    const elements = document.querySelectorAll(`[data-lang="${key}"]`);
-                    elements.forEach(element => {
-                        element.textContent = translations[lang][key];
-                    });
-                });
-
-                // Update links with the new language
-                updateLinksWithLanguage(lang);
-
-                // Optionally, update the selected option in the language dropdown
-                document.getElementById('language').value = lang;
-
-                // Store the selected language in localStorage for persistence
-                localStorage.setItem('selectedLanguage', lang);
-            }
 
             // Function to set initial language
             function setInitialLanguage() {
