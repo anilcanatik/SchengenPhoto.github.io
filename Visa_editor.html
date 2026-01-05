@@ -334,8 +334,20 @@
       els.uploadType.value = btn.getAttribute('data-upload');
       setDimensionsByPreset();
     });
-    els.width.addEventListener('input', () => { if (cropper) cropper.setAspectRatio(parseFloat(els.width.value)/parseFloat(els.height.value)); });
-    els.height.addEventListener('input', () => { if (cropper) cropper.setAspectRatio(parseFloat(els.width.value)/parseFloat(els.height.value)); });
+    els.width.addEventListener('input', () => {
+      if (cropper) {
+        const w = parseFloat(els.width.value);
+        const h = parseFloat(els.height.value);
+        if (w > 0 && h > 0) cropper.setAspectRatio(w / h);
+      }
+    });
+    els.height.addEventListener('input', () => {
+      if (cropper) {
+        const w = parseFloat(els.width.value);
+        const h = parseFloat(els.height.value);
+        if (w > 0 && h > 0) cropper.setAspectRatio(w / h);
+      }
+    });
     els.downloadBtn.addEventListener('click', convertAndDownload);
     els.uploadArea.addEventListener('click', () => els.fileInput.click());
     els.fileInput.addEventListener('change', e => loadImage(e.target.files[0]));
